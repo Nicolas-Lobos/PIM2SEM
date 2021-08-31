@@ -2,19 +2,19 @@
 
 *OBJETIVO
 
-// Desenvolver um software de gerenciamento de tarefas para as olimpíadas de 2024 em PARIS
+//@Nicolas_Lobos Desenvolver um software de gerenciamento de tarefas para as olimpíadas de 2024 em PARIS
 baseado na linguagem C com armazenamento de dados em arquivos (.txt), possibilidade
 de incluir na tela de inicio do programa um simbolo para as olimpiadas feitos em 0 e 1
 (torre eiffel)
 
-// Deve possuir uma tela de login que autentique o usuário
+//@Nicolas_Lobos Deve possuir uma tela de login que autentique o usuário
 
-// Consultar com o Professor Cordeiro a possibilidade de usar um banco de dados ao 
+//@Nicolas_Lobos Consultar com o Professor Cordeiro a possibilidade de usar um banco de dados ao 
 invés de arquivos .txt
 
-// Utilizar um randomizer para atribuir pontuações
+//@Nicolas_Lobos Utilizar um randomizer para atribuir pontuações
 
-// Criar um Cod_Usu auto incrementado para os usuário?
+//@Nicolas_Lobos Criar um Cod_Usu auto incrementado para os usuário?
 
 *TIPOS DE USUÁRIO DO SISTEMA
 
