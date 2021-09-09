@@ -1,6 +1,6 @@
 ## PIM2SEM
 
-Projeto Gerenciamento de Tarefas para Olimpíadas 2024
+Projeto para Gerenciamento de Tarefas das Olimpíadas 2024 - Paris
 
 Realizado na linguagem C
 

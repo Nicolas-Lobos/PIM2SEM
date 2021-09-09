@@ -1,5 +1,16 @@
 #include <conio.h>
 #include <stdio.h>
+#include <locale.h>
+
+// Arquivo biblioteca para todas as funções utilizadas no main
+
+
+///Função para exibir o processo de login
+void login(){
+    //@nicolas_lobos => a ser desenvolvido
+    
+
+}
 
 ///Função para exibir logo do software
 void opening_logo(){
@@ -45,6 +56,8 @@ printf("    PARIS                       PARIS          PARIS        PARIS       
 printf("    PARISPARISPARISPARIS        PARISPARISPARISPARIS        PARISPARISPARISPARIS                            PARIS\n");
 printf("    PARISPARISPARISPARIS        PARISPARISPARISPARIS        PARISPARISPARISPARIS                            PARIS\n");
 printf("    PARISPARISPARISPARIS        PARISPARISPARISPARIS        PARISPARISPARISPARIS                            PARIS\n");
+}
 
-
+void menu(){
+    
 }
