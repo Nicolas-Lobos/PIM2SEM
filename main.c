@@ -1,7 +1,6 @@
 #include <conio.h>
 #include <stdio.h>
-#include "opening_logo.c"
-#include "login.c"
+#include "lib.c"
 
 
 
