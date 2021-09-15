@@ -6,8 +6,6 @@
 
 
 main(){
-    
-    //@nicolas_lobos => a função abaixo chama o design de inicio
     opening_logo();
     printf("\n\n    Pressione qualquer tecla para continuar...");
     getch();
@@ -17,11 +15,6 @@ main(){
     printf("    Pressione qualquer tecla para fazer login...");
     getch();
 
-    //@nicolas_lobos => a função abaixo lança a tela de Login
-    //@nicolas_lobos => a ser implementado = 
+    //@nicolas_lobos => a ser implementado
     login();
-
-
-
-
 }

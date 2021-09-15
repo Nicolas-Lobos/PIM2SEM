@@ -1,11 +1,11 @@
-**PROJETO PARA O PIM DO 2º SEMESTRE DE 2021**
+# **PROJETO PARA O PIM DO 2º SEMESTRE DE 2021**
 
 ## OBJETIVO
 
 //@Nicolas_Lobos Desenvolver um software de gerenciamento de tarefas para as olimpíadas de 2024 em PARIS
 baseado na linguagem C com armazenamento de dados em arquivos (.txt), possibilidade
-de incluir na tela de inicio do programa um simbolo para as olimpiadas feitos em 0 e 1
-(torre eiffel)
+de incluir na tela de inicio do programa um simbolo para as olimpiadas feito com a palavra PARIS
+(PARIS 2024)
 
 //@Nicolas_Lobos Deve possuir uma tela de login que autentique o usuário
 
@@ -19,14 +19,14 @@ invés de arquivos .txt
 ## TIPOS DE USUÁRIO DO SISTEMA
 
 Existem 4 tipos de usuarios para o software
-    -Atletas
-    -Técnicos
-    -Médicos
-    -Staff (administração) *SuperUser*
+    -Atletas (3)
+    -Técnicos (2)
+    -Médicos (4)
+    -Staff (administração) *SuperUser* (1)
 
 Tarefas a realizar por usuario 
     
-    (1)Atletas
+    (3)Atletas
         -realiza consultas
         -calendário e resultados
         -solicita transferência de alojamento
@@ -36,7 +36,7 @@ Tarefas a realizar por usuario
         -Realiza escala de time
         -Consultas ao calendário e resultados
 
-    (3)Médicos
+    (4)Médicos
         -Consulta internados
         -Consulta relatórios
         -Emiti Alta de paciente
@@ -50,14 +50,14 @@ O médico terá acesso a um menu personalizado
 Staff possui acesso a todos os itens de menu
 
 MENU                                        USUARIO QUE TEM ACESSO
-    (1)Consultar Agenda                     1   2   3
-    (2)Consultar Resultados                 1   2   3
-    (3)Solicitar Transferência              1   3
-    (4)Programar Escala                     1   3
-    (5)Adicionar Evento                     1   3
+    (1)Consultar Agenda                     1    2   3
+    (2)Consultar Resultados                 1    2   3
+    (3)Solicitar Transferência              1    3
+    (4)Programar Escala                     1    3
+    (5)Adicionar Evento                     1    3
     (6)Realizar Evento                      1
     (7)Realiza Transferência                1
-    (8)Cadastra Atleta                      1   3
+    (8)Cadastra Atleta                      1
     (9)Cadastra Técnicos                    1
     (10)Cadastra Médicos                    1
     (11)Cadastra STAFF                      1
