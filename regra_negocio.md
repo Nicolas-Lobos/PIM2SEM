@@ -1,16 +1,16 @@
-# REGRA DE NEGOCIOS
+# REGRA DE NEG�CIOS
 
 Orientações para o desenvolvimento do nosso projeto, com o intuito de facilitar o desenvolvimento
 
-## COMENTÁRIOS IDENTIFICADOS
+## COMENT�RIOS IDENTIFICADOS
 
 Cada comentário nosso realizado no projeto deve ser feito da seguinte forma "// @seu nome _ Conteudo do comment"
 
-## NOMEAÇÃO DE VARIAVEIS
+## NOMEA��O DE VARI�VEIS
 
 Nomeação de variavel?
 
-## DOCUMENTAÇÃO
+## DOCUMENTA��O
 
 Para documentar o que uma função faz,
 utilizar /// (3x barras), para marcar como comentário de documentação, na linha acima a da inicio da função
