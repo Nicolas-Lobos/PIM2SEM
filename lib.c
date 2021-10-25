@@ -245,10 +245,11 @@ void menu_staff(){
 		printf("\t(9) Cadastro de Técnicos\n");
 		printf("\t(10) Cadastro de Médicos\n");
 		printf("\t(11) Cadastro de STAFF\n");
-		printf("\t(12) SAIR\n\n");
+		printf("\t(12) Cadastro de usuário\n");
+		printf("\t(13) SAIR\n\n");
 		printf("\tPor gentileza, digite o número da opção desejada:\n");
 		//@nicolas_lobos => leitura do input do usuario
-		scanf("%d", &option);
+		scanf("\t%d", &option);
 		//@nicolas_lobos => inicio da estrutura de condição
 		switch (option) {
 			case 1:
@@ -296,19 +297,19 @@ void menu_staff(){
 			break;
 
 			default:
-			printf("OpÃ§Ã£o invalida! Tente novamente");
+			printf("Opção inválida! Tente novamente");
 			break;
 		}
 
 	}
-	//@nicolas_lobos => condiÃ§Ã£o de execuÃ§Ã£o
-	while(option != 12);
+	//@nicolas_lobos => condição de execução
+	while(option != 13);
 }
 
 
 void menu_atleta(){
 		
-	//@nicolas_lobos => Declaração de variaveis
+	//@nicolas_lobos => Declaração de váriaveis
 	int option;
 	//@nicolas_lobos => inicio da estrutura de repetição 
 	do {
@@ -320,7 +321,7 @@ void menu_atleta(){
 		printf("(3) SAIR");
 		printf("Por gentileza, digite o nÃºmero da opÃ§Ã£o desejada:\n");
 		//@nicolas_lobos => leitura do input do usuario
-		scanf("%d", &option);
+		scanf("\t%d", &option);
 		//@nicolas_lobos => inicio da estrutura de condição
 		switch (option) {
 			case 1:
