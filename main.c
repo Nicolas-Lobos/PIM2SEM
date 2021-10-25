@@ -1,20 +1,20 @@
 #include <conio.h>
 #include <stdio.h>
+#include <locale.h>
 #include "lib.c"
 
 
-
-
 main(){
+    setlocale(LC_ALL, "Portuguese");
     opening_logo();
-    printf("\n\n    Pressione qualquer tecla para continuar...");
-    getch();
+    system("pause");
+    printf("\n\n");
+    printf("\tParis Task Manager 2024 V0.0\n\tDeveloped by NL/DC/JM\n\tUNIP-SJC2021\n");
     printf("\n");
-    printf("    Paris Task Manager 2024 V0.0\n  Developed by NL/DC/JM ");
-    printf("\n");
-    printf("    Pressione qualquer tecla para fazer login...");
-    getch();
+    system("pause");
+    
 
     //@nicolas_lobos => a ser implementado
     login();
+    menu_staff();
 }

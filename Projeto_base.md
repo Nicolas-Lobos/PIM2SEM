@@ -1,16 +1,13 @@
-# **PROJETO PARA O PIM DO 2Âº SEMESTRE DE 2021**
+# **PROJETO PARA O PIM DO 2º SEMESTRE DE 2021**
 
 ## OBJETIVO
 
-//@Nicolas_Lobos Desenvolver um software de gerenciamento de tarefas para as olimpíadas de 2024 em PARIS
+//@Nicolas_Lobos Desenvolver um software de gerenciamento de tarefas para as olimpí­adas de 2024 em PARIS
 baseado na linguagem C com armazenamento de dados em arquivos (.txt), possibilidade
-de incluir na tela de início do programa um símbolo para as olimpiadas feito com a palavra PARIS
+de incluir na tela de inï¿½cio do programa um sï¿½mbolo para as olimpiadas feito com a palavra PARIS
 (PARIS 2024)
 
 //@Nicolas_Lobos Deve possuir uma tela de login que autentique o usuário
-
-//@Nicolas_Lobos Consultar com o Professor Cordeiro a possibilidade de usar um banco de dados ao 
-invés de arquivos .txt (**possibilidade negada**)
 
 //@Nicolas_Lobos Utilizar um randomizer para atribuir pontuações
 
@@ -46,23 +43,23 @@ Tarefas a realizar por usuário
 ## PROCESSO PARA OS MENUS
 
 Cada usuário vai ter acesso a uma parte especifica do menu padrão
-O médico terá¡ acesso a um menu personalizado
+O médico terá acesso a um menu personalizado
 Staff possui acesso a todos os itens de menu
 
 ### MENU                                        USUARIO QUE TEM ACESSO
-    (1)Consultar Agenda                     1    2   3
-    (2)Consultar Resultados                 1    2   3
-    (3)Solicitar Transferência              1    3
-    (4)Programar Escala                     1    3
-    (5)Adicionar Evento                     1    3
-    (6)Realizar Evento                      1
-    (7)Realiza Transferência                1
-    (8)Cadastra Atleta                      1
-    (9)Cadastra Técnicos                    1
-    (10)Cadastra Médicos                    1
-    (11)Cadastra STAFF                      1
+    (1)Consultar Agenda                             1   2   3
+    (2)Consultar Resultados                         1   2   3
+    (3)Solicitar Transferência                      1       3
+    (4)Programar Escala                             1       3
+    (5)Adicionar Evento                             1       3
+    (6)Realizar Evento                              1
+    (7)Realiza Transferência                        1
+    (8)Cadastra Atleta                              1
+    (9)Cadastra Técnicos                            1
+    (10)Cadastra Médicos                            1
+    (11)Cadastra STAFF                              1
 
-### MENU MÉDICO
+### MENU Mï¿½DICO
     (1)Consultar Internados
     (2)Consultar relatórios
     (3)Emitir Alta
@@ -74,7 +71,7 @@ Staff possui acesso a todos os itens de menu
         Nome Completo
         Passaporte
         E-Mail
-        TU (Tipo de UsuÃ¡rio)
+        TU (Tipo de Usuário)
         Login
         Senha
         Status
@@ -82,8 +79,8 @@ Staff possui acesso a todos os itens de menu
         Idade
         Sexo
         Modalidade
-        Equipe Olimpica
-        Alojamento Atribuido
+        Equipe Olímpica
+        Alojamento Atribuído
         Equipamentos Necessários
         Médico Responsável
         Técnico Responsável
@@ -106,7 +103,7 @@ Staff possui acesso a todos os itens de menu
     Cad_Médico {
         Nome Completo
         Passaporte
-        Paí­s de Origem
+        País de Origem
         Sexo
         E-Mail
         TU (Tipo de Usuário)
@@ -127,9 +124,9 @@ Staff possui acesso a todos os itens de menu
         Senha
     }
 
-## PROCESSO PARA A REALIZAÃ‡ÃƒO DE EVENTOS
+## PROCESSO PARA A REALIZAÇÃO DE EVENTOS
 
-O menu de eventos pode conter informaÃ§Ãµes como 
+O menu de eventos pode conter informações como:
 
     - INICIAR PARTIDA
     - ATRIBUIR MEDALHAS

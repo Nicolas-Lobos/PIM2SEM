@@ -1,23 +1,23 @@
 # REGRA DE NEG”CIOS
 
-Orienta√ß√µes para o desenvolvimento do nosso projeto, com o intuito de facilitar o desenvolvimento
+OrientaÁıes para o desenvolvimento do nosso projeto, com o intuito de facilitar o desenvolvimento
 
 ## COMENT¡RIOS IDENTIFICADOS
 
-Cada coment√°rio nosso realizado no projeto deve ser feito da seguinte forma "// @seu nome _ Conteudo do comment"
+Cada coment·rio nosso realizado no projeto deve ser feito da seguinte forma "// @seu nome _ Conteudo do comment"
 
 ## NOMEA«√O DE VARI¡VEIS
 
-Nomea√ß√£o de variavel?
+NomeaÁ„o de variavel?
 
 ## DOCUMENTA«√O
 
 Para documentar o que uma fun√ß√£o faz,
-utilizar /// (3x barras), para marcar como coment√°rio de documenta√ß√£o, na linha acima a da inicio da fun√ß√£o
+utilizar /// (3x barras), para marcar como coment√°rio de documentaÁ„o, na linha acima a da inicio da funÁ„o
 
 ex.: 
 
-/// fun√ß√£o para o processo de login do sistema
+/// funÁ„o para o processo de login do sistema
 void login()
 
 ##
