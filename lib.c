@@ -92,6 +92,10 @@ void cad_STAFF(){
 	//@nicolas_lobos => a ser desenvolvido
 }
 
+void cad_user(){
+	printf("em progresso");
+}
+
 
 ///Função para exibir o processo de login
 void login(){
