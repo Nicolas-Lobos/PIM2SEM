@@ -4,13 +4,32 @@
 #include <string.h>
 #include <stdlib.h>
 
-//@nicolas_lobos => Arquivo biblioteca para todas as funÃ§Ãµes utilizadas no main
+//@nicolas_lobos => Arquivo biblioteca para todas as funções utilizadas no main
 
 
-/// processo para a consulta da agenda de eventos
+///processo para a consulta da agenda de eventos
 void cslta_agenda(){
-	printf("em progresso");
-	//@nicolas_lobos => a ser desenvolvido
+	//@nicolas_lobos => declaração de variáveis
+	char buffer[1024];
+	//@nicolas_lobos => declaração de ponteiros
+	FILE *agenda_jogos;
+	
+	agenda_jogos = fopen("agenda_jogos.txt", "r");
+	//@nicolas_lobos => verifica se a abertura foi concluida com sucesso
+	if(!agenda_jogos){
+		printf("Error:File not found");
+		system("pause");
+		exit(0);
+	}
+	//@nicolas_lobos => prosseguindo caso sucesso
+	else{
+		//@nicolas_lobos => exibindo as informações da agenda de jogos
+		printf("\n\tAGENDA OLÍMPICA");
+		while(fscanf(agenda_jogos,"%s",buffer)==1){
+			printf("\n\t%s\n",buffer);
+		}
+		system("pause");
+	}
 }
 
 /// processo para consulta ao resultado de eventos
@@ -84,47 +103,71 @@ void login(){
 	int logado;
 	int i;
 	int k;
-	char comparadora_psw_login[1024][200];
-	char buffer[1024];
+	char comparadora_psw_login[400][200];
+	char buffer[200];
+	//@nicolas_lobos => declaração de ponteiros
 	FILE *f_login;
 
-	//definição de valores para login e senha
+	//@nicolas_lobos => definição de valor para o estado "logado" do usuário
 	logado = 0;
 	
-	//inicio da função de login
-	//abrindo o arquivo de dados do login
+	//@nicolas_lobos => início da função de login
+	//@nicolas_lobos => abrindo o arquivo de dados do login
 	f_login = fopen("login.txt", "r");
-	//verifica se a abertura foi concluida com sucesso
+	//@nicolas_lobos => verifica se a abertura foi concluida com sucesso
 	if(!f_login){
 		printf("Error:File not found");
 		system("pause");
 		exit(0);
 	}
-	//prosseguindo caso sucesso
+	//@nicolas_lobos => prosseguindo caso sucesso
 	else{
 		do{
+			//@nicolas_lobos => flush pra evitar erro de teclado
 			fflush(stdin);
 			printf("\n\nInsira seu usuário:\n");
 			gets(username);
+			fflush(stdin);
 			printf("\nInsira sua senha:\n");
 			gets(password);
 			
+			//@nicolas_lobos => junta a string password com a string username
 			strcat(username,password);
+			
 			i= 0;
+			
+			/*@nicolas_lobos =>
+			copia todas as strings do arquivo 
+			login.txt para uma matriz de comparação*/
+
 			while(fscanf(f_login,"%s",buffer)==1){
 				strcpy(comparadora_psw_login[i],buffer);
 				i++;
 			}
-			for(i=0; i < 5; i++) {
-    			if(!(strcmp(comparadora_psw_login[i],username))){
-        		printf("encontrei a senha dessa porra FILHA DA PUTA");
+			
+			/*@nicolas_lobos =>
+			compara o username concatenado, com as strings
+			armazenadas na matriz comparadora*/
+
+			for(k=0; k<=400; k++) {
+    			/*@nicolas_lobos =>
+				Se um usuario e senha correspondente
+				for encontrado, para o laço for*/
+				
+				if(!(strcmp(comparadora_psw_login[k],username))){
+        		
+				/*@nicolas_lobos =>
+				a linha abaixo serve de teste para 
+				confirmar se encontrou uma correspondência
+				printf("encontrei a senha");*/
 				logado=1;
         		break;
     			}
 			}
 
 		} while(!logado);
-		printf("\n\nSUCESSO\n\n");
+		//@nicolas_lobos => mensagem de sucesso
+		printf("\n\n\tLOGIN EFETUADO COM SUCESSO!\n\n");
 		system("pause");
 	}
 }
@@ -179,11 +222,11 @@ printf("    PARISPARISPARISPARIS        PARISPARISPARISPARIS        PARISPARISPA
 ///Função para criar o menu para usuario STAFF
 void menu_staff(){
 	
-	//@nicolas_lobos => DeclaraÃ§Ã£o de variaveis
+	//@nicolas_lobos => Declaração de variáveis
 	int option;
-	//@nicolas_lobos => inicio da estrutura de repetiÃ§Ã£o 
+	//@nicolas_lobos => início da estrutura de repetição 
 	do {
-		//@nicolas_lobos => exibiÃ§Ã£o do menu
+		//@nicolas_lobos => exibição do menu
 		printf("\n");
 		printf("\tBem vindo, por favor selecione uma opção abaixo:\n");
 		printf("\t================================================\n");
@@ -202,7 +245,7 @@ void menu_staff(){
 		printf("\tPor gentileza, digite o número da opção desejada:\n");
 		//@nicolas_lobos => leitura do input do usuario
 		scanf("%d", &option);
-		//@nicolas_lobos => inicio da estrutura de condiÃ§Ã£o
+		//@nicolas_lobos => inicio da estrutura de condição
 		switch (option) {
 			case 1:
 			cslta_agenda();
@@ -261,11 +304,11 @@ void menu_staff(){
 
 void menu_atleta(){
 		
-	//@nicolas_lobos => DeclaraÃ§Ã£o de variaveis
+	//@nicolas_lobos => Declaração de variaveis
 	int option;
-	//@nicolas_lobos => inicio da estrutura de repetiÃ§Ã£o 
+	//@nicolas_lobos => inicio da estrutura de repetição 
 	do {
-		//@nicolas_lobos => exibiÃ§Ã£o do menu
+		//@nicolas_lobos => exibição do menu
 		printf("\n");
 		printf("Bem vindo, por favor selecione uma opÃ§Ã£o abaixo:\n");
 		printf("(1) Consultar Agenda\n");
@@ -274,7 +317,7 @@ void menu_atleta(){
 		printf("Por gentileza, digite o nÃºmero da opÃ§Ã£o desejada:\n");
 		//@nicolas_lobos => leitura do input do usuario
 		scanf("%d", &option);
-		//@nicolas_lobos => inicio da estrutura de condiÃ§Ã£o
+		//@nicolas_lobos => inicio da estrutura de condição
 		switch (option) {
 			case 1:
 			cslta_agenda();
@@ -285,7 +328,7 @@ void menu_atleta(){
 			break;
 			
 			default:
-			printf("OpÃ§Ã£o invalida! Tente novamente");
+			printf("Opção inválida! Tente novamente");
 			break;
 		}
 
