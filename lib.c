@@ -7,6 +7,7 @@
 //@nicolas_lobos => Arquivo biblioteca para todas as funções utilizadas no main
 
 
+
 ///processo para a consulta da agenda de eventos
 void cslta_agenda(){
 	//@nicolas_lobos => declaração de variáveis
@@ -91,7 +92,11 @@ void cad_STAFF(){
 	printf("em progresso");
 	//@nicolas_lobos => a ser desenvolvido
 }
-
+/// processo para exibir o menu médico
+void menu_med(){
+	printf("em progresso");
+}
+/// processo para cadastrar usuários e gerar suas autenticações
 void cad_user(){
 	printf("Autenticação");
 		//declaração de variáveis
@@ -124,10 +129,10 @@ void cad_user(){
 	//@nicolas_lobos => prosseguindo caso sucesso
 	else{
 		printf("\nQual será o tipo de usuário?");
-		printf("\n(1)TÉCNICO");
+		printf("\n(1)ATLETA");
 		printf("\n(2)ADMIN");
 		printf("\n(3)MÉDICO");
-		printf("\n(4)ATLETA");
+		printf("\n(4)TÉCNICO");
 		scanf("%d",&opt_auth);
 		switch(opt_auth){
 			case 1:
@@ -173,11 +178,11 @@ void cad_user(){
 					break;
 					}
 				}
-			printf("Usuário não autorizado, tente novamente!");
+				printf("Usuário não autorizado, tente novamente!");
 			} while(!logado);
 			//@nicolas_lobos => mensagem de sucesso
 			
-			printf("\n\n\tUSUÁRIO AUTENTICADO!\n\n");
+			printf("\n\n\t\aUSUÁRIO AUTENTICADO!\n\n");
 			system("pause");
 			
 			f_login = fopen("login.txt", "a");
@@ -192,6 +197,7 @@ void cad_user(){
 				do{
 					fflush(stdin);
 					printf("\n\n\tCadastro de Usuários do Sistema");
+					printf("\n\tUsuário TIPO ATLETA");
 					printf("\n\tPor favor Insira um login para cadastrar: ");
 					gets(login_cad);
 					fflush(stdin);
@@ -265,7 +271,7 @@ void cad_user(){
 			} while(!logado);
 			//@nicolas_lobos => mensagem de sucesso
 			
-			printf("\n\n\tUSUÁRIO AUTENTICADO!\n\n");
+			printf("\n\n\t\aUSUÁRIO AUTENTICADO!\n\n");
 			system("pause");
 			
 			f_auth = fopen("auth3.txt", "a");
@@ -308,10 +314,10 @@ void cad_user(){
 					}
 					fclose(f_login);
 
-					printf("\nCADASTRO EFETUADO COM SUCESSO!\n\n");
-					printf("\nDeseja cadastrar outro usuário?");
-					printf("\n(1)SIM");
-					printf("\n(2)NÃO\n");
+					printf("\n\tCADASTRO EFETUADO COM SUCESSO!\n\n");
+					printf("\n\tDeseja cadastrar outro usuário?");
+					printf("\n\t(1)SIM");
+					printf("\n\t(2)NÃO\n");
 					scanf("%d",&option);
 
 				}while(option!=2);
@@ -322,20 +328,217 @@ void cad_user(){
 			break;
 
 			case 3:
-			printf("em construção");// médico
+			do{
+				//@nicolas_lobos => flush pra evitar erro de teclado
+				fflush(stdin);
+				printf("\n\n\tInsira seu usuário:\n");
+				gets(username);
+				fflush(stdin);
+				printf("\n\tInsira sua senha:\n");
+				gets(password);
+				
+				//@nicolas_lobos => junta a string password com a string username
+				strcat(username,password);
+				
+				i= 0;
+				
+				/*@nicolas_lobos =>
+				copia todas as strings do arquivo 
+				login.txt para uma matriz de comparação*/
+
+				while(fscanf(f_auth,"%s",buffer)==1){
+					strcpy(comparadora_psw_login[i],buffer);
+					i++;
+				}
+				
+				/*@nicolas_lobos =>
+				compara o username concatenado, com as strings
+				armazenadas na matriz comparadora*/
+
+				for(k=0; k<=400; k++) {
+					/*@nicolas_lobos =>
+					Se um usuario e senha correspondente
+					for encontrado, para o laço for*/
+					
+					if(!(strcmp(comparadora_psw_login[k],username))){
+					
+					/*@nicolas_lobos =>
+					a linha abaixo serve de teste para 
+					confirmar se encontrou uma correspondência
+					printf("encontrei a senha");*/
+					logado=1;
+					break;
+					}
+				}
+			printf("Usuário não Autorizado, tente novamente!");
+			} while(!logado);
+			//@nicolas_lobos => mensagem de sucesso
+			
+			printf("\n\n\t\aUSUÁRIO AUTENTICADO!\n\n");
+			system("pause");
+			
+			f_auth = fopen("auth1.txt", "a");
+			
+			if(!f_auth){
+				printf("Error:File not found");
+				system("pause");
+				exit(0);
+			}
+
+			else{
+				do{
+					fflush(stdin);
+					printf("\n\n\tCadastro de Usuários do Sistema");
+					printf("\n\tUsuário TIPO MÉDICO");
+					printf("\n\tPor favor Insira um login para cadastrar: ");
+					gets(login_cad);
+					fflush(stdin);
+					printf("\n\tPor favor Insira uma senha para cadastrar: ");
+					gets(password_cad);
+
+					strcat(login_cad,password_cad);
+
+					for(i=0; login_cad[i]; i++) {
+						putc(login_cad[i],f_auth);
+					}
+					fprintf(f_auth,"\n");
+					
+					f_login = fopen("login.txt","a");
+					if(!f_login){
+						printf("Error:File not found");
+						system("pause");
+						exit(0);
+					}
+					else{
+						for(i=0; login_cad[i]; i++) {
+						putc(login_cad[i],f_login);
+						}
+						fprintf(f_login,"\n");
+					}
+					fclose(f_login);
+
+					printf("\n\tCADASTRO EFETUADO COM SUCESSO!\n\n");
+					printf("\n\tDeseja cadastrar outro usuário?");
+					printf("\n\t(1)SIM");
+					printf("\n\t(2)NÃO\n");
+					scanf("\t%d",&option);
+
+				}while(option!=2);
+
+			fclose(f_auth);
+			
+			}
 			break;
 
 			case 4:
-			printf("em construção");// atleta
+			do{
+				//@nicolas_lobos => flush pra evitar erro de teclado
+				fflush(stdin);
+				printf("\n\n\tInsira seu usuário:\n");
+				gets(username);
+				fflush(stdin);
+				printf("\n\tInsira sua senha:\n");
+				gets(password);
+				
+				//@nicolas_lobos => junta a string password com a string username
+				strcat(username,password);
+				
+				i= 0;
+				
+				/*@nicolas_lobos =>
+				copia todas as strings do arquivo 
+				login.txt para uma matriz de comparação*/
+
+				while(fscanf(f_auth,"%s",buffer)==1){
+					strcpy(comparadora_psw_login[i],buffer);
+					i++;
+				}
+				
+				/*@nicolas_lobos =>
+				compara o username concatenado, com as strings
+				armazenadas na matriz comparadora*/
+
+				for(k=0; k<=400; k++) {
+					/*@nicolas_lobos =>
+					Se um usuario e senha correspondente
+					for encontrado, para o laço for*/
+					
+					if(!(strcmp(comparadora_psw_login[k],username))){
+					
+					/*@nicolas_lobos =>
+					a linha abaixo serve de teste para 
+					confirmar se encontrou uma correspondência
+					printf("encontrei a senha");*/
+					logado=1;
+					break;
+					}
+				}
+			printf("Usuário não Autorizado, tente novamente!");
+			} while(!logado);
+			//@nicolas_lobos => mensagem de sucesso
+			
+			printf("\n\n\t\aUSUÁRIO AUTENTICADO!\n\n");
+			system("pause");
+			
+			f_auth = fopen("auth2.txt", "a");
+			
+			if(!f_auth){
+				printf("Error:File not found");
+				system("pause");
+				exit(0);
+			}
+
+			else{
+				do{
+					fflush(stdin);
+					printf("\n\n\tCadastro de Usuários do Sistema");
+					printf("\n\tUsuário TIPO TÉCNICO");
+					printf("\n\tPor favor Insira um login para cadastrar: ");
+					gets(login_cad);
+					fflush(stdin);
+					printf("\n\tPor favor Insira uma senha para cadastrar: ");
+					gets(password_cad);
+
+					strcat(login_cad,password_cad);
+
+					for(i=0; login_cad[i]; i++) {
+						putc(login_cad[i],f_auth);
+					}
+					fprintf(f_auth,"\n");
+					
+					f_login = fopen("login.txt","a");
+					if(!f_login){
+						printf("Error:File not found");
+						system("pause");
+						exit(0);
+					}
+					else{
+						for(i=0; login_cad[i]; i++) {
+						putc(login_cad[i],f_login);
+						}
+						fprintf(f_login,"\n");
+					}
+					fclose(f_login);
+
+					printf("\n\tCADASTRO EFETUADO COM SUCESSO!\n\n");
+					printf("\n\tDeseja cadastrar outro usuário?");
+					printf("\n\t(1)SIM");
+					printf("\n\t(2)NÃO\n");
+					scanf("\t%d",&option);
+
+				}while(option!=2);
+
+			fclose(f_auth);
+			
+			}
 			break;
 
 			default:
-			printf("em construção");
+			printf("\n\tOPÇÃO INVÁLIDA");
 			break;
 		}
 	}
 }
-
 
 ///Função para exibir o processo de login
 void login(){
@@ -410,11 +613,10 @@ void login(){
 		printf("Usuário/Senha Inválidos, tente novamente!");
 		} while(!logado);
 		//@nicolas_lobos => mensagem de sucesso
-		printf("\n\n\tLOGIN EFETUADO COM SUCESSO!\n\n");
+		printf("\n\n\t\aLOGIN EFETUADO COM SUCESSO!\n\n");
 		system("pause");
 	}
 }
-
 
 ///Função para exibir logo do software
 void opening_logo(){
@@ -470,7 +672,7 @@ void menu(){
 	//@nicolas_lobos => início da estrutura de repetição 
 	do {
 		//@nicolas_lobos => exibição do menu
-		printf("\n");
+		printf("\n\a");
 		printf("\tBem vindo, por favor selecione uma opção abaixo:\n");
 		printf("\t================================================\n");
 		printf("\t(1) Consultar Agenda\n");
@@ -485,7 +687,8 @@ void menu(){
 		printf("\t(10) Cadastro de Médicos\n");
 		printf("\t(11) Cadastro de STAFF\n");
 		printf("\t(12) Cadastro de usuário\n");
-		printf("\t(13) SAIR\n\n");
+		printf("\t(13) Área Médica\n");
+		printf("\t(14) SAIR\n\n");
 		printf("\tPor gentileza, digite o número da opção desejada:\n");
 		//@nicolas_lobos => leitura do input do usuario
 		scanf("\t%d", &option);
@@ -538,6 +741,10 @@ void menu(){
 			case 12:
 			cad_user();
 
+			case 13:
+			menu_med();
+			break;
+
 			default:
 			printf("Opção inválida! Tente novamente");
 			break;
@@ -545,5 +752,5 @@ void menu(){
 
 	}
 	//@nicolas_lobos => condição de execução
-	while(option != 13);
+	while(option != 14);
 }
