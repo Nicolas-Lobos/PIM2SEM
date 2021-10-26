@@ -17,5 +17,5 @@ main(){
 
     //@nicolas_lobos => a ser implementado
     login();
-    menu_staff();
+    menu();
 }
