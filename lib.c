@@ -8,7 +8,7 @@
 
 
 
-///processo para a consulta da agenda de eventos
+///processo para a consulta da agenda de eventos (concluido)
 void cslta_agenda(){
 	//@nicolas_lobos => declaração de variáveis
 	char buffer[1024];
@@ -33,7 +33,7 @@ void cslta_agenda(){
 	}
 }
 
-/// processo para consulta ao resultado de eventos
+/// processo para consulta ao resultado de eventos (a revisar remoção)
 void cslta_resultado(){
 	printf("em progresso");
 	//@nicolas_lobos => a ser desenvolvido
@@ -45,7 +45,7 @@ void slcta_transferencia(){
 	//@nicolas_lobos => a ser desenvolvido
 }
 
-/// processo para programar a escala
+/// processo para programar a escala (a revisar remoção)
 void prgma_escala(){
 	printf("em progresso");
 	//@nicolas_lobos => a ser desenvolvido
@@ -63,7 +63,7 @@ void rlz_evento(){
 	//@nicolas_lobos => a ser desenvolvido
 }
 
-/// processo para realizar uma transferencia de alojamento
+/// processo para realizar uma transferencia de alojamento (a revisar remoção)
 void rlz_transferencia(){
 	printf("em progresso");
 	//@nicolas_lobos => a ser desenvolvido
@@ -75,13 +75,13 @@ void cad_atleta(){
 	//@nicolas_lobos => a ser desenvolvido
 }
 
-/// processo para cadastrar um tÃ©cnico
+/// processo para cadastrar um técnico
 void cad_tecnico(){
 	printf("em progresso");
 	//@nicolas_lobos => a ser desenvolvido
 }
 
-/// processo para cadastrar um mÃ©dico
+/// processo para cadastrar um médico
 void cad_medico(){
 	printf("em progresso");
 	//@nicolas_lobos => a ser desenvolvido
@@ -92,11 +92,13 @@ void cad_STAFF(){
 	printf("em progresso");
 	//@nicolas_lobos => a ser desenvolvido
 }
+
 /// processo para exibir o menu médico
 void menu_med(){
 	printf("em progresso");
 }
-/// processo para cadastrar usuários e gerar suas autenticações
+
+/// processo para cadastrar usuários e gerar suas autenticações (concluido)
 void cad_user(){
 	printf("Autenticação");
 		//declaração de variáveis
@@ -104,7 +106,7 @@ void cad_user(){
 	char password[200];
 	char login_cad[200];
 	char password_cad[200];
-	int option;
+	int opt_y_n;
 	int opt_auth;
 	int logado;
 	int i;
@@ -215,9 +217,9 @@ void cad_user(){
 					printf("\nDeseja cadastrar outro usuário?");
 					printf("\n(1)SIM");
 					printf("\n(2)NÃO\n");
-					scanf("%d",&option);
+					scanf("%d",&opt_y_n);
 
-				}while(option!=2);
+				}while(opt_y_n!=2);
 
 			fclose(f_login);
 			
@@ -318,9 +320,9 @@ void cad_user(){
 					printf("\n\tDeseja cadastrar outro usuário?");
 					printf("\n\t(1)SIM");
 					printf("\n\t(2)NÃO\n");
-					scanf("%d",&option);
+					scanf("%d",&opt_y_n);
 
-				}while(option!=2);
+				}while(opt_y_n!=2);
 
 			fclose(f_auth);
 			
@@ -421,9 +423,9 @@ void cad_user(){
 					printf("\n\tDeseja cadastrar outro usuário?");
 					printf("\n\t(1)SIM");
 					printf("\n\t(2)NÃO\n");
-					scanf("\t%d",&option);
+					scanf("\t%d",&opt_y_n);
 
-				}while(option!=2);
+				}while(opt_y_n!=2);
 
 			fclose(f_auth);
 			
@@ -524,9 +526,9 @@ void cad_user(){
 					printf("\n\tDeseja cadastrar outro usuário?");
 					printf("\n\t(1)SIM");
 					printf("\n\t(2)NÃO\n");
-					scanf("\t%d",&option);
+					scanf("\t%d",&opt_y_n);
 
-				}while(option!=2);
+				}while(opt_y_n!=2);
 
 			fclose(f_auth);
 			
@@ -538,9 +540,10 @@ void cad_user(){
 			break;
 		}
 	}
+	system("pause");
 }
 
-///Função para exibir o processo de login
+///Função para exibir o processo de login (concluido)
 void login(){
 		//declaração de variáveis
 	char username[200];
@@ -618,7 +621,7 @@ void login(){
 	}
 }
 
-///Função para exibir logo do software
+///Função para exibir logo do software (concluido)
 void opening_logo(){
 
 printf("    PARISPARISPARIS           PARISPARISPARISPARIS      PARISPARISPARIS           PARIS      PARISPARISPARISPARIS\n");
@@ -664,11 +667,11 @@ printf("    PARISPARISPARISPARIS        PARISPARISPARISPARIS        PARISPARISPA
 printf("    PARISPARISPARISPARIS        PARISPARISPARISPARIS        PARISPARISPARISPARIS                            PARIS\n");
 }
 
-///Função para criar o menu para usuario STAFF
+///Função para criar o menu para usuario STAFF (concluido)
 void menu(){
 	
 	//@nicolas_lobos => Declaração de variáveis
-	int option;
+	int option_menu;
 	//@nicolas_lobos => início da estrutura de repetição 
 	do {
 		//@nicolas_lobos => exibição do menu
@@ -691,9 +694,9 @@ void menu(){
 		printf("\t(14) SAIR\n\n");
 		printf("\tPor gentileza, digite o número da opção desejada:\n");
 		//@nicolas_lobos => leitura do input do usuario
-		scanf("\t%d", &option);
+		scanf("\t%d", &option_menu);
 		//@nicolas_lobos => inicio da estrutura de condição
-		switch (option) {
+		switch (option_menu) {
 			case 1:
 			cslta_agenda();
 			break;
@@ -749,8 +752,8 @@ void menu(){
 			printf("Opção inválida! Tente novamente");
 			break;
 		}
-
+		option_menu=NULL;
 	}
 	//@nicolas_lobos => condição de execução
-	while(option != 14);
+	while(option_menu != 14);
 }
