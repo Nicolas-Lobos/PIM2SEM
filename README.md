@@ -8,6 +8,7 @@ Contém um DFD ilustrando todo o fluxo de dados utilizado, código-fonte em lingua
 
 ## DESENVOLVIDO POR
 Universidade Paulista de São José dos Campos
+
 Análise e Desenvolvimento de Sistemas
 
 - Nicolas Lobos
