@@ -2,42 +2,41 @@
 
 ## OBJETIVO
 
-//@Nicolas_Lobos Desenvolver um software de gerenciamento de tarefas para as olimpÌ≠adas de 2024 em PARIS
+//@Nicolas_Lobos => Desenvolver um software de gerenciamento de tarefas para as olimpÌ≠adas de 2024 em PARIS
 baseado na linguagem C com armazenamento de dados em arquivos (.txt), possibilidade
 de incluir na tela de inÔøΩcio do programa um sÔøΩmbolo para as olimpiadas feito com a palavra PARIS
 (PARIS 2024)
 
-//@Nicolas_Lobos Deve possuir uma tela de login que autentique o usu·rio
+//@Nicolas_Lobos => Deve possuir uma tela de login que autentique o usu·rio
 
-//@Nicolas_Lobos Utilizar um randomizer para atribuir pontuaÁıes
+//@Nicolas_Lobos => Utilizar um randomizer para atribuir pontuaÁıes
 
-//@Nicolas_Lobos Criar um Cod_Usu auto incrementado para os usu·rio?
+//@Nicolas_Lobos => Criar um Cod_Usu auto incrementado para os usu·rio?
 
 ## TIPOS DE USU¡RIO DO SISTEMA
 
 Existem 4 tipos de usuarios para o software
-    -Atletas (3)
-    -TÈcnicos (2)
-    -MÈdicos (4)
-    -Staff (administraÁ„o) *SuperUser* (1)
+	-Atletas (3)
+	-TÈcnicos (2)
+	-MÈdicos (4)
+	-Staff (administraÁ„o) *SuperUser* (1)
 
 Tarefas a realizar por usu·rio 
-    
-    (3)Atletas
-        -realiza consultas
-        -calend·rio e resultados
-        -solicita transferÍncia de alojamento
+	
+	(3)Atletas
+		-realiza consultas
+		-calend·rio e resultados
 
-    (2)TÈcnicos
-        -Registra Atletas
-        -Realiza escala de time
-        -Consultas ao calend·rio e resultados
+	(2)TÈcnicos
+		-Registra Atletas
+		-Realiza escala de time
+		-Consultas ao calend·rio e resultados
 
-    (4)MÈdicos
-        -Consulta internados
-        -Consulta relatÛrios
-        -Emiti Alta de paciente
-        -Emiti RecomendaÁ„o de DesistÍncia
+	(4)MÈdicos
+		-Consulta internados
+		-Consulta relatÛrios
+		-Emiti Alta de paciente
+		-Emiti RecomendaÁ„o de DesistÍncia
 
 
 ## PROCESSO PARA OS MENUS
@@ -46,88 +45,90 @@ Cada usu·rio vai ter acesso a uma parte especifica do menu padr„o
 O mÈdico ter· acesso a um menu personalizado
 Staff possui acesso a todos os itens de menu
 
-### MENU                                        USUARIO QUE TEM ACESSO
-    (1)Consultar Agenda                             1   2   3
-    (2)Consultar Resultados                         1   2   3
-    (3)Solicitar TransferÍncia                      1       3
-    (4)Programar Escala                             1       3
-    (5)Adicionar Evento                             1       3
-    (6)Realizar Evento                              1
-    (7)Realiza TransferÍncia                        1
-    (8)Cadastra Atleta                              1
-    (9)Cadastra TÈcnicos                            1
-    (10)Cadastra MÈdicos                            1
-    (11)Cadastra STAFF                              1
+### MENU								USUARIO QUE TEM ACESSO
 
-### MENU MÔøΩDICO
-    (1)Consultar Internados
-    (2)Consultar relatÛrios
-    (3)Emitir Alta
-    (4)Emitir RecomendaÁ„o de DesistÍncia
+	(1) Consultar Agenda				1	2	3
+	(2) Consultar Resultado				1	2	3
+	(3) Programar Escala				1		3
+	(4) Adicionar Evento				1		3
+	(5) Realizar Evento					1
+	(6) Cadastro de Atleta				1
+	(7) Cadastro de TÈcnicos			1
+	(8) Cadastro de MÈdicos				1
+	(9) Cadastro de STAFF				1
+	(10) Cadastro de usu·rio			1
+	(11) ¡rea MÈdica								4
+	(12) SAIR							1	2	3	4
 
-## PROCESSO DE CADASTRO DE USU√ùRIOS (INFOS)
+### MENU M…DICO
+	(1)Consultar Internados
+	(2)Consultar relatÛrios
+	(3)Emitir Alta
+	(4)Emitir RecomendaÁ„o de DesistÍncia
 
-    Cad_Atletas {
-        Nome Completo
-        Passaporte
-        E-Mail
-        TU (Tipo de Usu·rio)
-        Login
-        Senha
-        Status
-        PaÌs de Origem
-        Idade
-        Sexo
-        Modalidade
-        Equipe OlÌmpica
-        Alojamento AtribuÌdo
-        Equipamentos Necess·rios
-        MÈdico Respons·vel
-        TÈcnico Respons·vel
-    }
+## PROCESSO DE CADASTRO DE USU¡RIOS (INFOS)
 
-    Cad_TÈcnicos {
-        Nome Completo
-        Passaporte
-        PaÌs de Origem
-        Idade
-        Sexo
-        E-Mail
-        TU (Tipo de Usu·rio)
-        Login
-        Senha
-        Equipe Respons·vel
-        Alojamento Atribuido
-    }
+	Cad_Atletas {
+		Nome Completo
+		Passaporte
+		E-Mail
+		TU (Tipo de Usu·rio)
+		Login
+		Senha
+		Status
+		PaÌs de Origem
+		Idade
+		Sexo
+		Modalidade
+		Equipe OlÌmpica
+		Alojamento AtribuÌdo
+		Equipamentos Necess·rios
+		MÈdico Respons·vel
+		TÈcnico Respons·vel
+	}
 
-    Cad_MÈdico {
-        Nome Completo
-        Passaporte
-        PaÌs de Origem
-        Sexo
-        E-Mail
-        TU (Tipo de Usu·rio)
-        Login
-        Senha
-        CRM
-        ClÌnica AtribuÌda
-    }
+	Cad_TÈcnicos {
+		Nome Completo
+		Passaporte
+		PaÌs de Origem
+		Idade
+		Sexo
+		E-Mail
+		TU (Tipo de Usu·rio)
+		Login
+		Senha
+		Equipe Respons·vel
+		Alojamento Atribuido
+	}
 
-    Cad_STAFF {
-        Nome Completo
-        Passaporte
-        PaÌs de Origem (talvez todos sejam FranÁa)
-        Sexo
-        E-Mail
-        TU (Tipo de Usu·rio)
-        Login
-        Senha
-    }
+	Cad_MÈdico {
+		Nome Completo
+		Passaporte
+		PaÌs de Origem
+		Sexo
+		E-Mail
+		TU (Tipo de Usu·rio)
+		Login
+		Senha
+		CRM
+		ClÌnica AtribuÌda
+	}
+
+	Cad_STAFF {
+		Nome Completo
+		Passaporte
+		PaÌs de Origem (talvez todos sejam FranÁa)
+		Sexo
+		E-Mail
+		TU (Tipo de Usu·rio)
+		Login
+		Senha
+	}
 
 ## PROCESSO PARA A REALIZA«√O DE EVENTOS
 
 O menu de eventos pode conter informaÁıes como:
 
-    - INICIAR PARTIDA
-    - ATRIBUIR MEDALHAS
-    - RELAT”RIO DE ACIDENTES
+	- INICIAR PARTIDA
+	- ATRIBUIR MEDALHAS
+	- RELAT”RIO DE ACIDENTES
