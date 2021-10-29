@@ -6,17 +6,6 @@ Projeto para Gerenciamento de Tarefas das Olimpíadas 2024 - Paris
 
 Contém um DFD ilustrando todo o fluxo de dados utilizado, código-fonte em linguagem C e arquivos.txt utilizados como banco de dados.
 
-## DESENVOLVIDO POR
-Universidade Paulista de São José dos Campos
-
-Análise e Desenvolvimento de Sistemas
-
-- Nicolas Lobos
-- Jonatas Moura
-- Igor Lima
-
-
-
 ## LICENÇA
 
 Este software está sobre a licença GNU. Uma cópia pode ser encontrada na pasta [\about_files](https://github.com/Nicolas-Lobos/PIM2SEM/blob/main/about_files)
@@ -36,3 +25,12 @@ A parte relacionada a documentação do software esta sinalizado por "///" logo ac
 O arquivo [lib.c](https://github.com/Nicolas-Lobos/PIM2SEM/blob/main/lib.c) possui todas as funções utilizadas para a composição do software, sendo essencial para seu correto funcionamento.
 
 Este projeto está disponível no Github para livre usufruto conforme licença GNU.
+
+## DESENVOLVIDO POR
+Universidade Paulista de São José dos Campos
+
+Análise e Desenvolvimento de Sistemas
+
+- Nicolas Lobos
+- Jonatas Moura
+- Igor Lima
