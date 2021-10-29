@@ -15,7 +15,7 @@ void cslta_agenda(){
 	//@nicolas_lobos => declaração de ponteiros
 	FILE *agenda_jogos;
 	
-	agenda_jogos = fopen("query_file\\agenda_jogos.txt", "r");
+	agenda_jogos = fopen("query_files\\agenda_jogos.txt", "r");
 	//@nicolas_lobos => verifica se a abertura foi concluida com sucesso
 	if(!agenda_jogos){
 		printf("Error:File not found");
@@ -47,7 +47,7 @@ void prgma_escala(){
 
 /// processo para adicionar um evento olimpico
 void add_evento(){
-	printf("em progresso");
+	printf("Igor está desenvolvendo");
 	//@nicolas_lobos => a ser desenvolvido
 }
 
