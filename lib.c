@@ -15,7 +15,7 @@ void cslta_agenda(){
 	//@nicolas_lobos => declaração de ponteiros
 	FILE *agenda_jogos;
 	
-	agenda_jogos = fopen("agenda_jogos.txt", "r");
+	agenda_jogos = fopen("query_file\\agenda_jogos.txt", "r");
 	//@nicolas_lobos => verifica se a abertura foi concluida com sucesso
 	if(!agenda_jogos){
 		printf("Error:File not found");
@@ -33,14 +33,8 @@ void cslta_agenda(){
 	}
 }
 
-/// processo para consulta ao resultado de eventos (a revisar remoção)
+/// processo para consulta ao resultado de eventos 
 void cslta_resultado(){
-	printf("em progresso");
-	//@nicolas_lobos => a ser desenvolvido
-}
-
-/// processo para solicitar uma transferencia de alojamento
-void slcta_transferencia(){
 	printf("em progresso");
 	//@nicolas_lobos => a ser desenvolvido
 }
@@ -59,12 +53,6 @@ void add_evento(){
 
 /// processo para realizar um evento olimpico
 void rlz_evento(){
-	printf("em progresso");
-	//@nicolas_lobos => a ser desenvolvido
-}
-
-/// processo para realizar uma transferencia de alojamento (a revisar remoção)
-void rlz_transferencia(){
 	printf("em progresso");
 	//@nicolas_lobos => a ser desenvolvido
 }
@@ -100,8 +88,9 @@ void menu_med(){
 
 /// processo para cadastrar usuários e gerar suas autenticações (concluido)
 void cad_user(){
+
 	printf("Autenticação");
-		//declaração de variáveis
+	//declaração de variáveis
 	char username[200];
 	char password[200];
 	char login_cad[200];
@@ -121,7 +110,7 @@ void cad_user(){
 	
 	//@nicolas_lobos => início da função de login
 	//@nicolas_lobos => abrindo o arquivo de dados do login
-	f_auth = fopen("auth3.txt", "r");
+	f_auth = fopen("auth_file\\auth3.txt", "r");
 	//@nicolas_lobos => verifica se a abertura foi concluida com sucesso
 	if(!f_auth){
 		printf("Error:File not found");
@@ -136,7 +125,9 @@ void cad_user(){
 		printf("\n(3)MÉDICO");
 		printf("\n(4)TÉCNICO");
 		scanf("%d",&opt_auth);
+		//@nicolas_lobos => laço de decisão para o tipo de usuário
 		switch(opt_auth){
+			//@nicolas_lobos => usuário do tipo atleta
 			case 1:
 			do{
 				//@nicolas_lobos => flush pra evitar erro de teclado
@@ -154,7 +145,7 @@ void cad_user(){
 				
 				/*@nicolas_lobos =>
 				copia todas as strings do arquivo 
-				login.txt para uma matriz de comparação*/
+				auth3.txt para uma matriz de comparação*/
 
 				while(fscanf(f_auth,"%s",buffer)==1){
 					strcpy(comparadora_psw_login[i],buffer);
@@ -182,22 +173,26 @@ void cad_user(){
 				}
 				printf("Usuário não autorizado, tente novamente!");
 			} while(!logado);
-			//@nicolas_lobos => mensagem de sucesso
 			
+			//@nicolas_lobos => mensagem de sucesso
 			printf("\n\n\t\aUSUÁRIO AUTENTICADO!\n\n");
 			system("pause");
-			
-			f_login = fopen("login.txt", "a");
-			
+			//@nicolas_lobos => abre o arquivo de login para salvar novo usuário
+			f_login = fopen("auth_file\\login.txt", "a");
+			//@nicolas_lobos => caso não encontre ou falhe
 			if(!f_login){
 			printf("Error:File not found");
 			system("pause");
 			exit(0);
 			}
-
+			//@nicolas_lobos => se sucesso
 			else{
+				//@nicolas_lobos => laço de repetição para cadastro
 				do{
+					//flush para evitar erro de buffer de teclado
 					fflush(stdin);
+					/*@nicolas_lobos => informação sobre o tipo de cadastro
+					e solicitação de input das informações a serem registradas*/
 					printf("\n\n\tCadastro de Usuários do Sistema");
 					printf("\n\tUsuário TIPO ATLETA");
 					printf("\n\tPor favor Insira um login para cadastrar: ");
@@ -205,27 +200,28 @@ void cad_user(){
 					fflush(stdin);
 					printf("\n\tPor favor Insira um login para cadastrar: ");
 					gets(password_cad);
-
+					// @nicolas_lobos => concatenação para salvar o registro
 					strcat(login_cad,password_cad);
-
+					//@nicolas_lobos => salvando em arquivo a informação de login
 					for(i=0; login_cad[i]; i++) {
 						putc(login_cad[i],f_login);
 					}
 					fprintf(f_login,"\n");
-
+					//@nicolas_lobos => mensagem de sucesso
 					printf("\nCADASTRO EFETUADO COM SUCESSO!\n\n");
 					printf("\nDeseja cadastrar outro usuário?");
 					printf("\n(1)SIM");
 					printf("\n(2)NÃO\n");
+					//@nicolas_lobos => opção de escolha para novo cadastro
 					scanf("%d",&opt_y_n);
 
 				}while(opt_y_n!=2);
-
+			// fechamento do arquivo de login
 			fclose(f_login);
 			
 			}
 			break;
-
+			//@nicolas_lobos => usuário do tipo admnistrador
 			case 2:
 			do{
 				//@nicolas_lobos => flush pra evitar erro de teclado
@@ -275,8 +271,8 @@ void cad_user(){
 			
 			printf("\n\n\t\aUSUÁRIO AUTENTICADO!\n\n");
 			system("pause");
-			
-			f_auth = fopen("auth3.txt", "a");
+			// abertura do arquivo auth3 para salvar o novo usuário
+			f_auth = fopen("auth_file\\auth3.txt", "a");
 			
 			if(!f_auth){
 				printf("Error:File not found");
@@ -302,7 +298,7 @@ void cad_user(){
 					}
 					fprintf(f_auth,"\n");
 					
-					f_login = fopen("login.txt","a");
+					f_login = fopen("auth_file\\login.txt","a");
 					if(!f_login){
 						printf("Error:File not found");
 						system("pause");
@@ -379,7 +375,7 @@ void cad_user(){
 			printf("\n\n\t\aUSUÁRIO AUTENTICADO!\n\n");
 			system("pause");
 			
-			f_auth = fopen("auth1.txt", "a");
+			f_auth = fopen("auth_file\\auth1.txt", "a");
 			
 			if(!f_auth){
 				printf("Error:File not found");
@@ -405,7 +401,7 @@ void cad_user(){
 					}
 					fprintf(f_auth,"\n");
 					
-					f_login = fopen("login.txt","a");
+					f_login = fopen("auth_file\\login.txt","a");
 					if(!f_login){
 						printf("Error:File not found");
 						system("pause");
@@ -482,7 +478,7 @@ void cad_user(){
 			printf("\n\n\t\aUSUÁRIO AUTENTICADO!\n\n");
 			system("pause");
 			
-			f_auth = fopen("auth2.txt", "a");
+			f_auth = fopen("auth_file\\auth2.txt", "a");
 			
 			if(!f_auth){
 				printf("Error:File not found");
@@ -508,7 +504,7 @@ void cad_user(){
 					}
 					fprintf(f_auth,"\n");
 					
-					f_login = fopen("login.txt","a");
+					f_login = fopen("auth_file\\login.txt","a");
 					if(!f_login){
 						printf("Error:File not found");
 						system("pause");
@@ -562,7 +558,7 @@ void login(){
 	
 	//@nicolas_lobos => início da função de login
 	//@nicolas_lobos => abrindo o arquivo de dados do login
-	f_login = fopen("login.txt", "r");
+	f_login = fopen("auth_files\\login.txt", "r");
 	//@nicolas_lobos => verifica se a abertura foi concluida com sucesso
 	if(!f_login){
 		printf("Error:File not found");
@@ -570,8 +566,9 @@ void login(){
 		exit(0);
 	}
 	//@nicolas_lobos => prosseguindo caso sucesso
-	else{
+	else{int x = 4;
 		do{
+			
 			//@nicolas_lobos => flush pra evitar erro de teclado
 			fflush(stdin);
 			printf("\n\nInsira seu usuário:\n");
@@ -613,7 +610,14 @@ void login(){
         		break;
     			}
 			}
-		printf("Usuário/Senha Inválidos, tente novamente!");
+			//contador de tentativas de login
+			x = x-1;
+			if(!logado) {
+			printf("\nUsuário/Senha Inválidos, tente novamente!\n");
+			printf("Restam %d tentativas.\n",x);
+			}
+			// se excedido o limite de tentativas, encerra a tela de login
+			if(x == 0) {exit(0);}
 		} while(!logado);
 		//@nicolas_lobos => mensagem de sucesso
 		printf("\n\n\t\aLOGIN EFETUADO COM SUCESSO!\n\n");
@@ -667,7 +671,7 @@ printf("    PARISPARISPARISPARIS        PARISPARISPARISPARIS        PARISPARISPA
 printf("    PARISPARISPARISPARIS        PARISPARISPARISPARIS        PARISPARISPARISPARIS                            PARIS\n");
 }
 
-///Função para criar o menu para usuario STAFF (concluido)
+///Função para criar o menu para usuario (concluido)
 void menu(){
 	
 	//@nicolas_lobos => Declaração de variáveis
@@ -680,22 +684,21 @@ void menu(){
 		printf("\t================================================\n");
 		printf("\t(1) Consultar Agenda\n");
 		printf("\t(2) Consultar Resultado\n");
-		printf("\t(3) Solicitar Transferência\n");
-		printf("\t(4) Programar Escala\n");
-		printf("\t(5) Adicionar Evento\n");
-		printf("\t(6) Realizar Evento\n");
-		printf("\t(7) Realiza Transferência\n");
-		printf("\t(8) Cadastro de Atleta\n");
-		printf("\t(9) Cadastro de Técnicos\n");
-		printf("\t(10) Cadastro de Médicos\n");
-		printf("\t(11) Cadastro de STAFF\n");
-		printf("\t(12) Cadastro de usuário\n");
-		printf("\t(13) Área Médica\n");
-		printf("\t(14) SAIR\n\n");
+		printf("\t(3) Programar Escala\n");
+		printf("\t(4) Adicionar Evento\n");
+		printf("\t(5) Realizar Evento\n");
+		printf("\t(6) Cadastro de Atleta\n");
+		printf("\t(7) Cadastro de Técnicos\n");
+		printf("\t(8) Cadastro de Médicos\n");
+		printf("\t(9) Cadastro de STAFF\n");
+		printf("\t(10) Cadastro de usuário\n");
+		printf("\t(11) Área Médica\n");
+		printf("\t(12) SAIR\n\n");
 		printf("\tPor gentileza, digite o número da opção desejada:\n");
 		//@nicolas_lobos => leitura do input do usuario
 		scanf("\t%d", &option_menu);
-		//@nicolas_lobos => inicio da estrutura de condição
+		/*@nicolas_lobos => inicio da estrutura de condição
+		cada uma das opções abaixo referencia uma função acima */
 		switch (option_menu) {
 			case 1:
 			cslta_agenda();
@@ -706,45 +709,37 @@ void menu(){
 			break;
 
 			case 3:
-			slcta_transferencia();
-			break;
-
-			case 4:
 			prgma_escala();
 			break;
 
-			case 5:
+			case 4:
 			add_evento();
 			break;
 
-			case 6:
+			case 5:
 			rlz_evento();
 			break;
 
-			case 7:
-			rlz_transferencia();
-			break;
-
-			case 8:
+			case 6:
 			cad_atleta();
 			break;
 
-			case 9:
+			case 7:
 			cad_tecnico();
 			break;
 
-			case 10:
+			case 8:
 			cad_medico();
 			break;
 
-			case 11:
+			case 9:
 			cad_STAFF();
 			break;
 
-			case 12:
+			case 10:
 			cad_user();
 
-			case 13:
+			case 11:
 			menu_med();
 			break;
 
@@ -752,8 +747,8 @@ void menu(){
 			printf("Opção inválida! Tente novamente");
 			break;
 		}
-		option_menu=NULL;
+		
 	}
 	//@nicolas_lobos => condição de execução
-	while(option_menu != 14);
+	while(option_menu != 12);
 }
