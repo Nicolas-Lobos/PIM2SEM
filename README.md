@@ -19,7 +19,7 @@ Análise e Desenvolvimento de Sistemas
 
 ## LICENÇA
 
-Este software está sobre a licença GNU. Uma cópia pode ser encontrada na pasta \about_files
+Este software está sobre a licença GNU. Uma cópia pode ser encontrada na pasta [\about_files](https://github.com/Nicolas-Lobos/PIM2SEM/blob/main/about_files/LICENSE)
 
 ## UTILIZAÇÃO
 
