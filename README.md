@@ -7,12 +7,14 @@ Projeto para Gerenciamento de Tarefas das Olimpíadas 2024 - Paris
 Contém um DFD ilustrando todo o fluxo de dados utilizado, código-fonte em linguagem C e arquivos.txt utilizados como banco de dados.
 
 ## DESENVOLVIDO POR
+Universidade Paulista de São José dos Campos
+Análise e Desenvolvimento de Sistemas
 
 - Nicolas Lobos
 - Jonatas Moura
 - Igor Lima
 
-Universidade Paulista de São José dos Campos
+
 
 ## LICENÇA
 
