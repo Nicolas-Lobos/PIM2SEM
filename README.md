@@ -1,18 +1,35 @@
-# **PROJETO INTEGRADO MULTIDISCIPLINAR 2º SEMESTRE/2021**
+# **PROJETO MULTIDISPLICNAR 2º SEMESTRE/2021**
 
-Projeto para Gerenciamento de Tarefas das Olimpíadas 2024 - Paris
+Projeto de Gerenciamento de Tarefas para as Olimpíadas de 2024 em Paris.
 
-## CONTEÚDO
+<img src="https://img.shields.io/static/v1?label=UNIP&message=2021&color=7159c1&style=for-the-badge&logo=ghost"/>
 
-Contém um DFD ilustrando todo o fluxo de dados utilizado, código-fonte em linguagem C e arquivos.txt utilizados como banco de dados.
 
-## LICENÇA
+## STATUS DO PROJETO:
+<h4 align = "center"> 
+	??  Em Desenvolvimento...  ??
+</h4>
 
-Este software está sobre a licença GNU. Uma cópia pode ser encontrada na pasta [\about_files](https://github.com/Nicolas-Lobos/PIM2SEM/blob/main/about_files)
+Tabela de Conteúdos
+=================
+<!--ts-->
+   * Sobre
+   * Como usar
+      * Pré-requisitos
+      * Local files
+   * Tecnologias
+   * Licença
+   * Autores
+<!--te-->
 
-## UTILIZAÇÃO
+## SOBRE
 
-Procedimento para utilização do software.
+Projeto voltado para o desenvolvimento educacional de habilidades em lógica de programação e desenvolvimento de software, utilizando a linguagem C para sua composição, proposto pela Universidade Paulista como Projeto Integrado Multidiscliplinar para o 2º Semestre de 2021.
+
+
+## COMO UTILIZAR
+
+O projeto utiliza de arquivos .txt para ser executado, no atual momento, não foi desenvolvido uma execução que crie estes documentos do zero, portanto, recomendamos que o usuário utilize dos arquivos inseridos ao software.
 
 O usuário deverá executar o arquivo -- alterar para nome pra GTO_Paris_2024 --.exe no qual será solicitado um login e senha, as mesmas podem ser encontradas no arquivo [login.txt](https://github.com/Nicolas-Lobos/PIM2SEM/blob/main/auth_files/login.txt) em [\auth_files](https://github.com/Nicolas-Lobos/PIM2SEM/blob/main/auth_files), o usuário possui um limite de 3 tentativas antes do sistema encerrar automaticamente.
 
@@ -26,11 +43,39 @@ O arquivo [lib.c](https://github.com/Nicolas-Lobos/PIM2SEM/blob/main/lib.c) poss
 
 Este projeto está disponível no Github para livre usufruto conforme licença GNU.
 
-## DESENVOLVIDO POR
+### PRÉ-REQUISITOS
+
+Um computador com configurações padrão, e os arquivos .txt
+
+### LOCAL FILES
+
+<!--ts-->
+	* auth1.txt
+	* auth2.txt
+	* auth3.txt
+	* login.txt
+	* agenda_jogos.txt
+	* ...
+	* ...
+<!--te-->
+
+## TECNOLOGIAS
+
+Foi utilizada a Linguagem C para desenvolver o software e a IDE utilizada foi o Visual Studio Code, da Microsoft.
+
+
+## LICENÇA
+
+Este software está sob a licença GNU. Uma cópia pode ser encontrada na pasta [\about_files](https://github.com/Nicolas-Lobos/PIM2SEM/blob/main/about_files)
+
+
+## AUTORES
 Universidade Paulista de São José dos Campos
 
-Análise e Desenvolvimento de Sistemas
+Curso de Análise e Desenvolvimento de Sistemas
 
+Alunos 
 - Nicolas Lobos
 - Jonatas Moura
 - Igor Lima
+
