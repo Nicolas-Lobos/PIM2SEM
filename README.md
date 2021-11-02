@@ -72,24 +72,6 @@ Universidade Paulista de São José dos Campos
 
 Curso de Análise e Desenvolvimento de Sistemas
 
-Alunos 
-<a href="https://github.com/Nicolas-Lobos">
-<img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/88755877?s=400&u=f448c74517f9d438e3de24e209038c658039a98d&v=4" width="100px;" alt=""/>
-
-<a href="https://open.spotify.com/user/22npgx4glx7vmosx2t5saarya" target="_blank"><img src="https://img.shields.io/badge/Spotify-1ED760?&style=for-the-badge&logo=spotify&logoColor=white"></a>
-
-<a href="https://instagram.com/_nlobos" target="_blank"><img src="https://img.shields.io/badge/-Instagram-%23E4405F?style=for-the-badge&logo=instagram&logoColor=white" target="_blank"></a>
-
-<a href = "mailto:nrlobos@outlook.com"><img src="https://img.shields.io/badge/Microsoft_Outlook-0078D4?style=for-the-badge&logo=microsoft-outlook&logoColor=white" target="_blank"></a>
-
-<a href="https://www.linkedin.com/in/rafaella-ballerini-45875016a" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
- 
-
-<!---
-Nicolas-Lobos/Nicolas-Lobos is a ? special ? repository because its `README.md` (this file) appears on your GitHub profile.
-You can click the Preview link to take a look at your changes.
---->
-
 - Nicolas Lobos
 - Jonatas Moura
 - Igor Lima
