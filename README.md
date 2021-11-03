@@ -72,7 +72,6 @@ Universidade Paulista de São José dos Campos
 
 Curso de Análise e Desenvolvimento de Sistemas
 
-##
 
 Nicolas Lobos
 <div style="display: inline_block">
@@ -89,6 +88,7 @@ Jonatas Moura
 	<a href="https://www.linkedin.com/in/jonatas-rosa-moura-235574193/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
 	<a href="https://github.com/jonatasrmoura" target="_blank"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" target="_blank"></a> 
 </div>
+
 ##
 
 Igor Lima
