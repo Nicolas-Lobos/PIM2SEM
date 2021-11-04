@@ -39,7 +39,7 @@ void cslta_resultado(){
 	//@nicolas_lobos => a ser desenvolvido
 }
 
-/// processo para programar a escala (a revisar remoção)
+/// processo para programar a escala
 void prgma_escala(){
 	printf("em progresso");
 	//@nicolas_lobos => a ser desenvolvido
@@ -110,7 +110,7 @@ void cad_user(){
 	
 	//@nicolas_lobos => início da função de login
 	//@nicolas_lobos => abrindo o arquivo de dados do login
-	f_auth = fopen("auth_file\\auth3.txt", "r");
+	f_auth = fopen("auth_files\\auth_adm.txt", "r");
 	//@nicolas_lobos => verifica se a abertura foi concluida com sucesso
 	if(!f_auth){
 		printf("Error:File not found");
@@ -145,7 +145,8 @@ void cad_user(){
 				
 				/*@nicolas_lobos =>
 				copia todas as strings do arquivo 
-				auth3.txt para uma matriz de comparação*/
+				auth_adm
+ para uma matriz de comparação*/
 
 				while(fscanf(f_auth,"%s",buffer)==1){
 					strcpy(comparadora_psw_login[i],buffer);
@@ -178,7 +179,7 @@ void cad_user(){
 			printf("\n\n\t\aUSUÁRIO AUTENTICADO!\n\n");
 			system("pause");
 			//@nicolas_lobos => abre o arquivo de login para salvar novo usuário
-			f_login = fopen("auth_file\\login.txt", "a");
+			f_login = fopen("auth_files\\login.txt", "a");
 			//@nicolas_lobos => caso não encontre ou falhe
 			if(!f_login){
 			printf("Error:File not found");
@@ -271,8 +272,8 @@ void cad_user(){
 			
 			printf("\n\n\t\aUSUÁRIO AUTENTICADO!\n\n");
 			system("pause");
-			// abertura do arquivo auth3 para salvar o novo usuário
-			f_auth = fopen("auth_file\\auth3.txt", "a");
+			// abertura do arquivo auth_adm para salvar o novo usuário
+			f_auth = fopen("auth_files\\auth_adm.txt", "a");
 			
 			if(!f_auth){
 				printf("Error:File not found");
@@ -298,7 +299,7 @@ void cad_user(){
 					}
 					fprintf(f_auth,"\n");
 					
-					f_login = fopen("auth_file\\login.txt","a");
+					f_login = fopen("auth_files\\login.txt","a");
 					if(!f_login){
 						printf("Error:File not found");
 						system("pause");
@@ -375,7 +376,7 @@ void cad_user(){
 			printf("\n\n\t\aUSUÁRIO AUTENTICADO!\n\n");
 			system("pause");
 			
-			f_auth = fopen("auth_file\\auth1.txt", "a");
+			f_auth = fopen("auth_files\\auth1.txt", "a");
 			
 			if(!f_auth){
 				printf("Error:File not found");
@@ -401,7 +402,7 @@ void cad_user(){
 					}
 					fprintf(f_auth,"\n");
 					
-					f_login = fopen("auth_file\\login.txt","a");
+					f_login = fopen("auth_files\\login.txt","a");
 					if(!f_login){
 						printf("Error:File not found");
 						system("pause");
@@ -478,7 +479,7 @@ void cad_user(){
 			printf("\n\n\t\aUSUÁRIO AUTENTICADO!\n\n");
 			system("pause");
 			
-			f_auth = fopen("auth_file\\auth2.txt", "a");
+			f_auth = fopen("auth_files\\auth2.txt", "a");
 			
 			if(!f_auth){
 				printf("Error:File not found");
@@ -504,7 +505,7 @@ void cad_user(){
 					}
 					fprintf(f_auth,"\n");
 					
-					f_login = fopen("auth_file\\login.txt","a");
+					f_login = fopen("auth_files\\login.txt","a");
 					if(!f_login){
 						printf("Error:File not found");
 						system("pause");
