@@ -23,8 +23,11 @@ Tabela de Conteúdos
 
 ## SOBRE
 
+<h4 align = "center"> 
+
 Projeto voltado para o desenvolvimento educacional de habilidades em lógica de programação e desenvolvimento de software, utilizando a linguagem C para sua composição, proposto pela Universidade Paulista como Projeto Integrado Multidiscliplinar para o 2º Semestre de 2021.
 
+</h4> 
 ## COMO UTILIZAR
 
 O projeto utiliza de arquivos .txt para ser executado, no atual momento, não foi desenvolvido uma execução que crie estes documentos do zero, portanto, recomendamos que o usuário utilize dos arquivos inseridos ao software.
