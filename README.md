@@ -1,5 +1,8 @@
+<p align="center">
+
 # **PROJETO MULTIDISPLICNAR 2º SEMESTRE/2021**
 
+</p>
 Projeto de Gerenciamento de Tarefas para as Olimpíadas de 2024 em Paris.
 
 <img src="https://img.shields.io/static/v1?label=UNIP&message=2021&color=7159c1&style=for-the-badge&logo=ghost"/>
@@ -75,7 +78,6 @@ Curso de Análise e Desenvolvimento de Sistemas
 
 Nicolas Lobos
 
-<img src="https://github.com/Nicolas-Lobos/Nicolas-Lobos.png">
 <div style="display: inline_block">
 	<a href = "mailto:nrlobos@outlook.com"><img src="https://img.shields.io/badge/Microsoft_Outlook-0078D4?style=for-the-badge&logo=microsoft-outlook&logoColor=white" target="_blank"></a>
 	<a href="https://www.linkedin.com/in/nicolas-lobos/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
@@ -85,6 +87,7 @@ Nicolas Lobos
 ##
 
 Jonatas Moura
+
 <div style="display: inline_block">
 	<a href = "mailto:"><img src="https://img.shields.io/badge/Microsoft_Outlook-0078D4?style=for-the-badge&logo=microsoft-outlook&logoColor=white" target="_blank"></a>
 	<a href="https://www.linkedin.com/in/jonatas-rosa-moura-235574193/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
@@ -94,6 +97,7 @@ Jonatas Moura
 ##
 
 Igor Lima
+
 <div style="display: inline_block">
 	<a href = "mailto:igors.lima12@gmail.com"><img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
 	<a href="https://www.linkedin.com/in/igor-lima-0202b0196/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
