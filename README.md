@@ -23,12 +23,15 @@ Tabela de Conteúdos
 
 ## SOBRE
 
-<h4 align = "center"> 
+<h4 align = "justify"> 
 
 Projeto voltado para o desenvolvimento educacional de habilidades em lógica de programação e desenvolvimento de software, utilizando a linguagem C para sua composição, proposto pela Universidade Paulista como Projeto Integrado Multidiscliplinar para o 2º Semestre de 2021.
 
-</h4> 
+</h4>
+
 ## COMO UTILIZAR
+
+<h4 align = "justify"> 
 
 O projeto utiliza de arquivos .txt para ser executado, no atual momento, não foi desenvolvido uma execução que crie estes documentos do zero, portanto, recomendamos que o usuário utilize dos arquivos inseridos ao software.
 O usuário deverá executar o arquivo -- alterar para nome pra GTO_Paris_2024 --.exe no qual será solicitado um login e senha, as mesmas podem ser encontradas no arquivo [login.txt](https://github.com/Nicolas-Lobos/PIM2SEM/blob/main/auth_files/login.txt) em [\auth_files](https://github.com/Nicolas-Lobos/PIM2SEM/blob/main/auth_files), o usuário possui um limite de 3 tentativas antes do sistema encerrar automaticamente.
@@ -40,6 +43,7 @@ Os comentários realizados neste software estão identificados com o nome do autor
 A parte relacionada a documentação do software esta sinalizado por "///" logo acima da função explicada.
 
 O arquivo [lib.c](https://github.com/Nicolas-Lobos/PIM2SEM/blob/main/lib.c) possui todas as funções utilizadas para a composição do software, sendo essencial para seu correto funcionamento.
+</h4> 
 
 ### PRÉ-REQUISITOS
 
