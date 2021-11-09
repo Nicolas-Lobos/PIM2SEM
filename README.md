@@ -28,7 +28,7 @@ Tabela de Conteúdos
 <!--te-->
 
 ## SOBRE
-<p align="center">
+<p align="justify">
 Projeto voltado para o desenvolvimento educacional de habilidades em lógica de programação e desenvolvimento de software, utilizando a linguagem C para sua composição, proposto pela Universidade Paulista como Projeto Integrado Multidiscliplinar para o 2º Semestre de 2021.
 </p>
 
