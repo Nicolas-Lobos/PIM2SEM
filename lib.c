@@ -45,10 +45,129 @@ void prgma_escala(){
 	//@nicolas_lobos => a ser desenvolvido
 }
 
-/// processo para adicionar um evento olimpico
+/// processo para adicionar um evento olimpico (concluido)
 void add_evento(){
-	printf("Igor está desenvolvendo");
-	//@nicolas_lobos => a ser desenvolvido
+	setlocale(LC_ALL, "Portuguese");
+	printf("Autenticação");
+	//declaração de variáveis
+	char username[200];
+	char password[200];
+	char modalidade[200];
+	char data[200];
+	int opt_y_n;
+	int opt_auth;
+	int logado;
+	int i;
+	int k;
+	char comparadora_psw_login[400][200];
+	char buffer[200];
+	//@nicolas_lobos => declaração de ponteiros
+	FILE *f_auth;
+	FILE *f_jogos;
+	//@nicolas_lobos => definição de valor para o estado "logado" do usuário
+	logado = 0;
+	
+	//@nicolas_lobos => início da função de login
+	//@nicolas_lobos => abrindo o arquivo de dados do login
+	f_auth = fopen("auth_files\\auth_adm.txt", "r");
+	//@nicolas_lobos => verifica se a abertura foi concluida com sucesso
+	if(!f_auth){
+		printf("Error:File not found");
+		system("pause");
+		exit(0);
+	}
+	//@nicolas_lobos => prosseguindo caso sucesso
+	else{
+		do{
+			//@nicolas_lobos => flush pra evitar erro de teclado
+			fflush(stdin);
+			printf("\n\nInsira seu usuário:\n");
+			gets(username);
+			fflush(stdin);
+			printf("\nInsira sua senha:\n");
+			gets(password);
+			
+			//@nicolas_lobos => junta a string password com a string username
+			strcat(username,password);
+			
+			i= 0;
+			
+			/*@nicolas_lobos =>
+			copia todas as strings do arquivo 
+			auth_adm
+ 			para uma matriz de comparação*/
+			while(fscanf(f_auth,"%s",buffer)==1){
+				strcpy(comparadora_psw_login[i],buffer);
+				i++;
+			}
+				
+			/*@nicolas_lobos =>
+			compara o username concatenado, com as strings
+			armazenadas na matriz comparadora*/
+
+			for(k=0; k<=400; k++) {
+				/*@nicolas_lobos =>
+				Se um usuario e senha correspondente
+				for encontrado, para o laço for*/
+				
+				if(!(strcmp(comparadora_psw_login[k],username))){
+				
+				/*@nicolas_lobos =>
+				a linha abaixo serve de teste para 
+				confirmar se encontrou uma correspondência
+				printf("encontrei a senha");*/
+				logado=1;
+				break;
+				}
+			}
+			printf("Usuário não autorizado, tente novamente!");
+		} while(!logado);
+			
+		//@nicolas_lobos => mensagem de sucesso
+		printf("\n\n\t\aUSUÁRIO AUTENTICADO!\n\n");
+		system("pause");
+		//@nicolas_lobos => abre o arquivo de login para salvar novo usuário
+		f_jogos = fopen("query_files\\agenda_jogos.txt", "a");
+		//@nicolas_lobos => caso não encontre ou falhe
+		if(!f_jogos){
+		printf("Error:File not found");
+		system("pause");
+		exit(0);
+		}
+		//@nicolas_lobos => se sucesso
+		else{
+			//@nicolas_lobos => estrutura de repetição para cadastro do evento
+			do{
+				// exibição do nome da atividade
+				printf("\n\tAGENDAMENTO DE EVENTOS OLIMPICOS\n");
+				printf("\t=================================\n");
+				//@nicolas_lobos => solicitação de input do usuário
+				fflush(stdin);
+				printf("\tPor gentileza insira a modalidade do esporte:\n\t");
+				gets(modalidade);
+				fflush(stdin);
+				printf("\n\tPor gentileza insira a data no padrão DD/MM/YYYY:\n\t");
+				gets(data);
+				fflush(stdin);
+				//@nicolas_lobos => escrevendo a modalidade no arquivo agenda_jogos.txt
+				for(i=0; modalidade[i]; i++){
+					putc(modalidade[i], f_jogos);
+				}
+				// @nicolas_lobos => adicionando espaço em branco
+				fprintf(f_jogos, "\n");
+				// @nicolas_lobos => adicionando a data do evento no arquvio agenda_jogos.txt
+				for(i=0; data[i]; i++){
+					putc(data[i], f_jogos);
+				}
+				fprintf(f_jogos, "\n");
+				// nicolas_lobos => mensagem de sucesso e análise da repetição
+				printf("\n\tCADASTRO REALIZADO COM SUCESSO\a, \n\tDESEJA MARCAR OUTRO EVENTO?");
+				printf("\n\t(1)SIM\n");
+				printf("\n\t(2)NÃO\n\t");
+				scanf("%d", &opt_y_n);
+			}while(opt_y_n !=2);
+		}
+	}
 }
 
 /// processo para realizar um evento olimpico
@@ -88,7 +207,7 @@ void menu_med(){
 
 /// processo para cadastrar usuários e gerar suas autenticações (concluido)
 void cad_user(){
-
+	setlocale(LC_ALL, "Portuguese");
 	printf("Autenticação");
 	//declaração de variáveis
 	char username[200];
@@ -212,7 +331,7 @@ void cad_user(){
 					printf("\nCADASTRO EFETUADO COM SUCESSO!\n\n");
 					printf("\nDeseja cadastrar outro usuário?");
 					printf("\n(1)SIM");
-					printf("\n(2)NÃO\n");
+					printf("\n(2)NÃO\n\t");
 					//@nicolas_lobos => opção de escolha para novo cadastro
 					scanf("%d",&opt_y_n);
 
@@ -316,7 +435,7 @@ void cad_user(){
 					printf("\n\tCADASTRO EFETUADO COM SUCESSO!\n\n");
 					printf("\n\tDeseja cadastrar outro usuário?");
 					printf("\n\t(1)SIM");
-					printf("\n\t(2)NÃO\n");
+					printf("\n\t(2)NÃO\n\t");
 					scanf("%d",&opt_y_n);
 
 				}while(opt_y_n!=2);
@@ -376,7 +495,7 @@ void cad_user(){
 			printf("\n\n\t\aUSUÁRIO AUTENTICADO!\n\n");
 			system("pause");
 			
-			f_auth = fopen("auth_files\\auth1.txt", "a");
+			f_auth = fopen("auth_files\\auth_med.txt", "a");
 			
 			if(!f_auth){
 				printf("Error:File not found");
@@ -419,7 +538,7 @@ void cad_user(){
 					printf("\n\tCADASTRO EFETUADO COM SUCESSO!\n\n");
 					printf("\n\tDeseja cadastrar outro usuário?");
 					printf("\n\t(1)SIM");
-					printf("\n\t(2)NÃO\n");
+					printf("\n\t(2)NÃO\n\t");
 					scanf("\t%d",&opt_y_n);
 
 				}while(opt_y_n!=2);
@@ -479,7 +598,7 @@ void cad_user(){
 			printf("\n\n\t\aUSUÁRIO AUTENTICADO!\n\n");
 			system("pause");
 			
-			f_auth = fopen("auth_files\\auth2.txt", "a");
+			f_auth = fopen("auth_files\\auth_tec.txt", "a");
 			
 			if(!f_auth){
 				printf("Error:File not found");
@@ -522,7 +641,7 @@ void cad_user(){
 					printf("\n\tCADASTRO EFETUADO COM SUCESSO!\n\n");
 					printf("\n\tDeseja cadastrar outro usuário?");
 					printf("\n\t(1)SIM");
-					printf("\n\t(2)NÃO\n");
+					printf("\n\t(2)NÃO\n\t");
 					scanf("\t%d",&opt_y_n);
 
 				}while(opt_y_n!=2);
@@ -542,7 +661,8 @@ void cad_user(){
 
 ///Função para exibir o processo de login (concluido)
 void login(){
-		//declaração de variáveis
+	setlocale(LC_ALL, "Portuguese");
+	//declaração de variáveis
 	char username[200];
 	char password[200];
 	int usertype;
@@ -628,53 +748,53 @@ void login(){
 
 ///Função para exibir logo do software (concluido)
 void opening_logo(){
-
-printf("    PARISPARISPARIS           PARISPARISPARISPARIS      PARISPARISPARIS           PARIS      PARISPARISPARISPARIS\n");
-printf("    PARISPARISPARISPARIS      PARISPARISPARISPARIS      PARISPARISPARISPARIS      PARIS      PARISPARISPARISPARIS\n");
-printf("    PARISPARISPARISPARIS      PARISPARISPARISPARIS      PARISPARISPARISPARIS      PARIS      PARISPARISPARISPARIS\n");
-printf("    PARIS          PARIS      PARIS          PARIS      PARIS          PARIS      PARIS      PARIS\n");
-printf("    PARIS          PARIS      PARIS          PARIS      PARIS          PARIS      PARIS      PARIS\n");
-printf("    PARIS          PARIS      PARIS          PARIS      PARIS          PARIS      PARIS      PARIS\n");
-printf("    PARIS          PARIS      PARIS          PARIS      PARIS          PARIS      PARIS      PARIS\n");
-printf("    PARISPARISPARISPARIS      PARIS          PARIS      PARISPARISPARISPARIS      PARIS      PARIS\n");
-printf("    PARISPARISPARISPARIS      PARIS          PARIS      PARISPARISPARISPARIS      PARIS      PARISPARISPARISPARIS\n");
-printf("    PARISPARISPARIS           PARISPARISPARISPARIS      PARISPARISPARIS           PARIS      PARISPARISPARISPARIS\n");
-printf("    PARIS                     PARISPARISPARISPARIS      PARIS       PARIS         PARIS      PARISPARISPARISPARIS\n");
-printf("    PARIS                     PARISPARISPARISPARIS      PARIS          PARIS      PARIS                     PARIS\n");
-printf("    PARIS                     PARIS          PARIS      PARIS          PARIS      PARIS                     PARIS\n");
-printf("    PARIS                     PARIS          PARIS      PARIS          PARIS      PARIS                     PARIS\n");
-printf("    PARIS                     PARIS          PARIS      PARIS          PARIS      PARIS                     PARIS\n");
-printf("    PARIS                     PARIS          PARIS      PARIS          PARIS      PARIS      PARISPARISPARISPARIS\n");
-printf("    PARIS                     PARIS          PARIS      PARIS          PARIS      PARIS      PARISPARISPARISPARIS\n");
-printf("    PARIS                     PARIS          PARIS      PARIS          PARIS      PARIS      PARISPARISPARISPARIS\n");
-printf("\n");
-printf("\n");
-printf("\n");
-printf("    PARISPARISPARISPARIS        PARISPARISPARISPARIS        PARISPARISPARISPARIS             PARIS          PARIS\n");
-printf("    PARISPARISPARISPARIS        PARISPARISPARISPARIS        PARISPARISPARISPARIS             PARIS          PARIS\n");
-printf("    PARISPARISPARISPARIS        PARISPARISPARISPARIS        PARISPARISPARISPARIS             PARIS          PARIS\n");
-printf("                   PARIS        PARIS          PARIS                       PARIS             PARIS          PARIS\n");
-printf("                   PARIS        PARIS          PARIS                       PARIS             PARIS          PARIS\n");
-printf("                   PARIS        PARIS          PARIS                       PARIS             PARIS          PARIS\n");
-printf("                   PARIS        PARIS          PARIS                       PARIS             PARIS          PARIS\n");
-printf("                   PARIS        PARIS          PARIS                       PARIS             PARIS          PARIS\n");
-printf("                   PARIS        PARIS          PARIS                       PARIS             PARIS          PARIS\n");
-printf("    PARISPARISPARISPARIS        PARIS          PARIS        PARISPARISPARISPARIS             PARISPARISPARISPARIS\n");
-printf("    PARISPARISPARISPARIS        PARIS          PARIS        PARISPARISPARISPARIS             PARISPARISPARISPARIS\n");
-printf("    PARISPARISPARISPARIS        PARIS          PARIS        PARISPARISPARISPARIS             PARISPARISPARISPARIS\n");
-printf("    PARIS                       PARIS          PARIS        PARIS                                           PARIS\n");
-printf("    PARIS                       PARIS          PARIS        PARIS                                           PARIS\n");
-printf("    PARIS                       PARIS          PARIS        PARIS                                           PARIS\n");
-printf("    PARIS                       PARIS          PARIS        PARIS                                           PARIS\n");
-printf("    PARIS                       PARIS          PARIS        PARIS                                           PARIS\n");
-printf("    PARISPARISPARISPARIS        PARISPARISPARISPARIS        PARISPARISPARISPARIS                            PARIS\n");
-printf("    PARISPARISPARISPARIS        PARISPARISPARISPARIS        PARISPARISPARISPARIS                            PARIS\n");
-printf("    PARISPARISPARISPARIS        PARISPARISPARISPARIS        PARISPARISPARISPARIS                            PARIS\n");
+	setlocale(LC_ALL, "Portuguese");
+	printf("    PARISPARISPARIS           PARISPARISPARISPARIS      PARISPARISPARIS           PARIS      PARISPARISPARISPARIS\n");
+	printf("    PARISPARISPARISPARIS      PARISPARISPARISPARIS      PARISPARISPARISPARIS      PARIS      PARISPARISPARISPARIS\n");
+	printf("    PARISPARISPARISPARIS      PARISPARISPARISPARIS      PARISPARISPARISPARIS      PARIS      PARISPARISPARISPARIS\n");
+	printf("    PARIS          PARIS      PARIS          PARIS      PARIS          PARIS      PARIS      PARIS\n");
+	printf("    PARIS          PARIS      PARIS          PARIS      PARIS          PARIS      PARIS      PARIS\n");
+	printf("    PARIS          PARIS      PARIS          PARIS      PARIS          PARIS      PARIS      PARIS\n");
+	printf("    PARIS          PARIS      PARIS          PARIS      PARIS          PARIS      PARIS      PARIS\n");
+	printf("    PARISPARISPARISPARIS      PARIS          PARIS      PARISPARISPARISPARIS      PARIS      PARIS\n");
+	printf("    PARISPARISPARISPARIS      PARIS          PARIS      PARISPARISPARISPARIS      PARIS      PARISPARISPARISPARIS\n");
+	printf("    PARISPARISPARIS           PARISPARISPARISPARIS      PARISPARISPARIS           PARIS      PARISPARISPARISPARIS\n");
+	printf("    PARIS                     PARISPARISPARISPARIS      PARIS       PARIS         PARIS      PARISPARISPARISPARIS\n");
+	printf("    PARIS                     PARISPARISPARISPARIS      PARIS          PARIS      PARIS                     PARIS\n");
+	printf("    PARIS                     PARIS          PARIS      PARIS          PARIS      PARIS                     PARIS\n");
+	printf("    PARIS                     PARIS          PARIS      PARIS          PARIS      PARIS                     PARIS\n");
+	printf("    PARIS                     PARIS          PARIS      PARIS          PARIS      PARIS                     PARIS\n");
+	printf("    PARIS                     PARIS          PARIS      PARIS          PARIS      PARIS      PARISPARISPARISPARIS\n");
+	printf("    PARIS                     PARIS          PARIS      PARIS          PARIS      PARIS      PARISPARISPARISPARIS\n");
+	printf("    PARIS                     PARIS          PARIS      PARIS          PARIS      PARIS      PARISPARISPARISPARIS\n");
+	printf("\n");
+	printf("\n");
+	printf("\n");
+	printf("    PARISPARISPARISPARIS        PARISPARISPARISPARIS        PARISPARISPARISPARIS             PARIS          PARIS\n");
+	printf("    PARISPARISPARISPARIS        PARISPARISPARISPARIS        PARISPARISPARISPARIS             PARIS          PARIS\n");
+	printf("    PARISPARISPARISPARIS        PARISPARISPARISPARIS        PARISPARISPARISPARIS             PARIS          PARIS\n");
+	printf("                   PARIS        PARIS          PARIS                       PARIS             PARIS          PARIS\n");
+	printf("                   PARIS        PARIS          PARIS                       PARIS             PARIS          PARIS\n");
+	printf("                   PARIS        PARIS          PARIS                       PARIS             PARIS          PARIS\n");
+	printf("                   PARIS        PARIS          PARIS                       PARIS             PARIS          PARIS\n");
+	printf("                   PARIS        PARIS          PARIS                       PARIS             PARIS          PARIS\n");
+	printf("                   PARIS        PARIS          PARIS                       PARIS             PARIS          PARIS\n");
+	printf("    PARISPARISPARISPARIS        PARIS          PARIS        PARISPARISPARISPARIS             PARISPARISPARISPARIS\n");
+	printf("    PARISPARISPARISPARIS        PARIS          PARIS        PARISPARISPARISPARIS             PARISPARISPARISPARIS\n");
+	printf("    PARISPARISPARISPARIS        PARIS          PARIS        PARISPARISPARISPARIS             PARISPARISPARISPARIS\n");
+	printf("    PARIS                       PARIS          PARIS        PARIS                                           PARIS\n");
+	printf("    PARIS                       PARIS          PARIS        PARIS                                           PARIS\n");
+	printf("    PARIS                       PARIS          PARIS        PARIS                                           PARIS\n");
+	printf("    PARIS                       PARIS          PARIS        PARIS                                           PARIS\n");
+	printf("    PARIS                       PARIS          PARIS        PARIS                                           PARIS\n");
+	printf("    PARISPARISPARISPARIS        PARISPARISPARISPARIS        PARISPARISPARISPARIS                            PARIS\n");
+	printf("    PARISPARISPARISPARIS        PARISPARISPARISPARIS        PARISPARISPARISPARIS                            PARIS\n");
+	printf("    PARISPARISPARISPARIS        PARISPARISPARISPARIS        PARISPARISPARISPARIS                            PARIS\n");
 }
 
 ///Função para criar o menu para usuario (concluido)
 void menu(){
-	
+	setlocale(LC_ALL, "Portuguese");
 	//@nicolas_lobos => Declaração de variáveis
 	int option_menu;
 	//@nicolas_lobos => início da estrutura de repetição 
@@ -695,9 +815,9 @@ void menu(){
 		printf("\t(10) Cadastro de usuário\n");
 		printf("\t(11) Área Médica\n");
 		printf("\t(12) SAIR\n\n");
-		printf("\tPor gentileza, digite o número da opção desejada:\n");
+		printf("\tPor gentileza, digite o número da opção desejada:\n\t");
 		//@nicolas_lobos => leitura do input do usuario
-		scanf("\t%d", &option_menu);
+		scanf("%d", &option_menu);
 		/*@nicolas_lobos => inicio da estrutura de condição
 		cada uma das opções abaixo referencia uma função acima */
 		switch (option_menu) {
