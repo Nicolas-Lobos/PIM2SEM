@@ -31,6 +31,7 @@ O projeto utiliza de arquivos .txt para ser executado, no atual momento, não foi
 </p>
 
 <p align="justify">
+
 O usuário deverá executar o arquivo -- alterar para nome pra GTO_Paris_2024 --.exe no qual será solicitado um login e senha, as mesmas podem ser encontradas no arquivo [login.txt](https://github.com/Nicolas-Lobos/PIM2SEM/blob/main/auth_files/login.txt) em [\auth_files](https://github.com/Nicolas-Lobos/PIM2SEM/blob/main/auth_files), o usuário possui um limite de 3 tentativas antes do sistema encerrar automaticamente.
 </p>
 
