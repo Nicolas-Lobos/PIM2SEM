@@ -26,14 +26,10 @@ Projeto voltado para o desenvolvimento educacional de habilidades em lógica de p
 </p>
 
 ## COMO UTILIZAR
-<p align="justify">
+
 O projeto utiliza de arquivos .txt para ser executado, no atual momento, não foi desenvolvido uma execução que crie estes documentos do zero, portanto, recomendamos que o usuário utilize dos arquivos inseridos ao software.
-</p>
-
-<p align="justify">
-
 O usuário deverá executar o arquivo -- alterar para nome pra GTO_Paris_2024 --.exe no qual será solicitado um login e senha, as mesmas podem ser encontradas no arquivo [login.txt](https://github.com/Nicolas-Lobos/PIM2SEM/blob/main/auth_files/login.txt) em [\auth_files](https://github.com/Nicolas-Lobos/PIM2SEM/blob/main/auth_files), o usuário possui um limite de 3 tentativas antes do sistema encerrar automaticamente.
-</p>
+
 
 Após o usuário ser validado, ele sera redirecionado a tela de menu, na qual podera digitar o numéro da opção desejada, que irá ativar a função correspondente, sendo este menu descrito no arquivo [Projeto_base.md](https://github.com/Nicolas-Lobos/PIM2SEM/blob/main/about_files/Projeto_base.md) em [\about_files](https://github.com/Nicolas-Lobos/PIM2SEM/blob/main/about_files). cada função está extensivamente documentada, possuindo explicações simples e concisas sobre sua utilização e os comandos utilizados para sua composição.
 
@@ -42,12 +38,11 @@ Os comentários realizados neste software estão identificados com o nome do autor
 A parte relacionada a documentação do software esta sinalizado por "///" logo acima da função explicada.
 
 O arquivo [lib.c](https://github.com/Nicolas-Lobos/PIM2SEM/blob/main/lib.c) possui todas as funções utilizadas para a composição do software, sendo essencial para seu correto funcionamento.
-</p>
 
 ### PRÉ-REQUISITOS
-<p align="justify">
+
 Um computador com configurações padrão, e os arquivos .txt
-</p>
+
 
 ### LOCAL FILES
 
@@ -62,21 +57,21 @@ Um computador com configurações padrão, e os arquivos .txt
 <!--te-->
 
 ## TECNOLOGIAS
-<p align="justify">
+
 Foi utilizada a Linguagem C para desenvolver o software e a IDE utilizada foi o Visual Studio Code, da Microsoft.
-</p>
+
 
 ## LICENÇA
-<p align="justify">
+
 Este software está sob a licença GNU. Uma cópia pode ser encontrada na pasta [\about_files](https://github.com/Nicolas-Lobos/PIM2SEM/blob/main/about_files)
-</p>
+
 
 ## AUTORES
-<p align="justify">
+
 Universidade Paulista de São José dos Campos
 
 Curso de Análise e Desenvolvimento de Sistemas
-</p>
+
 
 Nicolas Lobos
 
