@@ -3,10 +3,9 @@
 
 Projeto de Gerenciamento de Tarefas para as Olimpíadas de 2024 em Paris.
 
-<h4 align = "center"> 
 
 ## STATUS DO PROJETO:
-
+<h4 align = "center"> 
 	Em Desenvolvimento...
 </h4>
 
