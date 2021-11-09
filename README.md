@@ -86,7 +86,7 @@ Curso de Análise e Desenvolvimento de Sistemas
 
 </h4>
 
-Nicolas Lobos
+## Nicolas Lobos
 
 <div style="display: inline_block">
 	<a href = "mailto:nrlobos@outlook.com"><img src="https://img.shields.io/badge/Microsoft_Outlook-0078D4?style=for-the-badge&logo=microsoft-outlook&logoColor=white" target="_blank"></a>
@@ -96,7 +96,7 @@ Nicolas Lobos
 
 ##
 
-Jonatas Moura
+## Jonatas Moura
 
 <div style="display: inline_block">
 	<a href = "mailto:"><img src="https://img.shields.io/badge/Microsoft_Outlook-0078D4?style=for-the-badge&logo=microsoft-outlook&logoColor=white" target="_blank"></a>
@@ -106,7 +106,7 @@ Jonatas Moura
 
 ##
 
-Igor Lima
+## Igor Lima
 
 <div style="display: inline_block">
 	<a href = "mailto:igors.lima12@gmail.com"><img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
