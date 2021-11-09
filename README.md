@@ -75,7 +75,7 @@ Curso de Análise e Desenvolvimento de Sistemas
 
 Nicolas Lobos
 
-<img align ="center" height="120em" src="http://https://avatars.githubusercontent.com/u/88755877?v=4"/>
+<img height="120em" src="http://https://avatars.githubusercontent.com/u/88755877?v=4"/>
 <div style="display: inline_block">
 	<a href = "mailto:nrlobos@outlook.com"><img src="https://img.shields.io/badge/Microsoft_Outlook-0078D4?style=for-the-badge&logo=microsoft-outlook&logoColor=white" target="_blank"></a>
 	<a href="https://www.linkedin.com/in/nicolas-lobos/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
