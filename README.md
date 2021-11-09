@@ -39,8 +39,10 @@ Os comentários realizados neste software estão identificados com o nome do autor
 A parte relacionada a documentação do software esta sinalizado por "///" logo acima da função explicada.
 
 O arquivo [lib.c](https://github.com/Nicolas-Lobos/PIM2SEM/blob/main/lib.c) possui todas as funções utilizadas para a composição do software, sendo essencial para seu correto funcionamento.
+</h4>
 
 ### PRÉ-REQUISITOS
+<h4 align = "justify"> 
 
 Um computador com configurações padrão, e os arquivos .txt
 
