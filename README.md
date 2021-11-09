@@ -1,14 +1,7 @@
-<p align="center">
-  <h1>**PROJETO MULTIDISPLICNAR 2º SEMESTRE/2021**</h1>
-</p>
-
 # **PROJETO MULTIDISPLICNAR 2º SEMESTRE/2021**
 
 
 Projeto de Gerenciamento de Tarefas para as Olimpíadas de 2024 em Paris.
-
-<img src="https://img.shields.io/static/v1?label=UNIP&message=2021&color=7159c1&style=for-the-badge&logo=ghost"/>
-
 
 ## STATUS DO PROJETO:
 <h4 align = "center"> 
@@ -29,10 +22,12 @@ Tabela de Conteúdos
 
 ## SOBRE
 <p align="justify">
+
 Projeto voltado para o desenvolvimento educacional de habilidades em lógica de programação e desenvolvimento de software, utilizando a linguagem C para sua composição, proposto pela Universidade Paulista como Projeto Integrado Multidiscliplinar para o 2º Semestre de 2021.
 </p>
 
 ## COMO UTILIZAR
+<p align="justify">
 
 O projeto utiliza de arquivos .txt para ser executado, no atual momento, não foi desenvolvido uma execução que crie estes documentos do zero, portanto, recomendamos que o usuário utilize dos arquivos inseridos ao software.
 
@@ -45,10 +40,13 @@ Os comentários realizados neste software estão identificados com o nome do autor
 A parte relacionada a documentação do software esta sinalizado por "///" logo acima da função explicada.
 
 O arquivo [lib.c](https://github.com/Nicolas-Lobos/PIM2SEM/blob/main/lib.c) possui todas as funções utilizadas para a composição do software, sendo essencial para seu correto funcionamento.
+</p>
 
 ### PRÉ-REQUISITOS
+<p align="justify">
 
 Um computador com configurações padrão, e os arquivos .txt
+</p>
 
 ### LOCAL FILES
 
@@ -63,20 +61,23 @@ Um computador com configurações padrão, e os arquivos .txt
 <!--te-->
 
 ## TECNOLOGIAS
-
+<p align="justify">
 Foi utilizada a Linguagem C para desenvolver o software e a IDE utilizada foi o Visual Studio Code, da Microsoft.
-
+</p>
 
 ## LICENÇA
+<p align="justify">
 
 Este software está sob a licença GNU. Uma cópia pode ser encontrada na pasta [\about_files](https://github.com/Nicolas-Lobos/PIM2SEM/blob/main/about_files)
-
+</p>
 
 ## AUTORES
+<p align="justify">
+
 Universidade Paulista de São José dos Campos
 
 Curso de Análise e Desenvolvimento de Sistemas
-
+</p>
 
 Nicolas Lobos
 
