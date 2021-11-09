@@ -1,6 +1,6 @@
-<p align="center">
+<p align=center>
 
-# **PROJETO MULTIDISPLICNAR 2º SEMESTRE/2021**
+PROJETO MULTIDISPLICNAR 2º SEMESTRE/2021**
 
 </p>
 Projeto de Gerenciamento de Tarefas para as Olimpíadas de 2024 em Paris.
