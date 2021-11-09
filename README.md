@@ -1,8 +1,8 @@
-<p align=center>
+<div style= "text-align:center">
 
-PROJETO MULTIDISPLICNAR 2º SEMESTRE/2021**
+# **PROJETO MULTIDISPLICNAR 2º SEMESTRE/2021**
 
-</p>
+</div>
 Projeto de Gerenciamento de Tarefas para as Olimpíadas de 2024 em Paris.
 
 <img src="https://img.shields.io/static/v1?label=UNIP&message=2021&color=7159c1&style=for-the-badge&logo=ghost"/>
