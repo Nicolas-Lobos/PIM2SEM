@@ -3,8 +3,8 @@
 #include <locale.h>
 #include <string.h>
 #include <stdlib.h>
-#include "lib.c"
-
+// #include "lib.c"
+#include "createUser.h"
 
 main(){
 	setlocale(LC_ALL, "Portuguese");
