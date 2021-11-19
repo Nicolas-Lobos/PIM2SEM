@@ -2,7 +2,8 @@
  * @file createUser.h
  * @jonatasrmoura
  * @author Jonatas Rosa Moura (jonatas.rmoura@outlook.com)
- * @brief 
+ * @Nicolas-Lobos
+ * @author Nicolas Lobos ()
  * @version 0.1
  * @date 2021-11-15
  * REFATURAÇÃO E TESTE PARA CRIÇÃO DOS USUÁRIOS DO SISTEMA
@@ -16,6 +17,53 @@
 #include <locale.h>
 #include <string.h>
 #include <stdlib.h>
+
+typedef struct data Data;
+
+typedef struct country Country;
+struct country {
+	char name[30];
+	char olympicCommitte[30];
+};
+
+typedef struct category Category;
+struct category {
+	char modality[30];
+	char genre[10];
+};
+struct data
+{
+	char day[2];
+	char month[2];
+	char year[4];
+};
+
+typedef struct document Document;
+struct document
+{
+	char passport[30];
+	char rg[30];
+	char cpf[30];
+	char genre[10];
+};
+
+// Usuário normal
+typedef struct user User;
+struct user {
+	char name[30];
+	Data brithDay;
+	char email[50];
+	char password[30];
+	char password_cad[30]; // observação
+	Document documentation;
+};
+
+typedef struct technician Technician;
+struct technician {
+	User personalData;
+	Country countryOrigin;
+	Category team;
+};
 
 /// processo para cadastrar usu�rios e gerar suas autentica��es (concluido)
 void cad_user(int opt_auth){
