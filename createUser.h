@@ -9,8 +9,9 @@
  * REFATURAÇÃO E TESTE PARA CRIÇÃO DOS USUÁRIOS DO SISTEMA
  * 
  * @copyright Copyright (c) 2021
- * 
 */
+
+//gcc main.c -g
 
 #include <conio.h>
 #include <stdio.h>
@@ -119,15 +120,13 @@ void cad_user(int opt_auth){
 ///Fun��o para exibir o processo de login (concluido)
 void login(){
 	setlocale(LC_ALL, "Portuguese");
-	//declara��o de vari�veis
 	User user;
-	// int usertype;
 
 	int i;
 	int k;
 	char comparadora_psw_login[400][200];
 	char buffer[200];
-	//@nicolas_lobos => declara��o de ponteiros
+
 	FILE *f_login;
 
 	//@nicolas_lobos => defini��o de valor para o estado "logado" do usu�rio
@@ -178,13 +177,13 @@ void login(){
 				
 				if(!(strcmp(comparadora_psw_login[k],user.name))){
         		
-				/*@nicolas_lobos =>
-				a linha abaixo serve de teste para 
-				confirmar se encontrou uma correspond�ncia
-				printf("encontrei a senha");*/
-				user.statusLogin=1;
-        		break;
-    			}
+					/*@nicolas_lobos =>
+					a linha abaixo serve de teste para 
+					confirmar se encontrou uma correspond�ncia
+					printf("encontrei a senha");*/
+					user.statusLogin=1;
+					break;
+				}
 			}
 			//contador de tentativas de login
 			x = x-1;
@@ -252,7 +251,6 @@ void opening_logo(){
 
 ///Fun��o para criar o menu para usuario (concluido)
 void menu(){
-	setlocale(LC_ALL, "Portuguese");
 	//@nicolas_lobos => Declara��o de vari�veis
 	int option_menu;
 
@@ -313,7 +311,10 @@ void menu(){
 	while(option_menu != 12);
 }
 
-int createUser(int opt_auth) {
+int createUser(int opt_auth)
+{
+	setlocale(LC_ALL, "Portuguese");
+
 	FILE *f_auth;
 	FILE *f_login;
 	
@@ -327,11 +328,13 @@ int createUser(int opt_auth) {
 	f_auth = fopen("auth_files\\auth_adm.txt", "r");
 
   int i, k;
-	char type_user[100];
+	// char type_user[100];
 
 	header("Cadastro de usuário");
 
   do {
+		setlocale(LC_ALL, "Portuguese");
+
     //@nicolas_lobos => flush pra evitar erro de teclado
     fflush(stdin);
     printf("\n\nInsira seu usuário:\n");
@@ -350,7 +353,7 @@ int createUser(int opt_auth) {
     auth_adm
     para uma matriz de compara��o*/
 
-    while(fscanf(f_auth,"%s",buffer)==1){
+    while(fscanf(f_auth,"%s",buffer)==1) {
       strcpy(comparadora_psw_login[i],buffer);
       i++;
     }
@@ -389,15 +392,17 @@ int createUser(int opt_auth) {
     exit(0);
   }
   //@nicolas_lobos => se sucesso
-  else{
+  else {
     //@nicolas_lobos => la�o de repeti��o para cadastro
-    do{
+    do {
+			setlocale(LC_ALL, "Portuguese");
+
       //flush para evitar erro de buffer de teclado
       fflush(stdin);
       /*@nicolas_lobos => informa��o sobre o tipo de cadastro
       e solicita��o de input das informa��es a serem registradas*/
       printf("\n\n\tCadastro de Usuário(s) do Sistema");
-      printf("\n\tUsuário TIPO %s", type_user);
+      printf("\n\tUsuário TIPO %s", user);
       printf("\n\tPor favor Insira um login para cadastrar: ");
       gets(user.email);
 			
@@ -410,6 +415,7 @@ int createUser(int opt_auth) {
       for(i=0; user.email[i]; i++) {
         putc(user.email[i],f_login);
       }
+
       fprintf(f_login,"\n");
       //@nicolas_lobos => mensagem de sucesso
       printf("\nCADASTRO EFETUADO COM SUCESSO!\n\n");
@@ -426,6 +432,8 @@ int createUser(int opt_auth) {
 }
 
 void header(char title[30]) {
+	setlocale(LC_ALL, "Portuguese");
+
 	system("cls");
 
   fflush(stdin);
