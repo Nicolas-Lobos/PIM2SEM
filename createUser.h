@@ -18,8 +18,6 @@
 #include <string.h>
 #include <stdlib.h>
 
-typedef struct data Data;
-
 typedef struct country Country;
 struct country {
 	char name[30];
@@ -31,6 +29,8 @@ struct category {
 	char modality[30];
 	char genre[10];
 };
+
+typedef struct data Data;
 struct data
 {
 	char day[2];
@@ -55,6 +55,7 @@ struct user {
 	char email[50];
 	char password[30];
 	char password_cad[30]; // observação
+	int statusLogin;
 	Document documentation;
 };
 
@@ -64,6 +65,8 @@ struct technician {
 	Country countryOrigin;
 	Category team;
 };
+
+void header(char title[30]);
 
 /// processo para cadastrar usu�rios e gerar suas autentica��es (concluido)
 void cad_user(int opt_auth){
@@ -95,19 +98,19 @@ void cad_user(int opt_auth){
 	}
 	//@nicolas_lobos => prosseguindo caso sucesso
 	else {
-    create(
-      opt_auth,
-      username,
-      password,
-      f_auth,
-      buffer,
-      comparadora_psw_login,
-      f_login,
-      logado,
-      login_cad,
-      password_cad,
-      opt_y_n
-    );
+    // create(
+    //   opt_auth,
+    //   username,
+    //   password,
+    //   f_auth,
+    //   buffer,
+    //   comparadora_psw_login,
+    //   f_login,
+    //   logado,
+    //   login_cad,
+    //   password_cad,
+    //   opt_y_n
+    // );
   }
 		
 	system("pause");
@@ -117,10 +120,9 @@ void cad_user(int opt_auth){
 void login(){
 	setlocale(LC_ALL, "Portuguese");
 	//declara��o de vari�veis
-	char username[200];
-	char password[200];
-	int usertype;
-	int logado;
+	User user;
+	// int usertype;
+
 	int i;
 	int k;
 	char comparadora_psw_login[400][200];
@@ -129,7 +131,7 @@ void login(){
 	FILE *f_login;
 
 	//@nicolas_lobos => defini��o de valor para o estado "logado" do usu�rio
-	logado = 0;
+	user.statusLogin = 0;
 	
 	//@nicolas_lobos => in�cio da fun��o de login
 	//@nicolas_lobos => abrindo o arquivo de dados do login
@@ -143,17 +145,16 @@ void login(){
 	//@nicolas_lobos => prosseguindo caso sucesso
 	else{int x = 4;
 		do{
-			
 			//@nicolas_lobos => flush pra evitar erro de teclado
 			fflush(stdin);
-			printf("\n\nInsira seu usu�rio:\n");
-			gets(username);
+			printf("\n\nInsira seu usuário:\n");
+			gets(user.name);
 			fflush(stdin);
 			printf("\nInsira sua senha:\n");
-			gets(password);
+			gets(user.password);
 			
 			//@nicolas_lobos => junta a string password com a string username
-			strcat(username,password);
+			strcat(user.name,user.password);
 			
 			i= 0;
 			
@@ -175,25 +176,28 @@ void login(){
 				Se um usuario e senha correspondente
 				for encontrado, para o la�o for*/
 				
-				if(!(strcmp(comparadora_psw_login[k],username))){
+				if(!(strcmp(comparadora_psw_login[k],user.name))){
         		
 				/*@nicolas_lobos =>
 				a linha abaixo serve de teste para 
 				confirmar se encontrou uma correspond�ncia
 				printf("encontrei a senha");*/
-				logado=1;
+				user.statusLogin=1;
         		break;
     			}
 			}
 			//contador de tentativas de login
 			x = x-1;
-			if(!logado) {
-			printf("\nUsu�rio/Senha Inv�lidos, tente novamente!\n");
-			printf("Restam %d tentativas.\n",x);
+			if(!user.statusLogin) {
+				printf("\nUsuário/Senha Inválidos, tente novamente!\n");
+				printf("Restam %d tentativas.\n",x);
 			}
+
 			// se excedido o limite de tentativas, encerra a tela de login
-			if(x == 0) {exit(0);}
-		} while(!logado);
+			if(x == 0) exit(0);
+
+		} while(!user.statusLogin);
+
 		//@nicolas_lobos => mensagem de sucesso
 		printf("\n\n\t\aLOGIN EFETUADO COM SUCESSO!\n\n");
 		system("pause");
@@ -309,19 +313,15 @@ void menu(){
 	while(option_menu != 12);
 }
 
-int create(
-  int opt_auth,
-  char username[200],
-  char password[200],
-  FILE *f_auth,
-  char buffer[200],
-  char comparadora_psw_login[400][200],
-	FILE *f_login,
-  int logado,
-  char login_cad[200],
-	char password_cad[200],
-  int opt_y_n
-) {
+int createUser(int opt_auth) {
+	FILE *f_auth;
+	FILE *f_login;
+	
+	User user;
+	int opt_y_n;
+	char buffer[200];
+	char comparadora_psw_login[400][200];
+
   //@nicolas_lobos => in�cio da fun��o de login
 	//@nicolas_lobos => abrindo o arquivo de dados do login
 	f_auth = fopen("auth_files\\auth_adm.txt", "r");
@@ -329,55 +329,19 @@ int create(
   int i, k;
 	char type_user[100];
 
-  //@nicolas_lobos => laço de decisão para o tipo de usuário
-  switch(opt_auth) {
-    //@nicolas_lobos => usu�rio do tipo atleta
-    case 6:
-    printf("Cadastro atleta...");
-		char type_user[50] = "Atleta";
-    puts("==========================");
-    break;
-
-    case 7:
-    printf("Cadastro de Técnico...");
-		char type_user[50] = "Técnico";
-    puts("==========================");
-    break;
-
-    case 8:
-    printf("Cadastro de Médicos...");
-		char type_user[50] = "Médico";
-    puts("==========================");
-    break;
-
-    case 9:
-    printf("Cadastro de STAFF...");
-		char type_user[50] = "STAFF";
-    puts("==========================");
-    break;
-
-    case 10:
-    printf("Cadastro de Funcionário...");
-		char type_user[50] = "Funcionário";
-    puts("==========================");
-    break;
-
-    default:
-    printf("Opção inválida! tente novamente");
-    break;
-  }
+	header("Cadastro de usuário");
 
   do {
     //@nicolas_lobos => flush pra evitar erro de teclado
     fflush(stdin);
     printf("\n\nInsira seu usuário:\n");
-    gets(username);
+    gets(user.name);
     fflush(stdin);
     printf("\nInsira sua senha:\n");
-    gets(password);
+    gets(user.password);
   
     //@nicolas_lobos => junta a string password com a string username
-    strcat(username,password);
+    strcat(user.name, user.password);
     
     i = 0;
   
@@ -400,18 +364,18 @@ int create(
       Se um usuario e senha correspondente
       for encontrado, para o la�o for*/
     
-      if(!(strcmp(comparadora_psw_login[k],username))){
+      if(!(strcmp(comparadora_psw_login[k],user.name))){
       
         /*@nicolas_lobos =>
         a linha abaixo serve de teste para 
         confirmar se encontrou uma correspond�ncia
         printf("encontrei a senha");*/
-        logado=1;
+        user.statusLogin=1;
         break;
       }
     }
     printf("Usuário não autorizado, tente novamente!");
-  } while(!logado);
+  } while(!user.statusLogin);
 
   //@nicolas_lobos => mensagem de sucesso
   printf("\n\n\t\aUSUÁRIO AUTENTICADO!\n\n");
@@ -435,15 +399,16 @@ int create(
       printf("\n\n\tCadastro de Usuário(s) do Sistema");
       printf("\n\tUsuário TIPO %s", type_user);
       printf("\n\tPor favor Insira um login para cadastrar: ");
-      gets(login_cad);
+      gets(user.email);
+			
       fflush(stdin);
       printf("\n\tPor favor Insira um login para cadastrar: ");
-      gets(password_cad);
+      gets(user.password_cad);
       // @nicolas_lobos => concatena��o para salvar o registro
-      strcat(login_cad,password_cad);
+      strcat(user.email, user.password_cad);
       //@nicolas_lobos => salvando em arquivo a informa��o de login
-      for(i=0; login_cad[i]; i++) {
-        putc(login_cad[i],f_login);
+      for(i=0; user.email[i]; i++) {
+        putc(user.email[i],f_login);
       }
       fprintf(f_login,"\n");
       //@nicolas_lobos => mensagem de sucesso
@@ -458,4 +423,15 @@ int create(
     // fechamento do arquivo de login
     fclose(f_login);
   }
+}
+
+void header(char title[30]) {
+	system("cls");
+
+  fflush(stdin);
+  gets(title);
+
+	printf("--------------------------------------------------------------\n");
+	printf("\t                           %s                              .\n", title);
+	printf("--------------------------------------------------------------\n\n");
 }
