@@ -10,7 +10,6 @@
  * 
  * @copyright Copyright (c) 2021
 */
-
 //gcc main.c -g
 
 #include <conio.h>
@@ -34,88 +33,51 @@ struct category {
 typedef struct data Data;
 struct data
 {
-	char day[2];
-	char month[2];
+	char day[4];
+	char month[4];
 	char year[4];
-};
-
-typedef struct document Document;
-struct document
-{
-	char passport[30];
-	char rg[30];
-	char cpf[30];
-	char genre[10];
 };
 
 // Usuário normal
 typedef struct user User;
 struct user {
 	char name[30];
+	Country countryOrigin;
+	char passport[30];
 	Data brithDay;
-	char email[50];
+	char rg[30];
+	char cpf[30];
+	char genre[10];
+	char nickName[50];
 	char password[30];
-	char password_cad[30]; // observação
 	int statusLogin;
-	Document documentation;
+
+
+	char password_cad[30]; // ?observação?
+};
+
+typedef struct voluntary Voluntary;
+struct voluntary {
+	User personalData;
+	char work;
+	char description;
+};
+
+typedef struct employee Employee;
+struct employee {
+	User personalData;
+	char work;
+	char description;
 };
 
 typedef struct technician Technician;
 struct technician {
 	User personalData;
-	Country countryOrigin;
 	Category team;
 };
 
-void header(char title[30]);
-
-/// processo para cadastrar usu�rios e gerar suas autentica��es (concluido)
-void cad_user(int opt_auth){
-	setlocale(LC_ALL, "Portuguese");
-	printf("Autenticação");
-	//declara��o de vari�veis
-	char username[200];
-	char password[200];
-	char login_cad[200];
-	char password_cad[200];
-	int opt_y_n;
-	// int opt_auth;
-	int logado;
-	// int i;
-	// int k;
-	char comparadora_psw_login[400][200];
-	char buffer[200];
-	//@nicolas_lobos => declara��o de ponteiros
-	FILE *f_auth;
-	FILE *f_login;
-	//@nicolas_lobos => defini��o de valor para o estado "logado" do usu�rio
-	logado = 0;
-	
-	//@nicolas_lobos => verifica se a abertura foi concluida com sucesso
-	if(!f_auth){
-		printf("Error:File not found");
-		system("pause");
-		exit(0);
-	}
-	//@nicolas_lobos => prosseguindo caso sucesso
-	else {
-    // create(
-    //   opt_auth,
-    //   username,
-    //   password,
-    //   f_auth,
-    //   buffer,
-    //   comparadora_psw_login,
-    //   f_login,
-    //   logado,
-    //   login_cad,
-    //   password_cad,
-    //   opt_y_n
-    // );
-  }
-		
-	system("pause");
-}
+void registerEmployee();
+void registerTechnician();
 
 ///Fun��o para exibir o processo de login (concluido)
 void login(){
@@ -262,8 +224,10 @@ void menu(){
 
 		//@nicolas_lobos => exibi��o do menu
 		printf("\n\a");
+		printf("\t================================================\n");
 		printf("\tBem vindo, por favor selecione uma opção abaixo:\n");
 		printf("\t================================================\n");
+
 		printf("\t(1) Consultar Agenda\n");
 		printf("\t(2) Consultar Resultado\n");
 		printf("\t(3) Programar Escala\n");
@@ -273,45 +237,85 @@ void menu(){
 		printf("\t(7) Cadastro de Técnicos\n");
 		printf("\t(8) Cadastro de Médicos\n");
 		printf("\t(9) Cadastro de STAFF\n");
-		printf("\t(10) Cadastro de usuário\n");
-		printf("\t(11) Área Médica\n");
-		printf("\t(12) SAIR\n\n");
+		printf("\t(10) Cadastro de funcionário\n");
+		printf("\t(11) Cadastro de voluntário\n");
+		printf("\t(12) Área Médica\n");
+		printf("\t(13) SAIR\n\n");
 		printf("\tPor gentileza, digite o número da opção desejada:\n\t");
 		//@nicolas_lobos => leitura do input do usuario
 		scanf("%d", &option_menu);
 		/*@nicolas_lobos => inicio da estrutura de condi��o
 		cada uma das op��es abaixo referencia uma fun��o acima */
 		switch (option_menu) {
+			case 1:
+				printf("Em desenvolvimento");
+				menu();
+      break;
+
+			case 2:
+				printf("Em desenvolvimento");
+				menu();
+      break;
+
+			case 3:
+				printf("Em desenvolvimento");
+				menu();
+      break;
+
+			case 4:
+				printf("Em desenvolvimento");
+				menu();
+      break;
+
+			case 5:
+				printf("Em desenvolvimento");
+				menu();
+      break;
+
 			case 6:
-			cad_user(6);
+				printf("Em desenvolvimento");
+				menu();
       break;
 
       case 7:
-			cad_user(7);
+				printf("Em desenvolvimento");
+				menu();
       break;
 
       case 8:
-			cad_user(8);
+				printf("Em desenvolvimento");
+				menu();
       break;
 
       case 9:
-			cad_user(9);
+				printf("Em desenvolvimento");
+				menu();
       break;
 
       case 10:
-			cad_user(10);
+				registerEmployee();
+      break;
+
+			case 11:
+				printf("Em desenvolvimento");
+				menu();
+      break;
+
+			case 12:
+				printf("Em desenvolvimento");
+				menu();
       break;
 
 			default:
-			printf("Opção inválida! Tente novamente");
+				printf("Opção inválida! Tente novamente");
 			break;
 		}
 	}
 	//@nicolas_lobos => condi��o de execu��o
-	while(option_menu != 12);
+	while(option_menu != 13);
 }
 
-int createUser(int opt_auth)
+void createUser(int opt_auth)
 {
 	setlocale(LC_ALL, "Portuguese");
 
@@ -330,7 +334,9 @@ int createUser(int opt_auth)
   int i, k;
 	// char type_user[100];
 
-	header("Cadastro de usuário");
+	printf("\t================================================\n");
+	printf("\tCadastro de usuário:\n");
+	printf("\t================================================\n");
 
   do {
 		setlocale(LC_ALL, "Portuguese");
@@ -404,16 +410,16 @@ int createUser(int opt_auth)
       printf("\n\n\tCadastro de Usuário(s) do Sistema");
       printf("\n\tUsuário TIPO %s", user);
       printf("\n\tPor favor Insira um login para cadastrar: ");
-      gets(user.email);
+      gets(user.nickName);
 			
       fflush(stdin);
       printf("\n\tPor favor Insira um login para cadastrar: ");
       gets(user.password_cad);
       // @nicolas_lobos => concatena��o para salvar o registro
-      strcat(user.email, user.password_cad);
+      strcat(user.nickName, user.password_cad);
       //@nicolas_lobos => salvando em arquivo a informa��o de login
-      for(i=0; user.email[i]; i++) {
-        putc(user.email[i],f_login);
+      for(i=0; user.nickName[i]; i++) {
+        putc(user.nickName[i],f_login);
       }
 
       fprintf(f_login,"\n");
@@ -431,15 +437,198 @@ int createUser(int opt_auth)
   }
 }
 
-void header(char title[30]) {
-	setlocale(LC_ALL, "Portuguese");
+void registerEmployee() {
+	FILE *file_employee;
 
-	system("cls");
+	Employee employee;
 
-  fflush(stdin);
-  gets(title);
+	file_employee = fopen("funcionarios.txt", "ab");
 
-	printf("--------------------------------------------------------------\n");
-	printf("\t                           %s                              .\n", title);
-	printf("--------------------------------------------------------------\n\n");
+	if (file_employee == NULL) {
+		printf("Problema na abertura do arquivo!\n");
+	} else {
+		do
+		{
+			printf("\t================================================\n");
+			printf("\tCadastro de Funcionário:\n");
+			printf("\t================================================\n");
+
+			fflush(stdin);
+			printf("Nome: ");
+			gets(employee.personalData.name);
+
+			fflush(stdin);
+			printf("\nNacionalidade: ");
+			gets(employee.personalData.countryOrigin.name);
+
+			fflush(stdin);
+			printf("\nPassaporte: ");
+			gets(employee.personalData.passport);
+
+			printf("\nData de nascimento: ");
+			scanf("%d/%d/%d", &employee.personalData.brithDay.day, &employee.personalData.brithDay.month, &employee.personalData.brithDay.year);
+
+			fflush(stdin);
+			printf("\nRG: ");
+			gets(employee.personalData.rg);
+
+			fflush(stdin);
+			printf("\nCPF: ");
+			gets(employee.personalData.cpf);
+
+			fflush(stdin);
+			printf("\nSexo: ");
+			gets(employee.personalData.genre);
+
+			fflush(stdin);
+			printf("\nInsira seu Nick(único): ");
+			gets(employee.personalData.nickName);
+
+			fflush(stdin);
+			printf("\nSenha: ");
+			gets(employee.personalData.password);
+
+			employee.personalData.statusLogin = 0;
+
+			fwrite(&employee, sizeof(Employee), 1, file_employee);
+
+			printf("\n\nDeseja continuar(s/n)? ");
+		} while (getche() == 's');
+	
+		fclose(file_employee);
+		getch();
+	}
+}
+
+void registervoluntary() {
+	FILE *file_voluntary;
+
+	Voluntary voluntary;
+
+	file_voluntary = fopen("voluntarios.txt", "ab");
+
+	if (file_voluntary == NULL) {
+		printf("Problema na abertura do arquivo!\n");
+	} else {
+		do
+		{
+			printf("\t================================================\n");
+			printf("\tCadastro de voluntário:\n");
+			printf("\t================================================\n");
+
+			fflush(stdin);
+			printf("Nome: ");
+			gets(voluntary.personalData.name);
+
+			fflush(stdin);
+			printf("\nNacionalidade: ");
+			gets(voluntary.personalData.countryOrigin.name);
+
+			fflush(stdin);
+			printf("\nPassaporte: ");
+			gets(voluntary.personalData.passport);
+
+			printf("\nData de nascimento: ");
+			scanf("%d/%d/%d", &voluntary.personalData.brithDay.day, &voluntary.personalData.brithDay.month, &voluntary.personalData.brithDay.year);
+
+			fflush(stdin);
+			printf("\nRG: ");
+			gets(voluntary.personalData.rg);
+
+			fflush(stdin);
+			printf("\nCPF: ");
+			gets(voluntary.personalData.cpf);
+
+			fflush(stdin);
+			printf("\nSexo: ");
+			gets(voluntary.personalData.genre);
+
+			fflush(stdin);
+			printf("\nInsira seu Nick(único): ");
+			gets(voluntary.personalData.nickName);
+
+			fflush(stdin);
+			printf("\nSenha: ");
+			gets(voluntary.personalData.password);
+
+			voluntary.personalData.statusLogin = 0;
+
+			fwrite(&voluntary, sizeof(Voluntary), 1, file_voluntary);
+
+			printf("\n\nDeseja continuar(s/n)? ");
+		} while (getche() == 's');
+	
+		fclose(file_voluntary);
+		getch();
+	}
+}
+
+void registerTechnician() {
+	FILE *file_technician;
+	Technician technician;
+
+	file_technician = fopen("tecnicos.txt", "ab");
+
+	if (file_technician == NULL) {
+		printf("Problema na abertura do arquivo!\n");
+	} else {
+		do
+		{
+			printf("\t================================================\n");
+			printf("\tCadastro de Tecnico:\n");
+			printf("\t================================================\n");
+
+			fflush(stdin);
+			printf("Nome: ");
+			gets(technician.personalData.name);
+
+			fflush(stdin);
+			printf("\nNacionalidade: ");
+			gets(technician.personalData.countryOrigin.name);
+
+			fflush(stdin);
+			printf("\nPassaporte: ");
+			gets(technician.personalData.passport);
+
+			printf("\nData de nascimento: ");
+			scanf("%d %d %d", &technician.personalData.brithDay.day, &technician.personalData.brithDay.month, &technician.personalData.brithDay.year);
+
+			fflush(stdin);
+			printf("\nRG: ");
+			gets(technician.personalData.rg);
+
+			fflush(stdin);
+			printf("\nCPF: ");
+			gets(technician.personalData.cpf);
+
+			fflush(stdin);
+			printf("\nSexo: ");
+			gets(technician.personalData.genre);
+
+			fflush(stdin);
+			printf("\nInsira seu Nick(único): ");
+			gets(technician.personalData.nickName);
+
+			fflush(stdin);
+			printf("\nSenha: ");
+			gets(technician.personalData.password);
+
+			fflush(stdin);
+			printf("\nModalidade: (ex: Futebol, Basquete, Vôlei, etc...) ");
+			gets(technician.team.modality);
+
+			fflush(stdin);
+			printf("\nGênero da modalidade : ");
+			gets(technician.team.genre);
+
+			technician.personalData.statusLogin = 0;
+
+			fwrite(&technician, sizeof(Technician), 1, file_technician);
+
+			printf("\n\nDeseja continuar(s/n)? ");
+		} while (getche() == 's');
+		
+		fclose(file_technician);
+		getch();
+	}
 }
