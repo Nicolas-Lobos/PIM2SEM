@@ -4,15 +4,15 @@
 #include <string.h>
 #include <stdlib.h>
 
-//@nicolas_lobos => Arquivo biblioteca para todas as funções utilizadas no main
+//@nicolas_lobos => Arquivo biblioteca para todas as funï¿½ï¿½es utilizadas no main
 
 
 
 ///processo para a consulta da agenda de eventos (concluido)
 void cslta_agenda(){
-	//@nicolas_lobos => declaração de variáveis
+	//@nicolas_lobos => declaraï¿½ï¿½o de variï¿½veis
 	char buffer[1024];
-	//@nicolas_lobos => declaração de ponteiros
+	//@nicolas_lobos => declaraï¿½ï¿½o de ponteiros
 	FILE *agenda_jogos;
 	
 	agenda_jogos = fopen("query_files\\agenda_jogos.txt", "r");
@@ -24,8 +24,8 @@ void cslta_agenda(){
 	}
 	//@nicolas_lobos => prosseguindo caso sucesso
 	else{
-		//@nicolas_lobos => exibindo as informações da agenda de jogos
-		printf("\n\tAGENDA OLÍMPICA");
+		//@nicolas_lobos => exibindo as informaï¿½ï¿½es da agenda de jogos
+		printf("\n\tAGENDA OLï¿½MPICA");
 		while(fscanf(agenda_jogos,"%s",buffer)==1){
 			printf("\n\t%s\n",buffer);
 		}
@@ -48,8 +48,8 @@ void prgma_escala(){
 /// processo para adicionar um evento olimpico (concluido)
 void add_evento(){
 	setlocale(LC_ALL, "Portuguese");
-	printf("Autenticação");
-	//declaração de variáveis
+	printf("Autenticaï¿½ï¿½o");
+	//declaraï¿½ï¿½o de variï¿½veis
 	char username[200];
 	char password[200];
 	char modalidade[200];
@@ -61,13 +61,13 @@ void add_evento(){
 	int k;
 	char comparadora_psw_login[400][200];
 	char buffer[200];
-	//@nicolas_lobos => declaração de ponteiros
+	//@nicolas_lobos => declaraï¿½ï¿½o de ponteiros
 	FILE *f_auth;
 	FILE *f_jogos;
-	//@nicolas_lobos => definição de valor para o estado "logado" do usuário
+	//@nicolas_lobos => definiï¿½ï¿½o de valor para o estado "logado" do usuï¿½rio
 	logado = 0;
 	
-	//@nicolas_lobos => início da função de login
+	//@nicolas_lobos => inï¿½cio da funï¿½ï¿½o de login
 	//@nicolas_lobos => abrindo o arquivo de dados do login
 	f_auth = fopen("auth_files\\auth_adm.txt", "r");
 	//@nicolas_lobos => verifica se a abertura foi concluida com sucesso
@@ -81,7 +81,7 @@ void add_evento(){
 		do{
 			//@nicolas_lobos => flush pra evitar erro de teclado
 			fflush(stdin);
-			printf("\n\nInsira seu usuário:\n");
+			printf("\n\nInsira seu usuï¿½rio:\n");
 			gets(username);
 			fflush(stdin);
 			printf("\nInsira sua senha:\n");
@@ -95,7 +95,7 @@ void add_evento(){
 			/*@nicolas_lobos =>
 			copia todas as strings do arquivo 
 			auth_adm
- 			para uma matriz de comparação*/
+ 			para uma matriz de comparaï¿½ï¿½o*/
 			while(fscanf(f_auth,"%s",buffer)==1){
 				strcpy(comparadora_psw_login[i],buffer);
 				i++;
@@ -108,27 +108,27 @@ void add_evento(){
 			for(k=0; k<=400; k++) {
 				/*@nicolas_lobos =>
 				Se um usuario e senha correspondente
-				for encontrado, para o laço for*/
+				for encontrado, para o laï¿½o for*/
 				
 				if(!(strcmp(comparadora_psw_login[k],username))){
 				
 				/*@nicolas_lobos =>
 				a linha abaixo serve de teste para 
-				confirmar se encontrou uma correspondência
+				confirmar se encontrou uma correspondï¿½ncia
 				printf("encontrei a senha");*/
 				logado=1;
 				break;
 				}
 			}
-			printf("Usuário não autorizado, tente novamente!");
+			printf("Usuï¿½rio nï¿½o autorizado, tente novamente!");
 		} while(!logado);
 			
 		//@nicolas_lobos => mensagem de sucesso
-		printf("\n\n\t\aUSUÁRIO AUTENTICADO!\n\n");
+		printf("\n\n\t\aUSUï¿½RIO AUTENTICADO!\n\n");
 		system("pause");
-		//@nicolas_lobos => abre o arquivo de login para salvar novo usuário
+		//@nicolas_lobos => abre o arquivo de login para salvar novo usuï¿½rio
 		f_jogos = fopen("query_files\\agenda_jogos.txt", "a");
-		//@nicolas_lobos => caso não encontre ou falhe
+		//@nicolas_lobos => caso nï¿½o encontre ou falhe
 		if(!f_jogos){
 		printf("Error:File not found");
 		system("pause");
@@ -136,34 +136,34 @@ void add_evento(){
 		}
 		//@nicolas_lobos => se sucesso
 		else{
-			//@nicolas_lobos => estrutura de repetição para cadastro do evento
+			//@nicolas_lobos => estrutura de repetiï¿½ï¿½o para cadastro do evento
 			do{
-				// exibição do nome da atividade
+				// exibiï¿½ï¿½o do nome da atividade
 				printf("\n\tAGENDAMENTO DE EVENTOS OLIMPICOS\n");
 				printf("\t=================================\n");
-				//@nicolas_lobos => solicitação de input do usuário
+				//@nicolas_lobos => solicitaï¿½ï¿½o de input do usuï¿½rio
 				fflush(stdin);
 				printf("\tPor gentileza insira a modalidade do esporte:\n\t");
 				gets(modalidade);
 				fflush(stdin);
-				printf("\n\tPor gentileza insira a data no padrão DD/MM/YYYY:\n\t");
+				printf("\n\tPor gentileza insira a data no padrï¿½o DD/MM/YYYY:\n\t");
 				gets(data);
 				fflush(stdin);
 				//@nicolas_lobos => escrevendo a modalidade no arquivo agenda_jogos.txt
 				for(i=0; modalidade[i]; i++){
 					putc(modalidade[i], f_jogos);
 				}
-				// @nicolas_lobos => adicionando espaço em branco
+				// @nicolas_lobos => adicionando espaï¿½o em branco
 				fprintf(f_jogos, "\n");
 				// @nicolas_lobos => adicionando a data do evento no arquvio agenda_jogos.txt
 				for(i=0; data[i]; i++){
 					putc(data[i], f_jogos);
 				}
 				fprintf(f_jogos, "\n");
-				// nicolas_lobos => mensagem de sucesso e análise da repetição
+				// nicolas_lobos => mensagem de sucesso e anï¿½lise da repetiï¿½ï¿½o
 				printf("\n\tCADASTRO REALIZADO COM SUCESSO\a, \n\tDESEJA MARCAR OUTRO EVENTO?");
 				printf("\n\t(1)SIM\n");
-				printf("\n\t(2)NÃO\n\t");
+				printf("\n\t(2)Nï¿½O\n\t");
 				scanf("%d", &opt_y_n);
 			}while(opt_y_n !=2);
 		}
@@ -182,13 +182,13 @@ void cad_atleta(){
 	//@nicolas_lobos => a ser desenvolvido
 }
 
-/// processo para cadastrar um técnico
+/// processo para cadastrar um tï¿½cnico
 void cad_tecnico(){
 	printf("em progresso");
 	//@nicolas_lobos => a ser desenvolvido
 }
 
-/// processo para cadastrar um médico
+/// processo para cadastrar um mï¿½dico
 void cad_medico(){
 	printf("em progresso");
 	//@nicolas_lobos => a ser desenvolvido
@@ -200,16 +200,16 @@ void cad_STAFF(){
 	//@nicolas_lobos => a ser desenvolvido
 }
 
-/// processo para exibir o menu médico
+/// processo para exibir o menu mï¿½dico
 void menu_med(){
 	printf("em progresso");
 }
 
-/// processo para cadastrar usuários e gerar suas autenticações (concluido)
+/// processo para cadastrar usuï¿½rios e gerar suas autenticaï¿½ï¿½es (concluido)
 void cad_user(){
 	setlocale(LC_ALL, "Portuguese");
-	printf("Autenticação");
-	//declaração de variáveis
+	printf("Autenticaï¿½ï¿½o");
+	//declaraï¿½ï¿½o de variï¿½veis
 	char username[200];
 	char password[200];
 	char login_cad[200];
@@ -221,13 +221,13 @@ void cad_user(){
 	int k;
 	char comparadora_psw_login[400][200];
 	char buffer[200];
-	//@nicolas_lobos => declaração de ponteiros
+	//@nicolas_lobos => declaraï¿½ï¿½o de ponteiros
 	FILE *f_auth;
 	FILE *f_login;
-	//@nicolas_lobos => definição de valor para o estado "logado" do usuário
+	//@nicolas_lobos => definiï¿½ï¿½o de valor para o estado "logado" do usuï¿½rio
 	logado = 0;
 	
-	//@nicolas_lobos => início da função de login
+	//@nicolas_lobos => inï¿½cio da funï¿½ï¿½o de login
 	//@nicolas_lobos => abrindo o arquivo de dados do login
 	f_auth = fopen("auth_files\\auth_adm.txt", "r");
 	//@nicolas_lobos => verifica se a abertura foi concluida com sucesso
@@ -238,20 +238,20 @@ void cad_user(){
 	}
 	//@nicolas_lobos => prosseguindo caso sucesso
 	else{
-		printf("\nQual será o tipo de usuário?");
+		printf("\nQual serï¿½ o tipo de usuï¿½rio?");
 		printf("\n(1)ATLETA");
 		printf("\n(2)ADMIN");
-		printf("\n(3)MÉDICO");
-		printf("\n(4)TÉCNICO");
+		printf("\n(3)Mï¿½DICO");
+		printf("\n(4)Tï¿½CNICO");
 		scanf("%d",&opt_auth);
-		//@nicolas_lobos => laço de decisão para o tipo de usuário
+		//@nicolas_lobos => laï¿½o de decisï¿½o para o tipo de usuï¿½rio
 		switch(opt_auth){
-			//@nicolas_lobos => usuário do tipo atleta
+			//@nicolas_lobos => usuï¿½rio do tipo atleta
 			case 1:
 			do{
 				//@nicolas_lobos => flush pra evitar erro de teclado
 				fflush(stdin);
-				printf("\n\nInsira seu usuário:\n");
+				printf("\n\nInsira seu usuï¿½rio:\n");
 				gets(username);
 				fflush(stdin);
 				printf("\nInsira sua senha:\n");
@@ -265,7 +265,7 @@ void cad_user(){
 				/*@nicolas_lobos =>
 				copia todas as strings do arquivo 
 				auth_adm
- para uma matriz de comparação*/
+ para uma matriz de comparaï¿½ï¿½o*/
 
 				while(fscanf(f_auth,"%s",buffer)==1){
 					strcpy(comparadora_psw_login[i],buffer);
@@ -279,27 +279,27 @@ void cad_user(){
 				for(k=0; k<=400; k++) {
 					/*@nicolas_lobos =>
 					Se um usuario e senha correspondente
-					for encontrado, para o laço for*/
+					for encontrado, para o laï¿½o for*/
 					
 					if(!(strcmp(comparadora_psw_login[k],username))){
 					
 					/*@nicolas_lobos =>
 					a linha abaixo serve de teste para 
-					confirmar se encontrou uma correspondência
+					confirmar se encontrou uma correspondï¿½ncia
 					printf("encontrei a senha");*/
 					logado=1;
 					break;
 					}
 				}
-				printf("Usuário não autorizado, tente novamente!");
+				printf("Usuï¿½rio nï¿½o autorizado, tente novamente!");
 			} while(!logado);
 			
 			//@nicolas_lobos => mensagem de sucesso
-			printf("\n\n\t\aUSUÁRIO AUTENTICADO!\n\n");
+			printf("\n\n\t\aUSUï¿½RIO AUTENTICADO!\n\n");
 			system("pause");
-			//@nicolas_lobos => abre o arquivo de login para salvar novo usuário
+			//@nicolas_lobos => abre o arquivo de login para salvar novo usuï¿½rio
 			f_login = fopen("auth_files\\login.txt", "a");
-			//@nicolas_lobos => caso não encontre ou falhe
+			//@nicolas_lobos => caso nï¿½o encontre ou falhe
 			if(!f_login){
 			printf("Error:File not found");
 			system("pause");
@@ -307,32 +307,32 @@ void cad_user(){
 			}
 			//@nicolas_lobos => se sucesso
 			else{
-				//@nicolas_lobos => laço de repetição para cadastro
+				//@nicolas_lobos => laï¿½o de repetiï¿½ï¿½o para cadastro
 				do{
 					//flush para evitar erro de buffer de teclado
 					fflush(stdin);
-					/*@nicolas_lobos => informação sobre o tipo de cadastro
-					e solicitação de input das informações a serem registradas*/
-					printf("\n\n\tCadastro de Usuários do Sistema");
-					printf("\n\tUsuário TIPO ATLETA");
+					/*@nicolas_lobos => informaï¿½ï¿½o sobre o tipo de cadastro
+					e solicitaï¿½ï¿½o de input das informaï¿½ï¿½es a serem registradas*/
+					printf("\n\n\tCadastro de Usuï¿½rios do Sistema");
+					printf("\n\tUsuï¿½rio TIPO ATLETA");
 					printf("\n\tPor favor Insira um login para cadastrar: ");
 					gets(login_cad);
 					fflush(stdin);
 					printf("\n\tPor favor Insira um login para cadastrar: ");
 					gets(password_cad);
-					// @nicolas_lobos => concatenação para salvar o registro
+					// @nicolas_lobos => concatenaï¿½ï¿½o para salvar o registro
 					strcat(login_cad,password_cad);
-					//@nicolas_lobos => salvando em arquivo a informação de login
+					//@nicolas_lobos => salvando em arquivo a informaï¿½ï¿½o de login
 					for(i=0; login_cad[i]; i++) {
 						putc(login_cad[i],f_login);
 					}
 					fprintf(f_login,"\n");
 					//@nicolas_lobos => mensagem de sucesso
 					printf("\nCADASTRO EFETUADO COM SUCESSO!\n\n");
-					printf("\nDeseja cadastrar outro usuário?");
+					printf("\nDeseja cadastrar outro usuï¿½rio?");
 					printf("\n(1)SIM");
-					printf("\n(2)NÃO\n\t");
-					//@nicolas_lobos => opção de escolha para novo cadastro
+					printf("\n(2)Nï¿½O\n\t");
+					//@nicolas_lobos => opï¿½ï¿½o de escolha para novo cadastro
 					scanf("%d",&opt_y_n);
 
 				}while(opt_y_n!=2);
@@ -341,12 +341,12 @@ void cad_user(){
 			
 			}
 			break;
-			//@nicolas_lobos => usuário do tipo admnistrador
+			//@nicolas_lobos => usuï¿½rio do tipo admnistrador
 			case 2:
 			do{
 				//@nicolas_lobos => flush pra evitar erro de teclado
 				fflush(stdin);
-				printf("\n\nInsira seu usuário:\n");
+				printf("\n\nInsira seu usuï¿½rio:\n");
 				gets(username);
 				fflush(stdin);
 				printf("\nInsira sua senha:\n");
@@ -359,7 +359,7 @@ void cad_user(){
 				
 				/*@nicolas_lobos =>
 				copia todas as strings do arquivo 
-				login.txt para uma matriz de comparação*/
+				login.txt para uma matriz de comparaï¿½ï¿½o*/
 
 				while(fscanf(f_auth,"%s",buffer)==1){
 					strcpy(comparadora_psw_login[i],buffer);
@@ -373,25 +373,25 @@ void cad_user(){
 				for(k=0; k<=400; k++) {
 					/*@nicolas_lobos =>
 					Se um usuario e senha correspondente
-					for encontrado, para o laço for*/
+					for encontrado, para o laï¿½o for*/
 					
 					if(!(strcmp(comparadora_psw_login[k],username))){
 					
 					/*@nicolas_lobos =>
 					a linha abaixo serve de teste para 
-					confirmar se encontrou uma correspondência
+					confirmar se encontrou uma correspondï¿½ncia
 					printf("encontrei a senha");*/
 					logado=1;
 					break;
 					}
 				}
-			printf("Usuário não Autorizado, tente novamente!");
+			printf("Usuï¿½rio nï¿½o Autorizado, tente novamente!");
 			} while(!logado);
 			//@nicolas_lobos => mensagem de sucesso
 			
-			printf("\n\n\t\aUSUÁRIO AUTENTICADO!\n\n");
+			printf("\n\n\t\aUSUï¿½RIO AUTENTICADO!\n\n");
 			system("pause");
-			// abertura do arquivo auth_adm para salvar o novo usuário
+			// abertura do arquivo auth_adm para salvar o novo usuï¿½rio
 			f_auth = fopen("auth_files\\auth_adm.txt", "a");
 			
 			if(!f_auth){
@@ -403,8 +403,8 @@ void cad_user(){
 			else{
 				do{
 					fflush(stdin);
-					printf("\n\n\tCadastro de Usuários do Sistema");
-					printf("\n\tUsuário TIPO ADMINISTRADOR");
+					printf("\n\n\tCadastro de Usuï¿½rios do Sistema");
+					printf("\n\tUsuï¿½rio TIPO ADMINISTRADOR");
 					printf("\n\tPor favor Insira um login para cadastrar: ");
 					gets(login_cad);
 					fflush(stdin);
@@ -433,9 +433,9 @@ void cad_user(){
 					fclose(f_login);
 
 					printf("\n\tCADASTRO EFETUADO COM SUCESSO!\n\n");
-					printf("\n\tDeseja cadastrar outro usuário?");
+					printf("\n\tDeseja cadastrar outro usuï¿½rio?");
 					printf("\n\t(1)SIM");
-					printf("\n\t(2)NÃO\n\t");
+					printf("\n\t(2)Nï¿½O\n\t");
 					scanf("%d",&opt_y_n);
 
 				}while(opt_y_n!=2);
@@ -449,7 +449,7 @@ void cad_user(){
 			do{
 				//@nicolas_lobos => flush pra evitar erro de teclado
 				fflush(stdin);
-				printf("\n\n\tInsira seu usuário:\n");
+				printf("\n\n\tInsira seu usuï¿½rio:\n");
 				gets(username);
 				fflush(stdin);
 				printf("\n\tInsira sua senha:\n");
@@ -462,7 +462,7 @@ void cad_user(){
 				
 				/*@nicolas_lobos =>
 				copia todas as strings do arquivo 
-				login.txt para uma matriz de comparação*/
+				login.txt para uma matriz de comparaï¿½ï¿½o*/
 
 				while(fscanf(f_auth,"%s",buffer)==1){
 					strcpy(comparadora_psw_login[i],buffer);
@@ -476,23 +476,23 @@ void cad_user(){
 				for(k=0; k<=400; k++) {
 					/*@nicolas_lobos =>
 					Se um usuario e senha correspondente
-					for encontrado, para o laço for*/
+					for encontrado, para o laï¿½o for*/
 					
 					if(!(strcmp(comparadora_psw_login[k],username))){
 					
 					/*@nicolas_lobos =>
 					a linha abaixo serve de teste para 
-					confirmar se encontrou uma correspondência
+					confirmar se encontrou uma correspondï¿½ncia
 					printf("encontrei a senha");*/
 					logado=1;
 					break;
 					}
 				}
-			printf("Usuário não Autorizado, tente novamente!");
+			printf("Usuï¿½rio nï¿½o Autorizado, tente novamente!");
 			} while(!logado);
 			//@nicolas_lobos => mensagem de sucesso
 			
-			printf("\n\n\t\aUSUÁRIO AUTENTICADO!\n\n");
+			printf("\n\n\t\aUSUï¿½RIO AUTENTICADO!\n\n");
 			system("pause");
 			
 			f_auth = fopen("auth_files\\auth_med.txt", "a");
@@ -506,8 +506,8 @@ void cad_user(){
 			else{
 				do{
 					fflush(stdin);
-					printf("\n\n\tCadastro de Usuários do Sistema");
-					printf("\n\tUsuário TIPO MÉDICO");
+					printf("\n\n\tCadastro de Usuï¿½rios do Sistema");
+					printf("\n\tUsuï¿½rio TIPO Mï¿½DICO");
 					printf("\n\tPor favor Insira um login para cadastrar: ");
 					gets(login_cad);
 					fflush(stdin);
@@ -536,9 +536,9 @@ void cad_user(){
 					fclose(f_login);
 
 					printf("\n\tCADASTRO EFETUADO COM SUCESSO!\n\n");
-					printf("\n\tDeseja cadastrar outro usuário?");
+					printf("\n\tDeseja cadastrar outro usuï¿½rio?");
 					printf("\n\t(1)SIM");
-					printf("\n\t(2)NÃO\n\t");
+					printf("\n\t(2)Nï¿½O\n\t");
 					scanf("\t%d",&opt_y_n);
 
 				}while(opt_y_n!=2);
@@ -552,7 +552,7 @@ void cad_user(){
 			do{
 				//@nicolas_lobos => flush pra evitar erro de teclado
 				fflush(stdin);
-				printf("\n\n\tInsira seu usuário:\n");
+				printf("\n\n\tInsira seu usuï¿½rio:\n");
 				gets(username);
 				fflush(stdin);
 				printf("\n\tInsira sua senha:\n");
@@ -565,7 +565,7 @@ void cad_user(){
 				
 				/*@nicolas_lobos =>
 				copia todas as strings do arquivo 
-				login.txt para uma matriz de comparação*/
+				login.txt para uma matriz de comparaï¿½ï¿½o*/
 
 				while(fscanf(f_auth,"%s",buffer)==1){
 					strcpy(comparadora_psw_login[i],buffer);
@@ -579,23 +579,23 @@ void cad_user(){
 				for(k=0; k<=400; k++) {
 					/*@nicolas_lobos =>
 					Se um usuario e senha correspondente
-					for encontrado, para o laço for*/
+					for encontrado, para o laï¿½o for*/
 					
 					if(!(strcmp(comparadora_psw_login[k],username))){
 					
 					/*@nicolas_lobos =>
 					a linha abaixo serve de teste para 
-					confirmar se encontrou uma correspondência
+					confirmar se encontrou uma correspondï¿½ncia
 					printf("encontrei a senha");*/
 					logado=1;
 					break;
 					}
 				}
-			printf("Usuário não Autorizado, tente novamente!");
+			printf("Usuï¿½rio nï¿½o Autorizado, tente novamente!");
 			} while(!logado);
 			//@nicolas_lobos => mensagem de sucesso
 			
-			printf("\n\n\t\aUSUÁRIO AUTENTICADO!\n\n");
+			printf("\n\n\t\aUSUï¿½RIO AUTENTICADO!\n\n");
 			system("pause");
 			
 			f_auth = fopen("auth_files\\auth_tec.txt", "a");
@@ -609,8 +609,8 @@ void cad_user(){
 			else{
 				do{
 					fflush(stdin);
-					printf("\n\n\tCadastro de Usuários do Sistema");
-					printf("\n\tUsuário TIPO TÉCNICO");
+					printf("\n\n\tCadastro de Usuï¿½rios do Sistema");
+					printf("\n\tUsuï¿½rio TIPO Tï¿½CNICO");
 					printf("\n\tPor favor Insira um login para cadastrar: ");
 					gets(login_cad);
 					fflush(stdin);
@@ -639,9 +639,9 @@ void cad_user(){
 					fclose(f_login);
 
 					printf("\n\tCADASTRO EFETUADO COM SUCESSO!\n\n");
-					printf("\n\tDeseja cadastrar outro usuário?");
+					printf("\n\tDeseja cadastrar outro usuï¿½rio?");
 					printf("\n\t(1)SIM");
-					printf("\n\t(2)NÃO\n\t");
+					printf("\n\t(2)Nï¿½O\n\t");
 					scanf("\t%d",&opt_y_n);
 
 				}while(opt_y_n!=2);
@@ -652,17 +652,17 @@ void cad_user(){
 			break;
 
 			default:
-			printf("\n\tOPÇÃO INVÁLIDA");
+			printf("\n\tOPï¿½ï¿½O INVï¿½LIDA");
 			break;
 		}
 	}
 	system("pause");
 }
 
-///Função para exibir o processo de login (concluido)
+///Funï¿½ï¿½o para exibir o processo de login (concluido)
 void login(){
 	setlocale(LC_ALL, "Portuguese");
-	//declaração de variáveis
+	//declaraï¿½ï¿½o de variï¿½veis
 	char username[200];
 	char password[200];
 	int usertype;
@@ -671,13 +671,13 @@ void login(){
 	int k;
 	char comparadora_psw_login[400][200];
 	char buffer[200];
-	//@nicolas_lobos => declaração de ponteiros
+	//@nicolas_lobos => declaraï¿½ï¿½o de ponteiros
 	FILE *f_login;
 
-	//@nicolas_lobos => definição de valor para o estado "logado" do usuário
+	//@nicolas_lobos => definiï¿½ï¿½o de valor para o estado "logado" do usuï¿½rio
 	logado = 0;
 	
-	//@nicolas_lobos => início da função de login
+	//@nicolas_lobos => inï¿½cio da funï¿½ï¿½o de login
 	//@nicolas_lobos => abrindo o arquivo de dados do login
 	f_login = fopen("auth_files\\login.txt", "r");
 	//@nicolas_lobos => verifica se a abertura foi concluida com sucesso
@@ -692,7 +692,7 @@ void login(){
 			
 			//@nicolas_lobos => flush pra evitar erro de teclado
 			fflush(stdin);
-			printf("\n\nInsira seu usuário:\n");
+			printf("\n\nInsira seu usuï¿½rio:\n");
 			gets(username);
 			fflush(stdin);
 			printf("\nInsira sua senha:\n");
@@ -705,7 +705,7 @@ void login(){
 			
 			/*@nicolas_lobos =>
 			copia todas as strings do arquivo 
-			login.txt para uma matriz de comparação*/
+			login.txt para uma matriz de comparaï¿½ï¿½o*/
 
 			while(fscanf(f_login,"%s",buffer)==1){
 				strcpy(comparadora_psw_login[i],buffer);
@@ -719,13 +719,13 @@ void login(){
 			for(k=0; k<=400; k++) {
     			/*@nicolas_lobos =>
 				Se um usuario e senha correspondente
-				for encontrado, para o laço for*/
+				for encontrado, para o laï¿½o for*/
 				
 				if(!(strcmp(comparadora_psw_login[k],username))){
         		
 				/*@nicolas_lobos =>
 				a linha abaixo serve de teste para 
-				confirmar se encontrou uma correspondência
+				confirmar se encontrou uma correspondï¿½ncia
 				printf("encontrei a senha");*/
 				logado=1;
         		break;
@@ -734,7 +734,7 @@ void login(){
 			//contador de tentativas de login
 			x = x-1;
 			if(!logado) {
-			printf("\nUsuário/Senha Inválidos, tente novamente!\n");
+			printf("\nUsuï¿½rio/Senha Invï¿½lidos, tente novamente!\n");
 			printf("Restam %d tentativas.\n",x);
 			}
 			// se excedido o limite de tentativas, encerra a tela de login
@@ -746,7 +746,7 @@ void login(){
 	}
 }
 
-///Função para exibir logo do software (concluido)
+///Funï¿½ï¿½o para exibir logo do software (concluido)
 void opening_logo(){
 	setlocale(LC_ALL, "Portuguese");
 	printf("    PARISPARISPARIS           PARISPARISPARISPARIS      PARISPARISPARIS           PARIS      PARISPARISPARISPARIS\n");
@@ -792,16 +792,16 @@ void opening_logo(){
 	printf("    PARISPARISPARISPARIS        PARISPARISPARISPARIS        PARISPARISPARISPARIS                            PARIS\n");
 }
 
-///Função para criar o menu para usuario (concluido)
+///Funï¿½ï¿½o para criar o menu para usuario (concluido)
 void menu(){
 	setlocale(LC_ALL, "Portuguese");
-	//@nicolas_lobos => Declaração de variáveis
+	//@nicolas_lobos => Declaraï¿½ï¿½o de variï¿½veis
 	int option_menu;
-	//@nicolas_lobos => início da estrutura de repetição 
+	//@nicolas_lobos => inï¿½cio da estrutura de repetiï¿½ï¿½o 
 	do {
-		//@nicolas_lobos => exibição do menu
+		//@nicolas_lobos => exibiï¿½ï¿½o do menu
 		printf("\n\a");
-		printf("\tBem vindo, por favor selecione uma opção abaixo:\n");
+		printf("\tBem vindo, por favor selecione uma opï¿½ï¿½o abaixo:\n");
 		printf("\t================================================\n");
 		printf("\t(1) Consultar Agenda\n");
 		printf("\t(2) Consultar Resultado\n");
@@ -809,17 +809,17 @@ void menu(){
 		printf("\t(4) Adicionar Evento\n");
 		printf("\t(5) Realizar Evento\n");
 		printf("\t(6) Cadastro de Atleta\n");
-		printf("\t(7) Cadastro de Técnicos\n");
-		printf("\t(8) Cadastro de Médicos\n");
+		printf("\t(7) Cadastro de Tï¿½cnicos\n");
+		printf("\t(8) Cadastro de Mï¿½dicos\n");
 		printf("\t(9) Cadastro de STAFF\n");
-		printf("\t(10) Cadastro de usuário\n");
-		printf("\t(11) Área Médica\n");
+		printf("\t(10) Cadastro de usuï¿½rio\n");
+		printf("\t(11) ï¿½rea Mï¿½dica\n");
 		printf("\t(12) SAIR\n\n");
-		printf("\tPor gentileza, digite o número da opção desejada:\n\t");
+		printf("\tPor gentileza, digite o nï¿½mero da opï¿½ï¿½o desejada:\n\t");
 		//@nicolas_lobos => leitura do input do usuario
 		scanf("%d", &option_menu);
-		/*@nicolas_lobos => inicio da estrutura de condição
-		cada uma das opções abaixo referencia uma função acima */
+		/*@nicolas_lobos => inicio da estrutura de condiï¿½ï¿½o
+		cada uma das opï¿½ï¿½es abaixo referencia uma funï¿½ï¿½o acima */
 		switch (option_menu) {
 			case 1:
 			cslta_agenda();
@@ -865,11 +865,11 @@ void menu(){
 			break;
 
 			default:
-			printf("Opção inválida! Tente novamente");
+			printf("Opï¿½ï¿½o invï¿½lida! Tente novamente");
 			break;
 		}
 		
 	}
-	//@nicolas_lobos => condição de execução
+	//@nicolas_lobos => condiï¿½ï¿½o de execuï¿½ï¿½o
 	while(option_menu != 12);
 }

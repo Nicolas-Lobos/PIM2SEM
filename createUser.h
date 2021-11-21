@@ -51,9 +51,6 @@ struct user {
 	char nickName[50];
 	char password[30];
 	int statusLogin;
-
-
-	char password_cad[30]; // ?observação?
 };
 
 typedef struct voluntary Voluntary;
@@ -76,10 +73,29 @@ struct technician {
 	Category team;
 };
 
+typedef struct athlete Athlete;
+struct athlete
+{
+	User personalData;
+	Category team;
+	int number;
+	char position[20];
+};
+
+typedef struct accommodation Accommodation;
+struct accommodation
+{
+	char name[30];
+	char endereco[100];
+	char description[250];
+};
+
+void registervoluntary();
 void registerEmployee();
 void registerTechnician();
+void registerAthlete();
+void registerAccommodation();
 
-///Fun��o para exibir o processo de login (concluido)
 void login(){
 	setlocale(LC_ALL, "Portuguese");
 	User user;
@@ -273,13 +289,11 @@ void menu(){
       break;
 
 			case 6:
-				printf("Em desenvolvimento");
-				menu();
+				registerAthlete();
       break;
 
       case 7:
-				printf("Em desenvolvimento");
-				menu();
+				registerTechnician();
       break;
 
       case 8:
@@ -297,8 +311,7 @@ void menu(){
       break;
 
 			case 11:
-				printf("Em desenvolvimento");
-				menu();
+				registervoluntary();
       break;
 
 			case 12:
@@ -325,13 +338,15 @@ void createUser(int opt_auth)
 	User user;
 	int opt_y_n;
 	char buffer[200];
+	char nickname[30];
+	char password[30];
 	char comparadora_psw_login[400][200];
 
   //@nicolas_lobos => in�cio da fun��o de login
 	//@nicolas_lobos => abrindo o arquivo de dados do login
 	f_auth = fopen("auth_files\\auth_adm.txt", "r");
 
-  int i, k;
+  int i = 0, k = 0;
 	// char type_user[100];
 
 	printf("\t================================================\n");
@@ -344,15 +359,14 @@ void createUser(int opt_auth)
     //@nicolas_lobos => flush pra evitar erro de teclado
     fflush(stdin);
     printf("\n\nInsira seu usuário:\n");
-    gets(user.name);
+    gets(nickname);
     fflush(stdin);
     printf("\nInsira sua senha:\n");
-    gets(user.password);
+    gets(password);
   
     //@nicolas_lobos => junta a string password com a string username
-    strcat(user.name, user.password);
+    // strcat(user.name, user.password);
     
-    i = 0;
   
     /*@nicolas_lobos =>
     copia todas as strings do arquivo 
@@ -368,7 +382,7 @@ void createUser(int opt_auth)
     compara o username concatenado, com as strings
     armazenadas na matriz comparadora*/
 
-    for(k=0; k<=400; k++) {
+    for(k; k<=400; k++) {
       /*@nicolas_lobos =>
       Se um usuario e senha correspondente
       for encontrado, para o la�o for*/
@@ -389,52 +403,8 @@ void createUser(int opt_auth)
   //@nicolas_lobos => mensagem de sucesso
   printf("\n\n\t\aUSUÁRIO AUTENTICADO!\n\n");
   system("pause");
-  //@nicolas_lobos => abre o arquivo de login para salvar novo usu�rio
-  f_login = fopen("auth_files\\login.txt", "a");
-  //@nicolas_lobos => caso n�o encontre ou falhe
-  if(!f_login){
-    printf("Error:File not found");
-    system("pause");
-    exit(0);
-  }
-  //@nicolas_lobos => se sucesso
-  else {
-    //@nicolas_lobos => la�o de repeti��o para cadastro
-    do {
-			setlocale(LC_ALL, "Portuguese");
 
-      //flush para evitar erro de buffer de teclado
-      fflush(stdin);
-      /*@nicolas_lobos => informa��o sobre o tipo de cadastro
-      e solicita��o de input das informa��es a serem registradas*/
-      printf("\n\n\tCadastro de Usuário(s) do Sistema");
-      printf("\n\tUsuário TIPO %s", user);
-      printf("\n\tPor favor Insira um login para cadastrar: ");
-      gets(user.nickName);
-			
-      fflush(stdin);
-      printf("\n\tPor favor Insira um login para cadastrar: ");
-      gets(user.password_cad);
-      // @nicolas_lobos => concatena��o para salvar o registro
-      strcat(user.nickName, user.password_cad);
-      //@nicolas_lobos => salvando em arquivo a informa��o de login
-      for(i=0; user.nickName[i]; i++) {
-        putc(user.nickName[i],f_login);
-      }
-
-      fprintf(f_login,"\n");
-      //@nicolas_lobos => mensagem de sucesso
-      printf("\nCADASTRO EFETUADO COM SUCESSO!\n\n");
-      printf("\nDeseja cadastrar outro usuário?");
-      printf("\n(1)SIM");
-      printf("\n(2)NÃO\n\t");
-      //@nicolas_lobos => op��o de escolha para novo cadastro
-      scanf("%d",&opt_y_n);
-
-    }while(opt_y_n!=2);
-    // fechamento do arquivo de login
-    fclose(f_login);
-  }
+	menu();
 }
 
 void registerEmployee() {
@@ -442,7 +412,7 @@ void registerEmployee() {
 
 	Employee employee;
 
-	file_employee = fopen("funcionarios.txt", "ab");
+	file_employee = fopen("usuarios/funcionarios.txt", "ab");
 
 	if (file_employee == NULL) {
 		printf("Problema na abertura do arquivo!\n");
@@ -505,7 +475,7 @@ void registervoluntary() {
 
 	Voluntary voluntary;
 
-	file_voluntary = fopen("voluntarios.txt", "ab");
+	file_voluntary = fopen("usuarios/voluntarios.txt", "ab");
 
 	if (file_voluntary == NULL) {
 		printf("Problema na abertura do arquivo!\n");
@@ -567,7 +537,7 @@ void registerTechnician() {
 	FILE *file_technician;
 	Technician technician;
 
-	file_technician = fopen("tecnicos.txt", "ab");
+	file_technician = fopen("usuarios/tecnicos.txt", "ab");
 
 	if (file_technician == NULL) {
 		printf("Problema na abertura do arquivo!\n");
@@ -629,6 +599,125 @@ void registerTechnician() {
 		} while (getche() == 's');
 		
 		fclose(file_technician);
+		getch();
+	}
+}
+
+void registerAthlete() {
+	FILE *file_athlete;
+	Athlete athlete;
+
+	file_athlete = fopen("usuarios/atletas.txt", "ab");
+
+	if (file_athlete == NULL) {
+		printf("Problema na abertura do arquivo!\n");
+	} else {
+		do
+		{
+			printf("\n\nNe\t================================================\n");
+			printf("\tCadastro de atleta:\n");
+			printf("\t================================================\n");
+
+			fflush(stdin);
+			printf("Nome: ");
+			gets(athlete.personalData.name);
+
+			fflush(stdin);
+			printf("\nNacionalidade de %s: ", athlete.personalData.name);
+			gets(athlete.personalData.countryOrigin.name);
+
+			fflush(stdin);
+			printf("\nPassaporte de %s: ", athlete.personalData.name);
+			gets(athlete.personalData.passport);
+
+			printf("\nData de nascimento de %s: ", athlete.personalData.name);
+			scanf("%d %d %d", &athlete.personalData.brithDay.day, &athlete.personalData.brithDay.month, &athlete.personalData.brithDay.year);
+
+			fflush(stdin);
+			printf("\nRG de %s: ", athlete.personalData.name);
+			gets(athlete.personalData.rg);
+
+			fflush(stdin);
+			printf("\nCPF de %s: ", athlete.personalData.name);
+			gets(athlete.personalData.cpf);
+
+			fflush(stdin);
+			printf("\nSexo de %s: ", athlete.personalData.name);
+			gets(athlete.personalData.genre);
+
+			fflush(stdin);
+			printf("\nInsira Nick(único) de %s: ");
+			gets(athlete.personalData.nickName);
+
+			fflush(stdin);
+			printf("\nSenha de acesso do(a) atleta %s: ", athlete.personalData.name);
+			gets(athlete.personalData.password);
+
+			fflush(stdin);
+			printf("\nModalidade do atleta %s (ex: Futebol, Basquete, Vôlei, etc...): \n", athlete.personalData.name);
+			gets(athlete.team.modality);
+
+			fflush(stdin);
+			printf("\nGênero da modalidade do atleta %s: ", athlete.personalData.name);
+			gets(athlete.team.genre);
+
+			fflush(stdin);
+			printf("\nNúmero do(a) atleta %s: ", athlete.personalData.name);
+			scanf("%d", &athlete.number);
+
+			fflush(stdin);
+			printf("\nPosição que o(a) atleta %s irá exercer: ", athlete.personalData.name);
+			gets(athlete.position);
+
+			athlete.personalData.statusLogin = 0;
+
+			fwrite(&athlete, sizeof(Athlete), 1, file_athlete);
+
+			printf("\n\nDeseja continuar(s/n)? ");
+		} while (getche() == 's');
+		
+		fclose(file_athlete);
+		getch();
+	}
+}
+
+void registerAccommodation() {
+	FILE *file_accommodation;
+	FILE *file_athlete;
+
+	Accommodation accommodation;
+	Athlete athlete;
+
+	file_accommodation = fopen("outros/alojamento.txt", "ab");
+	file_athlete = fopen("usuarios/atletas.txt", "rb");
+
+	if (file_accommodation == NULL && file_athlete == NULL) {
+		printf("Problema na abertura do arquivo!\n");
+	} else {
+		do
+		{
+			printf("\t================================================\n");
+			printf("\tCadastro de Alojamento\n");
+			printf("\t================================================\n");
+
+			fflush(stdin);
+			printf("Nome: ");
+			gets(accommodation.name);
+
+			fflush(stdin);
+			printf("\nEndereço: ");
+			gets(accommodation.endereco);
+
+			fflush(stdin);
+			printf("\nDescrição sobre o alojamento %s: ", accommodation.name);
+			gets(accommodation.description);
+
+			fwrite(&accommodation, sizeof(Accommodation), 1, file_accommodation);
+
+			printf("\n\nDeseja continuar(s/n)? ");
+		} while (getche() == 's');
+		
+		fclose(file_accommodation);
 		getch();
 	}
 }
