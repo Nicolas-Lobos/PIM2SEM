@@ -35,13 +35,13 @@ struct category {
 typedef struct data Data;
 struct data
 {
-	int day[4];
-	int month[4];
-	int year[4];
+	int day;
+	int month;
+	int year;
 
-	int hour[3];
-	int minute[3];
-	int second[3];
+	int hour;
+	int minute;
+	int second;
 };
 
 // Usuário normal
@@ -136,7 +136,7 @@ void registerDoctor();
 void registerAccommodation();
 void registerMatch(); // Jogos
 
-void listAthlete();
+Athlete listAthlete();
 
 void login(){
 	setlocale(LC_ALL, "Portuguese");
@@ -457,7 +457,7 @@ void initial(){
 	}
 }
 
-void listAthlete() {
+Athlete listAthlete() {
 	FILE *file_athlete;
 	Athlete athletes;
 
@@ -481,7 +481,7 @@ void listAthlete() {
       printf("\tCategoria: %s\n", athletes.team.genre);
       printf("\tPosição: %s\n", athletes.position);
       printf("\tNúmero: %d\n", athletes.number);
-      printf("-----------------------------------------\n");
+      printf("================================================================\n");
 		}
 	}
 
@@ -610,7 +610,6 @@ void registerCountry() {
 
 void registerEmployee() {
 	FILE *file_employee;
-
 	Employee employee;
 
 	file_employee = fopen("usuarios/funcionarios.txt", "ab");
