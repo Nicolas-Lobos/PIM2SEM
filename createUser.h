@@ -35,13 +35,13 @@ struct category {
 typedef struct data Data;
 struct data
 {
-	char day[4];
-	char month[4];
-	char year[4];
+	int day[4];
+	int month[4];
+	int year[4];
 
-	char hour[3];
-	char minute[3];
-	char second[3];
+	int hour[3];
+	int minute[3];
+	int second[3];
 };
 
 // Usuário normal
@@ -135,6 +135,8 @@ void registerAthlete();
 void registerDoctor();
 void registerAccommodation();
 void registerMatch(); // Jogos
+
+void listAthlete();
 
 void login(){
 	setlocale(LC_ALL, "Portuguese");
@@ -351,6 +353,7 @@ void initial(){
 
 						case 6:
 							printf("Em desenvolvimento");
+							getch();
 							initial();
 						break;
 
@@ -367,6 +370,69 @@ void initial(){
 
 			case 3:
 				registerMatch();
+			break;
+
+			case 4:
+				printf("\n\tEm desenvolvimento");
+				getch();
+				initial();
+			break;
+
+			case 5:
+				do {
+					// int chooseOption;
+					header("Listar Usuários");
+
+					printf("\t(1) Listar Atleta(s)\n");
+					printf("\t(2) Listar Técnico(s)\n");
+					printf("\t(3) Listar Médico(s)\n");
+					printf("\t(4) Listar Funcionário(s)\n");
+					printf("\t(5) Listar Voluntário(s)\n");
+					printf("\t(6) Listar de STAFF\n");
+					printf("\t(7) Voltar Tela Inicial\n\n");
+
+					scanf("%d", &chooseOption);
+
+					switch (chooseOption) {
+						case 1:
+							listAthlete();
+						break;
+
+						case 2:
+							printf("Em desenvolvimento");
+							getch();
+							initial();
+						break;
+
+						case 3:
+							printf("Em desenvolvimento");
+							getch();
+							initial();
+						break;
+
+						case 4:
+							printf("Em desenvolvimento");
+							getch();
+							initial();
+						break;
+
+						case 5:
+							printf("Em desenvolvimento");
+							getch();
+							initial();
+						break;
+
+						case 6:
+							printf("Em desenvolvimento");
+							getch();
+							initial();
+						break;
+
+						default:
+							printf("\n\tOpção inválida! Tente novamente");
+						break;
+					}
+				} while (chooseOption != 7);
 			break;
 
 			default:
@@ -389,6 +455,38 @@ void initial(){
 	} else {
 		login();
 	}
+}
+
+void listAthlete() {
+	FILE *file_athlete;
+	Athlete athletes;
+
+	file_athlete = fopen("usuarios/atletas.txt", "rb");
+
+	header("Listagem de atletas");
+
+	if (file_athlete == NULL) {
+		printf("Problemas na abertura do arquivo!\n");
+	} else {
+		while (fread(&athletes, sizeof(User), 1, file_athlete) == 1) {
+			printf("\tNome: %s\n", athletes.personalData.name);
+			printf("\tNick único: %s\n", athletes.personalData.nickName);
+      printf("\tNascionalidade: %s\n", athletes.personalData.countryOrigin.name);
+      printf("\tPassaporte: %s\n", athletes.personalData.passport);
+      printf("\tData de nascimento: %d/%d/%d\n", athletes.personalData.brithDay.day, athletes.personalData.brithDay.month, athletes.personalData.brithDay.year);
+      printf("\tRG: %s\n", athletes.personalData.rg);
+      printf("\tCPF: %s\n", athletes.personalData.cpf);
+      printf("\tSexo: %s\n", athletes.personalData.genre);
+      printf("\tModalidade: %s\n", athletes.team.modality);
+      printf("\tCategoria: %s\n", athletes.team.genre);
+      printf("\tPosição: %s\n", athletes.position);
+      printf("\tNúmero: %d\n", athletes.number);
+      printf("-----------------------------------------\n");
+		}
+	}
+
+	fclose(file_athlete);
+	getch();
 }
 
 // Cadastro de Jogos
@@ -819,7 +917,7 @@ void registerDoctor() {
 			header("Cadastro de médico");
 
 			fflush(stdin);
-			printf("Nome: ");
+			printf("\tNome: ");
 			gets(doctor.personalData.name);
 
 			fflush(stdin);
