@@ -16,5 +16,6 @@ main(){
 	printf("\n");
 	system("pause");
 	login();
-	menu();
+	initial();
+	// menu();
 }

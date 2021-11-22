@@ -21,6 +21,8 @@
 typedef struct country Country;
 struct country {
 	char name[30];
+	char state[30];
+	char city[30];
 	char olympicCommitte[30];
 };
 
@@ -36,6 +38,10 @@ struct data
 	char day[4];
 	char month[4];
 	char year[4];
+
+	char hour[3];
+	char minute[3];
+	char second[3];
 };
 
 // Usuário normal
@@ -82,6 +88,23 @@ struct athlete
 	char position[20];
 };
 
+typedef struct doctor Doctor;
+struct doctor
+{
+	User personalData;
+	Category team;
+	char academicEducation[30];
+	char experienceDescription[50];
+};
+
+typedef struct olympicGamesVenue OlympicGamesVenue;
+struct olympicGamesVenue
+{
+	Country countryData;
+	char endereco[100];
+	char description[250];
+};
+
 typedef struct accommodation Accommodation;
 struct accommodation
 {
@@ -90,11 +113,28 @@ struct accommodation
 	char description[250];
 };
 
+typedef struct match Match;
+struct match
+{
+	char title[30];
+	char descrition[100];
+	Data schedule;
+	Country local;
+	Athlete teams;
+	Voluntary voluntary;
+	Employee employee;
+};
+
+// void initial();
+char header(char title[25]);
+void registerCountry();
 void registervoluntary();
 void registerEmployee();
 void registerTechnician();
 void registerAthlete();
+void registerDoctor();
 void registerAccommodation();
+void registerMatch(); // Jogos
 
 void login(){
 	setlocale(LC_ALL, "Portuguese");
@@ -120,14 +160,18 @@ void login(){
 		exit(0);
 	}
 	//@nicolas_lobos => prosseguindo caso sucesso
-	else{int x = 4;
+	else {
+		int x = 4;
+
 		do{
 			//@nicolas_lobos => flush pra evitar erro de teclado
+			header("Login");
+
 			fflush(stdin);
-			printf("\n\nInsira seu usuário:\n");
+			printf("\n\tInsira seu usuário: ");
 			gets(user.name);
 			fflush(stdin);
-			printf("\nInsira sua senha:\n");
+			printf("\n\tInsira sua senha: ");
 			gets(user.password);
 			
 			//@nicolas_lobos => junta a string password com a string username
@@ -176,7 +220,7 @@ void login(){
 		} while(!user.statusLogin);
 
 		//@nicolas_lobos => mensagem de sucesso
-		printf("\n\n\t\aLOGIN EFETUADO COM SUCESSO!\n\n");
+		printf("\n\n\t\aLOGIN EFETUADO COM SUCESSO!\n\n\t");
 		system("pause");
 	}
 }
@@ -228,7 +272,7 @@ void opening_logo(){
 }
 
 ///Fun��o para criar o menu para usuario (concluido)
-void menu(){
+void initial(){
 	//@nicolas_lobos => Declara��o de vari�veis
 	int option_menu;
 
@@ -240,171 +284,230 @@ void menu(){
 
 		//@nicolas_lobos => exibi��o do menu
 		printf("\n\a");
-		printf("\t================================================\n");
-		printf("\tBem vindo, por favor selecione uma opção abaixo:\n");
-		printf("\t================================================\n");
+		header("Bem vindo(a), Tela inicial"); 
 
-		printf("\t(1) Consultar Agenda\n");
-		printf("\t(2) Consultar Resultado\n");
-		printf("\t(3) Programar Escala\n");
-		printf("\t(4) Adicionar Evento\n");
-		printf("\t(5) Realizar Evento\n");
-		printf("\t(6) Cadastro de Atleta\n");
-		printf("\t(7) Cadastro de Técnicos\n");
-		printf("\t(8) Cadastro de Médicos\n");
-		printf("\t(9) Cadastro de STAFF\n");
-		printf("\t(10) Cadastro de funcionário\n");
-		printf("\t(11) Cadastro de voluntário\n");
-		printf("\t(12) Área Médica\n");
-		printf("\t(13) SAIR\n\n");
-		printf("\tPor gentileza, digite o número da opção desejada:\n\t");
+		printf("\t(1) Cadastrar Usuário\n");
+		printf("\t(2) Cadastrar País\n");
+		printf("\t(3) Cadastrar Jogos\n");
+		printf("\t(4) Cadastrar Evento\n");
+		printf("\t(5) Listar Usuários\n");
+		printf("\t(6) Listar Países\n");
+		printf("\t(7) Listar Modalidades\n");
+		printf("\t(8) Listar Locais dos Jogos\n");
+		printf("\t(9) Listar Eventos\n");
+		printf("\t(10) Pesquisar Usuário\n");
+		printf("\t(11) Pesquisar País\n");
+		printf("\t(12) Pesquisar Modalidade\n");
+		printf("\t(13) Pesquisar Local do Jogo\n");
+		printf("\t(14) Pesquisar Evento\n");
+		printf("\t(15) Pesquisar Jogos\n");
+		printf("\t(16) Calendário de Eventos\n");
+		printf("\t(17) Calendário de Jogos\n");
+		printf("\t(18) Sair do Programa\n\n");
+
+		printf("\tPor gentileza, digite o número da opção desejada: ");
 		//@nicolas_lobos => leitura do input do usuario
 		scanf("%d", &option_menu);
 		/*@nicolas_lobos => inicio da estrutura de condi��o
 		cada uma das op��es abaixo referencia uma fun��o acima */
+
 		switch (option_menu) {
+
 			case 1:
-				printf("Em desenvolvimento");
-				menu();
-      break;
+				int chooseOption;
+				do {
+					header("Cadastros de Usuários");
+
+					printf("\t(1) Cadastrar Atleta(s)\n");
+					printf("\t(2) Cadastrar Técnico(s)\n");
+					printf("\t(3) Cadastrar Médico(s)\n");
+					printf("\t(4) Cadastrar Funcionário(s)\n");
+					printf("\t(5) Cadastrar Voluntário(s)\n");
+					printf("\t(6) Cadastro de STAFF\n");
+					printf("\t(7) Voltar Tela Inicial\n\n");
+
+					scanf("%d", &chooseOption);
+
+					switch (chooseOption) {
+						case 1:
+							registerAthlete();
+						break;
+
+						case 2:
+							registerTechnician();
+						break;
+
+						case 3:
+							registerDoctor();
+						break;
+
+						case 4:
+							registerEmployee();
+						break;
+
+						case 5:
+							registervoluntary();
+						break;
+
+						case 6:
+							printf("Em desenvolvimento");
+							initial();
+						break;
+
+						default:
+							printf("\n\tOpção inválida! Tente novamente");
+						break;
+					}
+				} while (chooseOption != 7);
+			break;
 
 			case 2:
-				printf("Em desenvolvimento");
-				menu();
-      break;
+				registerCountry();
+			break;
 
 			case 3:
-				printf("Em desenvolvimento");
-				menu();
-      break;
-
-			case 4:
-				printf("Em desenvolvimento");
-				menu();
-      break;
-
-			case 5:
-				printf("Em desenvolvimento");
-				menu();
-      break;
-
-			case 6:
-				registerAthlete();
-      break;
-
-      case 7:
-				registerTechnician();
-      break;
-
-      case 8:
-				printf("Em desenvolvimento");
-				menu();
-      break;
-
-      case 9:
-				printf("Em desenvolvimento");
-				menu();
-      break;
-
-      case 10:
-				registerEmployee();
-      break;
-
-			case 11:
-				registervoluntary();
-      break;
-
-			case 12:
-				printf("Em desenvolvimento");
-				menu();
-      break;
+				registerMatch();
+			break;
 
 			default:
-				printf("Opção inválida! Tente novamente");
+				printf("\n\tOpção inválida! Tente novamente");
 			break;
 		}
+	} while(option_menu != 18);
+	system("cls");
+
+	int exit;
+
+	printf("\tDesejá sair do programa?\n");
+	printf("\t(1) Sim\n");
+	printf("\t(2) Voltar para a tela de login\n");
+
+	scanf("%d", &exit);
+	
+	if(exit == 1) {
+		system("exit");
+	} else {
+		login();
 	}
-	//@nicolas_lobos => condi��o de execu��o
-	while(option_menu != 13);
 }
 
-void createUser(int opt_auth)
-{
-	setlocale(LC_ALL, "Portuguese");
+// Cadastro de Jogos
+void registerMatch() {
+	FILE *file_match;
 
-	FILE *f_auth;
-	FILE *f_login;
+	Match match;
+
+	file_match = fopen("outros/jogos.txt", "ab");
+
+	if (file_match == NULL) {
+		printf("Problema na abertura do arquivo de cadastro de JOGOS!\n");
+	} else {
+		do
+		{
+			header("Cadastro de Jogos");
+
+			fflush(stdin);
+			printf("Título do jogo: ");
+			gets(match.title);
+
+			fflush(stdin);
+			printf("\nDescrição do jogo: ");
+			gets(match.descrition);
+
+			printf("\nLocal do jogo\n");
+
+			fflush(stdin);
+			printf("\nEstado: ");
+			gets(match.local.state);
+
+			fflush(stdin);
+			printf("\nCidade: \n");
+			gets(match.local.city);
+
+			fflush(stdin);
+			printf("\nMarcar a data do jogo\n");
+			printf("\nEx: dia mês ano hora minuto segundo => 10 04 2024 12 00 00:\n\t");
+			scanf (
+				"%s/%s/%s %s:%s:%s",
+				match.schedule.day,
+				match.schedule.month,
+				match.schedule.year,
+				match.schedule.hour,
+				match.schedule.minute,
+				match.schedule.second
+			);
+
+			fflush(stdin);
+			printf("\nModalidade: ");
+			gets(match.teams.team.modality);
+
+			fflush(stdin);
+			printf("\nCategoria(ex: Feminino Masculino): ");
+			gets(match.teams.team.genre);
+
+			int totalVoluntary;
+			fflush(stdin);
+			printf("\nDigite o total de volutário(s) para esse jogo: ");
+			scanf("%d", &totalVoluntary);
+			for (int i=0; i < totalVoluntary; i++) {
+				printf("Insira o nome do %d° volutário: ", i);
+				gets(match.teams.team.genre);
+			}
+
+			fwrite(&match, sizeof(Match), 1, file_match);
+
+			printf("\n\nDeseja continuar(s/n)? ");
+		} while (getche() == 's');
 	
-	User user;
-	int opt_y_n;
-	char buffer[200];
-	char nickname[30];
-	char password[30];
-	char comparadora_psw_login[400][200];
+		fclose(file_match);
 
-  //@nicolas_lobos => in�cio da fun��o de login
-	//@nicolas_lobos => abrindo o arquivo de dados do login
-	f_auth = fopen("auth_files\\auth_adm.txt", "r");
+		system("cls");
+		puts("=============================================");
+		puts("Jogo(s), cadastrado com sucesso!");
+		puts("=============================================");
 
-  int i = 0, k = 0;
-	// char type_user[100];
+		getch();
+		initial();
+	}
+}
 
-	printf("\t================================================\n");
-	printf("\tCadastro de usuário:\n");
-	printf("\t================================================\n");
+void registerCountry() {
+	FILE *file_country;
 
-  do {
-		setlocale(LC_ALL, "Portuguese");
+	Country country;
 
-    //@nicolas_lobos => flush pra evitar erro de teclado
-    fflush(stdin);
-    printf("\n\nInsira seu usuário:\n");
-    gets(nickname);
-    fflush(stdin);
-    printf("\nInsira sua senha:\n");
-    gets(password);
-  
-    //@nicolas_lobos => junta a string password com a string username
-    // strcat(user.name, user.password);
-    
-  
-    /*@nicolas_lobos =>
-    copia todas as strings do arquivo 
-    auth_adm
-    para uma matriz de compara��o*/
+	file_country = fopen("outros/paises.txt", "ab");
 
-    while(fscanf(f_auth,"%s",buffer)==1) {
-      strcpy(comparadora_psw_login[i],buffer);
-      i++;
-    }
+	if (file_country == NULL) {
+		printf("Problema na abertura do arquivo!\n");
+	} else {
+		do
+		{
+			header("Cadastro de País");
 
-    /*@nicolas_lobos =>
-    compara o username concatenado, com as strings
-    armazenadas na matriz comparadora*/
+			fflush(stdin);
+			printf("Nome do País: ");
+			gets(country.name);
 
-    for(k; k<=400; k++) {
-      /*@nicolas_lobos =>
-      Se um usuario e senha correspondente
-      for encontrado, para o la�o for*/
-    
-      if(!(strcmp(comparadora_psw_login[k],user.name))){
-      
-        /*@nicolas_lobos =>
-        a linha abaixo serve de teste para 
-        confirmar se encontrou uma correspond�ncia
-        printf("encontrei a senha");*/
-        user.statusLogin=1;
-        break;
-      }
-    }
-    printf("Usuário não autorizado, tente novamente!");
-  } while(!user.statusLogin);
+			fflush(stdin);
+			printf("\nComite olimpico do(a) %s: ", country.name);
+			gets(country.olympicCommitte);
 
-  //@nicolas_lobos => mensagem de sucesso
-  printf("\n\n\t\aUSUÁRIO AUTENTICADO!\n\n");
-  system("pause");
+			fwrite(&country, sizeof(Country), 1, file_country);
 
-	menu();
+			printf("\n\nDeseja continuar(s/n)? ");
+		} while (getche() == 's');
+	
+		fclose(file_country);
+
+		system("cls");
+		puts("=============================================");
+		puts("País(ses), cadastrado com sucesso!");
+		puts("=============================================");
+		
+		getch();
+		initial();
+	}
 }
 
 void registerEmployee() {
@@ -419,9 +522,7 @@ void registerEmployee() {
 	} else {
 		do
 		{
-			printf("\t================================================\n");
-			printf("\tCadastro de Funcionário:\n");
-			printf("\t================================================\n");
+			header("Cadastro de funcionário");
 
 			fflush(stdin);
 			printf("Nome: ");
@@ -466,7 +567,14 @@ void registerEmployee() {
 		} while (getche() == 's');
 	
 		fclose(file_employee);
+
+		system("cls");
+		puts("=============================================");
+		puts("Funcionário(os), cadastrado com sucesso!");
+		puts("=============================================");
+		
 		getch();
+		initial();
 	}
 }
 
@@ -482,9 +590,7 @@ void registervoluntary() {
 	} else {
 		do
 		{
-			printf("\t================================================\n");
-			printf("\tCadastro de voluntário:\n");
-			printf("\t================================================\n");
+			header("Cadastro de voluntário");
 
 			fflush(stdin);
 			printf("Nome: ");
@@ -529,7 +635,14 @@ void registervoluntary() {
 		} while (getche() == 's');
 	
 		fclose(file_voluntary);
+
+		system("cls");
+		puts("=============================================");
+		puts("Voluntário(s), cadastrado com sucesso!");
+		puts("=============================================");
+		
 		getch();
+		initial();
 	}
 }
 
@@ -544,9 +657,7 @@ void registerTechnician() {
 	} else {
 		do
 		{
-			printf("\t================================================\n");
-			printf("\tCadastro de Tecnico:\n");
-			printf("\t================================================\n");
+			header("Cadastro de Tecnico");
 
 			fflush(stdin);
 			printf("Nome: ");
@@ -599,7 +710,15 @@ void registerTechnician() {
 		} while (getche() == 's');
 		
 		fclose(file_technician);
+
+		system("cls");
+		puts("=============================================");
+		puts("Técnico(s), cadastrado com sucesso!");
+		puts("=============================================");
+		
 		getch();
+
+		initial();
 	}
 }
 
@@ -614,9 +733,7 @@ void registerAthlete() {
 	} else {
 		do
 		{
-			printf("\n\nNe\t================================================\n");
-			printf("\tCadastro de atleta:\n");
-			printf("\t================================================\n");
+			header("Cadastro de atleta");
 
 			fflush(stdin);
 			printf("Nome: ");
@@ -677,28 +794,113 @@ void registerAthlete() {
 		} while (getche() == 's');
 		
 		fclose(file_athlete);
+
+		system("cls");
+		puts("=============================================");
+		puts("Atleta(s), cadastrado com sucesso!");
+		puts("=============================================");
+		
 		getch();
+		initial();
+	}
+}
+
+void registerDoctor() {
+	FILE *file_doctor;
+	Doctor doctor;
+
+	file_doctor = fopen("usuarios/medicos.txt", "ab");
+
+	if (file_doctor == NULL) {
+		printf("Problema na abertura do arquivo!\n");
+	} else {
+		do
+		{
+			header("Cadastro de médico");
+
+			fflush(stdin);
+			printf("Nome: ");
+			gets(doctor.personalData.name);
+
+			fflush(stdin);
+			printf("\nNacionalidade de %s: ", doctor.personalData.name);
+			gets(doctor.personalData.countryOrigin.name);
+
+			fflush(stdin);
+			printf("\nPassaporte de %s: ", doctor.personalData.name);
+			gets(doctor.personalData.passport);
+
+			printf("\nData de nascimento de %s: ", doctor.personalData.name);
+			scanf("%d/%d/%d", &doctor.personalData.brithDay.day, &doctor.personalData.brithDay.month, &doctor.personalData.brithDay.year);
+
+			fflush(stdin);
+			printf("\nRG de %s: ", doctor.personalData.name);
+			gets(doctor.personalData.rg);
+
+			fflush(stdin);
+			printf("\nCPF de %s: ", doctor.personalData.name);
+			gets(doctor.personalData.cpf);
+
+			fflush(stdin);
+			printf("\nSexo de %s: ", doctor.personalData.name);
+			gets(doctor.personalData.genre);
+
+			fflush(stdin);
+			printf("\nInsira Nick(único) de %s: ");
+			gets(doctor.personalData.nickName);
+
+			fflush(stdin);
+			printf("\nSenha de acesso do(a) médico %s: ", doctor.personalData.name);
+			gets(doctor.personalData.password);
+
+			fflush(stdin);
+			printf("\nModalidade do médico %s (ex: Futebol, Basquete, Vôlei, etc...): \n", doctor.personalData.name);
+			gets(doctor.team.modality);
+
+			fflush(stdin);
+			printf("\nGênero da modalidade do médico %s: ", doctor.personalData.name);
+			gets(doctor.team.genre);
+
+			fflush(stdin);
+			printf("\nFormção academica de %s: ", doctor.personalData.name);
+			scanf("%d", &doctor.academicEducation);
+
+			fflush(stdin);
+			printf("\nDescrição de experiencia de %s e o papel que ele irá exercer: \n\t", doctor.personalData.name);
+			gets(doctor.experienceDescription);
+
+			doctor.personalData.statusLogin = 0;
+
+			fwrite(&doctor, sizeof(Doctor), 1, file_doctor);
+
+			printf("\n\nDeseja continuar(s/n)? ");
+		} while (getche() == 's');
+		
+		fclose(file_doctor);
+
+		system("cls");
+		puts("=============================================");
+		puts("Médico(s), cadastrado com sucesso!");
+		puts("=============================================");
+		
+		getch();
+		initial();
 	}
 }
 
 void registerAccommodation() {
 	FILE *file_accommodation;
-	FILE *file_athlete;
 
 	Accommodation accommodation;
-	Athlete athlete;
 
 	file_accommodation = fopen("outros/alojamento.txt", "ab");
-	file_athlete = fopen("usuarios/atletas.txt", "rb");
 
-	if (file_accommodation == NULL && file_athlete == NULL) {
+	if (file_accommodation == NULL) {
 		printf("Problema na abertura do arquivo!\n");
 	} else {
 		do
 		{
-			printf("\t================================================\n");
-			printf("\tCadastro de Alojamento\n");
-			printf("\t================================================\n");
+			header("Cadastro de Alojamento");
 
 			fflush(stdin);
 			printf("Nome: ");
@@ -718,6 +920,21 @@ void registerAccommodation() {
 		} while (getche() == 's');
 		
 		fclose(file_accommodation);
+
+		header("Alojamento(s) para os atletas, cadastrado com sucesso!");
+		system("cls");
+		puts("============================================================");
+		puts("Alojamento(s) para os atletas, cadastrado com sucesso!");
+		puts("============================================================");
+		
 		getch();
+		initial();
 	}
+}
+
+char header(char title[25]) {
+	system("cls");
+	printf("\n\n\t===============================================================\n");
+	printf("\t%s\n", title);
+	printf("\t===============================================================\n\n");
 }
