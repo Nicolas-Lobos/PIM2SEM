@@ -4,7 +4,7 @@
 #include <string.h>
 #include <stdlib.h>
 // #include "lib.c"
-#include "createUser.h"
+#include "geral.h"
 
 main(){
 	setlocale(LC_ALL, "Portuguese");

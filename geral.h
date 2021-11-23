@@ -125,20 +125,24 @@ struct match
 	Employee employee;
 };
 
-// void initial();
 char header(char title[25]);
+
 void registerCountry();
-void registervoluntary();
-void registerEmployee();
-void registerTechnician();
 void registerAthlete();
+void registerTechnician();
 void registerDoctor();
+void registerEmployee();
+void registerVoluntary();
 void registerAccommodation();
 void registerMatch(); // Jogos
 
-Athlete listAthlete();
+void listAthlete();
+void listTechnician();
+void listDoctors();
+void listEmployee();
+void listVoluntaries();
 
-void login(){
+void login() {
 	setlocale(LC_ALL, "Portuguese");
 	User user;
 
@@ -348,7 +352,7 @@ void initial(){
 						break;
 
 						case 5:
-							registervoluntary();
+							registerVoluntary();
 						break;
 
 						case 6:
@@ -399,27 +403,19 @@ void initial(){
 						break;
 
 						case 2:
-							printf("Em desenvolvimento");
-							getch();
-							initial();
+							listTechnician();
 						break;
 
 						case 3:
-							printf("Em desenvolvimento");
-							getch();
-							initial();
+							listDoctors();
 						break;
 
 						case 4:
-							printf("Em desenvolvimento");
-							getch();
-							initial();
+							listEmployee();
 						break;
 
 						case 5:
-							printf("Em desenvolvimento");
-							getch();
-							initial();
+							listVoluntaries();
 						break;
 
 						case 6:
@@ -457,38 +453,6 @@ void initial(){
 	}
 }
 
-Athlete listAthlete() {
-	FILE *file_athlete;
-	Athlete athletes;
-
-	file_athlete = fopen("usuarios/atletas.txt", "rb");
-
-	header("Listagem de atletas");
-
-	if (file_athlete == NULL) {
-		printf("Problemas na abertura do arquivo!\n");
-	} else {
-		while (fread(&athletes, sizeof(User), 1, file_athlete) == 1) {
-			printf("\tNome: %s\n", athletes.personalData.name);
-			printf("\tNick único: %s\n", athletes.personalData.nickName);
-      printf("\tNascionalidade: %s\n", athletes.personalData.countryOrigin.name);
-      printf("\tPassaporte: %s\n", athletes.personalData.passport);
-      printf("\tData de nascimento: %d/%d/%d\n", athletes.personalData.brithDay.day, athletes.personalData.brithDay.month, athletes.personalData.brithDay.year);
-      printf("\tRG: %s\n", athletes.personalData.rg);
-      printf("\tCPF: %s\n", athletes.personalData.cpf);
-      printf("\tSexo: %s\n", athletes.personalData.genre);
-      printf("\tModalidade: %s\n", athletes.team.modality);
-      printf("\tCategoria: %s\n", athletes.team.genre);
-      printf("\tPosição: %s\n", athletes.position);
-      printf("\tNúmero: %d\n", athletes.number);
-      printf("================================================================\n");
-		}
-	}
-
-	fclose(file_athlete);
-	getch();
-}
-
 // Cadastro de Jogos
 void registerMatch() {
 	FILE *file_match;
@@ -524,9 +488,9 @@ void registerMatch() {
 
 			fflush(stdin);
 			printf("\nMarcar a data do jogo\n");
-			printf("\nEx: dia mês ano hora minuto segundo => 10 04 2024 12 00 00:\n\t");
+			printf("\nEx: dia - mês - ano - hora - minuto - segundo:\n\t");
 			scanf (
-				"%s/%s/%s %s:%s:%s",
+				"%d %d %d %d %d %d",
 				match.schedule.day,
 				match.schedule.month,
 				match.schedule.year,
@@ -633,8 +597,9 @@ void registerEmployee() {
 			printf("\nPassaporte: ");
 			gets(employee.personalData.passport);
 
+			fflush(stdin);
 			printf("\nData de nascimento: ");
-			scanf("%d/%d/%d", &employee.personalData.brithDay.day, &employee.personalData.brithDay.month, &employee.personalData.brithDay.year);
+			scanf("%d %d %d", &employee.personalData.brithDay.day, &employee.personalData.brithDay.month, &employee.personalData.brithDay.year);
 
 			fflush(stdin);
 			printf("\nRG: ");
@@ -668,74 +633,6 @@ void registerEmployee() {
 		system("cls");
 		puts("=============================================");
 		puts("Funcionário(os), cadastrado com sucesso!");
-		puts("=============================================");
-		
-		getch();
-		initial();
-	}
-}
-
-void registervoluntary() {
-	FILE *file_voluntary;
-
-	Voluntary voluntary;
-
-	file_voluntary = fopen("usuarios/voluntarios.txt", "ab");
-
-	if (file_voluntary == NULL) {
-		printf("Problema na abertura do arquivo!\n");
-	} else {
-		do
-		{
-			header("Cadastro de voluntário");
-
-			fflush(stdin);
-			printf("Nome: ");
-			gets(voluntary.personalData.name);
-
-			fflush(stdin);
-			printf("\nNacionalidade: ");
-			gets(voluntary.personalData.countryOrigin.name);
-
-			fflush(stdin);
-			printf("\nPassaporte: ");
-			gets(voluntary.personalData.passport);
-
-			printf("\nData de nascimento: ");
-			scanf("%d/%d/%d", &voluntary.personalData.brithDay.day, &voluntary.personalData.brithDay.month, &voluntary.personalData.brithDay.year);
-
-			fflush(stdin);
-			printf("\nRG: ");
-			gets(voluntary.personalData.rg);
-
-			fflush(stdin);
-			printf("\nCPF: ");
-			gets(voluntary.personalData.cpf);
-
-			fflush(stdin);
-			printf("\nSexo: ");
-			gets(voluntary.personalData.genre);
-
-			fflush(stdin);
-			printf("\nInsira seu Nick(único): ");
-			gets(voluntary.personalData.nickName);
-
-			fflush(stdin);
-			printf("\nSenha: ");
-			gets(voluntary.personalData.password);
-
-			voluntary.personalData.statusLogin = 0;
-
-			fwrite(&voluntary, sizeof(Voluntary), 1, file_voluntary);
-
-			printf("\n\nDeseja continuar(s/n)? ");
-		} while (getche() == 's');
-	
-		fclose(file_voluntary);
-
-		system("cls");
-		puts("=============================================");
-		puts("Voluntário(s), cadastrado com sucesso!");
 		puts("=============================================");
 		
 		getch();
@@ -960,7 +857,7 @@ void registerDoctor() {
 
 			fflush(stdin);
 			printf("\nFormção academica de %s: ", doctor.personalData.name);
-			scanf("%d", &doctor.academicEducation);
+			gets(doctor.academicEducation);
 
 			fflush(stdin);
 			printf("\nDescrição de experiencia de %s e o papel que ele irá exercer: \n\t", doctor.personalData.name);
@@ -1027,6 +924,230 @@ void registerAccommodation() {
 		getch();
 		initial();
 	}
+}
+
+void registerVoluntary() {
+	FILE *file_voluntary;
+
+	Voluntary voluntary;
+
+	file_voluntary = fopen("usuarios/voluntarios.txt", "ab");
+
+	if (file_voluntary == NULL) {
+		printf("Problema na abertura do arquivo!\n");
+	} else {
+		do
+		{
+			header("Cadastro de voluntário");
+
+			fflush(stdin);
+			printf("Nome: ");
+			gets(voluntary.personalData.name);
+
+			fflush(stdin);
+			printf("\nNacionalidade: ");
+			gets(voluntary.personalData.countryOrigin.name);
+
+			fflush(stdin);
+			printf("\nPassaporte: ");
+			gets(voluntary.personalData.passport);
+
+			fflush(stdin);
+			printf("\nData de nascimento: ");
+			scanf("%d %d %d", &voluntary.personalData.brithDay.day, &voluntary.personalData.brithDay.month, &voluntary.personalData.brithDay.year);
+
+			fflush(stdin);
+			printf("\nRG: ");
+			gets(voluntary.personalData.rg);
+
+			fflush(stdin);
+			printf("\nCPF: ");
+			gets(voluntary.personalData.cpf);
+
+			fflush(stdin);
+			printf("\nSexo: ");
+			gets(voluntary.personalData.genre);
+
+			fflush(stdin);
+			printf("\nInsira seu Nick(único): ");
+			gets(voluntary.personalData.nickName);
+
+			fflush(stdin);
+			printf("\nSenha: ");
+			gets(voluntary.personalData.password);
+
+			voluntary.personalData.statusLogin = 0;
+
+			fwrite(&voluntary, sizeof(Voluntary), 1, file_voluntary);
+
+			printf("\n\nDeseja continuar(s/n)? ");
+		} while (getche() == 's');
+	
+		fclose(file_voluntary);
+
+		system("cls");
+		puts("=============================================");
+		puts("Voluntário(s), cadastrado com sucesso!");
+		puts("=============================================");
+		
+		getch();
+		initial();
+	}
+}
+
+void listAthlete() {
+	setlocale(LC_ALL, "Portuguese");
+
+	FILE *file_athlete;
+	Athlete athlete;
+
+	file_athlete = fopen("usuarios/atletas.txt", "rb");
+
+	header("Listagem de atletas");
+
+	if (file_athlete == NULL) {
+		printf("Problemas na abertura do arquivo!\n");
+	} else {
+		while (fread(&athlete, sizeof(Athlete), 1, file_athlete) == 1) {
+			printf("\tNome: %s", athlete.personalData.name);
+			printf("\n\tNacionalidade de %s: ", athlete.personalData.countryOrigin.name);
+			printf("\n\tPassaporte de %s: ", athlete.personalData.passport);
+			printf("\n\tData de nascimento de %d/%d/%d: ", athlete.personalData.brithDay.day, athlete.personalData.brithDay.month, athlete.personalData.brithDay.year);
+			printf("\n\tRG de %s: ", athlete.personalData.rg);
+			printf("\n\tCPF de %s: ", athlete.personalData.cpf);
+			printf("\n\tSexo de %s: ", athlete.personalData.genre);
+			printf("\n\tInsira Nick(único) de %s: ", athlete.personalData.nickName);
+			printf("\n\tSenha de acesso do(a) atleta %s: ", athlete.personalData.password);
+			printf("\n\tModalidade do atleta %s (ex: Futebol, Basquete, Vôlei, etc...): \n\t", athlete.team.modality);
+			printf("\n\tGênero da modalidade do atleta %s: ", athlete.team.genre);
+			printf("\n\tNúmero do(a) atleta %d: ", athlete.number);
+			printf("\n\tPosição que o(a) atleta %s irá exercer: ", athlete.position);
+
+      printf("\n======================================================================\n");
+		}
+	}
+
+	fclose(file_athlete);
+	getch();
+}
+
+void listVoluntaries() {
+  FILE *file_voluntary;
+  Voluntary voluntary;
+
+  file_voluntary = fopen("usuarios/voluntarios.txt", "rb"); // read
+
+  header("Listar voluntarios");
+
+  if (file_voluntary == NULL) {
+    printf("Problemas na abertura do arquivo!\n");
+  } else {
+    while(fread(&voluntary, sizeof(Voluntary), 1, file_voluntary) == 1) {
+			printf("\n\tNome: %s", voluntary.personalData.name);
+			printf("\n\tNacionalidade: %s", voluntary.personalData.countryOrigin.name);
+			printf("\n\tPassaporte: %s", voluntary.personalData.passport);
+			printf("\n\tData de nascimento: %d/%d/%d", voluntary.personalData.brithDay.day, voluntary.personalData.brithDay.month, voluntary.personalData.brithDay.year);
+			printf("\n\tRG: %s", voluntary.personalData.rg);
+			printf("\n\tCPF: %s", voluntary.personalData.cpf);
+			printf("\n\tSexo: %s", voluntary.personalData.genre);
+			printf("\n\tNick Unico: %s", voluntary.personalData.nickName);
+			printf("\n\tSenha: %s", voluntary.personalData.password);
+      printf("\n\t================================================\n");
+    }
+  }
+
+  fclose(file_voluntary);
+  getch();
+}
+
+void listTechnician() {
+	FILE *file_technician;
+  Technician technician;
+
+  file_technician = fopen("usuarios/tecnicos.txt", "rb"); // read
+
+  header("Listar Tecnicos");
+
+  if (file_technician == NULL) {
+    printf("Problemas na abertura do arquivo!\n");
+  } else {
+    while(fread(&technician, sizeof(Technician), 1, file_technician) == 1) {
+			printf("\n\tNome: %s", technician.personalData.name);
+			printf("\n\tNacionalidade: %s", technician.personalData.countryOrigin.name);
+			printf("\n\tPassaporte: %s", technician.personalData.passport);
+			printf("\n\tData de nascimento: %d/%d/%d", technician.personalData.brithDay.day, technician.personalData.brithDay.month, technician.personalData.brithDay.year);
+			printf("\n\tRG: %s", technician.personalData.rg);
+			printf("\n\tCPF: %s", technician.personalData.cpf);
+			printf("\n\tSexo: %s", technician.personalData.genre);
+			printf("\n\tInsira seu Nick(único): %s", technician.personalData.nickName);
+			printf("\n\tModalidade: %s", technician.team.modality);
+			printf("\n\tGênero da modalidade : %s", technician.team.genre);
+      printf("\n\t================================================\n");
+    }
+  }
+
+  fclose(file_technician);
+  getch();
+}
+
+void listDoctors() {
+	FILE *file_doctor;
+  Doctor doctor;
+
+  file_doctor = fopen("usuarios/tecnicos.txt", "rb"); // read
+
+  header("Listar de Medicos");
+
+  if (file_doctor == NULL) {
+    printf("Problemas na abertura do arquivo!\n");
+  } else {
+    while(fread(&doctor, sizeof(Doctor), 1, file_doctor) == 1) {
+			printf("\n\tNome: %s", doctor.personalData.name);
+			printf("\n\tNacionalidade: %s", doctor.personalData.countryOrigin.name);
+			printf("\n\tPassaporte: %s", doctor.personalData.passport);
+			printf("\n\tData de nascimento: %d/%d/%d", doctor.personalData.brithDay.day, doctor.personalData.brithDay.month, doctor.personalData.brithDay.year);
+			printf("\n\tRG: %s", doctor.personalData.rg);
+			printf("\n\tCPF: %s", doctor.personalData.cpf);
+			printf("\n\tSexo: %s", doctor.personalData.genre);
+			printf("\n\tNick Unico: %s", doctor.personalData.nickName);
+			printf("\n\tModalidade para qual o medico ira ser designado: %s \n\t", doctor.team.modality);
+			printf("\n\tCategoria da modalidade: %s", doctor.team.genre);
+			printf("\n\tFormção academica do medico %s: ", doctor.academicEducation);
+			printf("\n\tDescrição de experiencia: %s", doctor.experienceDescription);
+      printf("\n\t================================================\n");
+    }
+  }
+
+  fclose(file_doctor);
+  getch();
+}
+
+void listEmployee() {
+	FILE *file_employee;
+  Employee employee;
+
+  file_employee = fopen("usuarios/tecnicos.txt", "rb"); // read
+
+  header("Listar de Medicos");
+
+  if (file_employee == NULL) {
+    printf("Problemas na abertura do arquivo!\n");
+  } else {
+    while(fread(&employee, sizeof(Employee), 1, file_employee) == 1) {
+			printf("\n\tNome: %s", employee.personalData.name);
+			printf("\n\tNacionalidade: %s", employee.personalData.countryOrigin.name);
+			printf("\n\tPassaporte: %s", employee.personalData.passport);
+			printf("\n\tData de nascimento: %d/%d/%d", employee.personalData.brithDay.day, employee.personalData.brithDay.month, employee.personalData.brithDay.year);
+			printf("\n\tRG: %s", employee.personalData.rg);
+			printf("\n\tCPF: %s", employee.personalData.cpf);
+			printf("\n\tSexo: %s", employee.personalData.genre);
+			printf("\n\tNick unico: %s", employee.personalData.nickName);
+			printf("\n\t================================================\n");
+    }
+  }
+
+  fclose(file_employee);
+  getch();
 }
 
 char header(char title[25]) {
