@@ -59,6 +59,28 @@ struct user {
 	int statusLogin;
 };
 
+typedef struct technician Technician;
+struct technician {
+	User personalData;
+};
+
+typedef struct doctor Doctor;
+struct doctor
+{
+	User personalData;
+	Category team;
+};
+
+typedef struct team Team;
+struct team
+{
+	char name[20];
+	Country source;
+	Technician technician;
+	Category category;
+	Doctor doctor;
+};
+
 typedef struct voluntary Voluntary;
 struct voluntary {
 	User personalData;
@@ -73,12 +95,6 @@ struct employee {
 	char description;
 };
 
-typedef struct technician Technician;
-struct technician {
-	User personalData;
-	Category team;
-};
-
 typedef struct athlete Athlete;
 struct athlete
 {
@@ -88,14 +104,7 @@ struct athlete
 	char position[20];
 };
 
-typedef struct doctor Doctor;
-struct doctor
-{
-	User personalData;
-	Category team;
-	char academicEducation[30];
-	char experienceDescription[50];
-};
+
 
 typedef struct olympicGamesVenue OlympicGamesVenue;
 struct olympicGamesVenue
@@ -128,8 +137,9 @@ struct match
 char header(char title[25]);
 
 void registerCountry();
-void registerAthlete();
+void registerTeam();
 void registerTechnician();
+void registerAthlete();
 void registerDoctor();
 void registerEmployee();
 void registerVoluntary();
@@ -141,6 +151,7 @@ void listTechnician();
 void listDoctors();
 void listEmployee();
 void listVoluntaries();
+void listTeam();
 
 void login() {
 	setlocale(LC_ALL, "Portuguese");
@@ -295,7 +306,7 @@ void initial(){
 		printf("\t(1) Cadastrar Usuário\n");
 		printf("\t(2) Cadastrar País\n");
 		printf("\t(3) Cadastrar Jogos\n");
-		printf("\t(4) Cadastrar Evento\n");
+		printf("\t(4) Cadastrar de equipe\n");
 		printf("\t(5) Listar Usuários\n");
 		printf("\t(6) Listar Países\n");
 		printf("\t(7) Listar Modalidades\n");
@@ -309,7 +320,8 @@ void initial(){
 		printf("\t(15) Pesquisar Jogos\n");
 		printf("\t(16) Calendário de Eventos\n");
 		printf("\t(17) Calendário de Jogos\n");
-		printf("\t(18) Sair do Programa\n\n");
+		printf("\t(4) Cadastrar Evento\n");
+		printf("\t(19) Sair do Programa\n\n");
 
 		printf("\tPor gentileza, digite o número da opção desejada: ");
 		//@nicolas_lobos => leitura do input do usuario
@@ -325,7 +337,7 @@ void initial(){
 					header("Cadastros de Usuários");
 
 					printf("\t(1) Cadastrar Atleta(s)\n");
-					printf("\t(2) Cadastrar Técnico(s)\n");
+					printf("\t(2) Cadastrar Tecnico(s)\n");
 					printf("\t(3) Cadastrar Médico(s)\n");
 					printf("\t(4) Cadastrar Funcionário(s)\n");
 					printf("\t(5) Cadastrar Voluntário(s)\n");
@@ -377,9 +389,7 @@ void initial(){
 			break;
 
 			case 4:
-				printf("\n\tEm desenvolvimento");
-				getch();
-				initial();
+				registerTeam();
 			break;
 
 			case 5:
@@ -419,23 +429,25 @@ void initial(){
 						break;
 
 						case 6:
-							printf("Em desenvolvimento");
-							getch();
-							initial();
+							listVoluntaries();
+						break;
+
+						case 7:
+							listTeam();
 						break;
 
 						default:
 							printf("\n\tOpção inválida! Tente novamente");
 						break;
 					}
-				} while (chooseOption != 7);
+				} while (chooseOption != 8);
 			break;
 
 			default:
 				printf("\n\tOpção inválida! Tente novamente");
 			break;
 		}
-	} while(option_menu != 18);
+	} while(option_menu != 19);
 	system("cls");
 
 	int exit;
@@ -508,7 +520,7 @@ void registerMatch() {
 			gets(match.teams.team.genre);
 
 			int totalVoluntary;
-			fflush(stdin);
+
 			printf("\nDigite o total de volutário(s) para esse jogo: ");
 			scanf("%d", &totalVoluntary);
 			for (int i=0; i < totalVoluntary; i++) {
@@ -597,7 +609,6 @@ void registerEmployee() {
 			printf("\nPassaporte: ");
 			gets(employee.personalData.passport);
 
-			fflush(stdin);
 			printf("\nData de nascimento: ");
 			scanf("%d %d %d", &employee.personalData.brithDay.day, &employee.personalData.brithDay.month, &employee.personalData.brithDay.year);
 
@@ -636,6 +647,70 @@ void registerEmployee() {
 		puts("=============================================");
 		
 		getch();
+		initial();
+	}
+}
+
+void registerTeam() {
+	FILE *file_team;
+	FILE *file_technician;
+	FILE *file_doctor;
+
+	Team team;
+
+	char technicianName;
+
+	file_team = fopen("usuarios/equipes.txt", "ab");
+
+	if (file_team == NULL) {
+		printf("Problemas na abertura dos arquivos!\n");
+	} else {
+		do
+		{
+			header("Cadastro do time");
+
+			fflush(stdin);
+			printf("Nome: ");
+			gets(team.name);
+
+			fflush(stdin);
+			printf("\nPais de origem: ");
+			gets(team.source.name);
+
+			fflush(stdin);
+			printf("\nComite do Pais: ");
+			gets(team.source.olympicCommitte);
+
+			fflush(stdin);
+			printf("\nCategoria(Feminino ou Masculino): ");
+			gets(team.category.genre);
+
+			fflush(stdin);
+			printf("\nModalidade(ex: Basquete): ");
+			gets(team.category.modality);
+
+			fflush(stdin);
+			printf("\nTecnico: ");
+			gets(team.technician.personalData.name);
+
+			fflush(stdin);
+			printf("\nMédico: ");
+			gets(team.doctor.personalData.name);
+
+			fwrite(&team, sizeof(Team), 1, file_team);
+
+			printf("\n\nDeseja continuar(s/n)? ");
+		} while (getche() == 's');
+		
+		fclose(file_team);
+
+		system("cls");
+		puts("=============================================");
+		puts("Equipe(s), cadastrado com sucesso!");
+		puts("=============================================");
+		
+		getch();
+
 		initial();
 	}
 }
@@ -687,14 +762,6 @@ void registerTechnician() {
 			fflush(stdin);
 			printf("\nSenha: ");
 			gets(technician.personalData.password);
-
-			fflush(stdin);
-			printf("\nModalidade: (ex: Futebol, Basquete, Vôlei, etc...) ");
-			gets(technician.team.modality);
-
-			fflush(stdin);
-			printf("\nGênero da modalidade : ");
-			gets(technician.team.genre);
 
 			technician.personalData.statusLogin = 0;
 
@@ -772,7 +839,6 @@ void registerAthlete() {
 			printf("\nGênero da modalidade do atleta %s: ", athlete.personalData.name);
 			gets(athlete.team.genre);
 
-			fflush(stdin);
 			printf("\nNúmero do(a) atleta %s: ", athlete.personalData.name);
 			scanf("%d", &athlete.number);
 
@@ -854,14 +920,6 @@ void registerDoctor() {
 			fflush(stdin);
 			printf("\nGênero da modalidade do médico %s: ", doctor.personalData.name);
 			gets(doctor.team.genre);
-
-			fflush(stdin);
-			printf("\nFormção academica de %s: ", doctor.personalData.name);
-			gets(doctor.academicEducation);
-
-			fflush(stdin);
-			printf("\nDescrição de experiencia de %s e o papel que ele irá exercer: \n\t", doctor.personalData.name);
-			gets(doctor.experienceDescription);
 
 			doctor.personalData.statusLogin = 0;
 
@@ -952,7 +1010,6 @@ void registerVoluntary() {
 			printf("\nPassaporte: ");
 			gets(voluntary.personalData.passport);
 
-			fflush(stdin);
 			printf("\nData de nascimento: ");
 			scanf("%d %d %d", &voluntary.personalData.brithDay.day, &voluntary.personalData.brithDay.month, &voluntary.personalData.brithDay.year);
 
@@ -1080,8 +1137,6 @@ void listTechnician() {
 			printf("\n\tCPF: %s", technician.personalData.cpf);
 			printf("\n\tSexo: %s", technician.personalData.genre);
 			printf("\n\tInsira seu Nick(único): %s", technician.personalData.nickName);
-			printf("\n\tModalidade: %s", technician.team.modality);
-			printf("\n\tGênero da modalidade : %s", technician.team.genre);
       printf("\n\t================================================\n");
     }
   }
@@ -1112,8 +1167,6 @@ void listDoctors() {
 			printf("\n\tNick Unico: %s", doctor.personalData.nickName);
 			printf("\n\tModalidade para qual o medico ira ser designado: %s \n\t", doctor.team.modality);
 			printf("\n\tCategoria da modalidade: %s", doctor.team.genre);
-			printf("\n\tFormção academica do medico %s: ", doctor.academicEducation);
-			printf("\n\tDescrição de experiencia: %s", doctor.experienceDescription);
       printf("\n\t================================================\n");
     }
   }
@@ -1147,6 +1200,33 @@ void listEmployee() {
   }
 
   fclose(file_employee);
+  getch();
+}
+
+void listTeam() {
+	FILE *file_team;
+  Team team;
+
+  file_team = fopen("usuarios/equipes.txt", "rb"); // read
+
+  header("Listar de Medicos");
+
+  if (file_team == NULL) {
+    printf("Problemas na abertura do arquivo!\n");
+  } else {
+    while(fread(&team, sizeof(Employee), 1, file_team) == 1) {
+			printf("Nome: %s", team.name);
+			printf("\nPais de origem: %s", team.source.name);
+			printf("\nComite do Pais: %s", team.source.olympicCommitte);
+			printf("\nCategoria: %s", team.category.genre);
+			printf("\nModalidade: %s", team.category.modality);
+			printf("\nTecnico: %s", team.technician.personalData.name);
+			printf("\nMédico: %s", team.doctor.personalData.name);
+			printf("\n\t================================================\n");
+    }
+  }
+
+  fclose(file_team);
   getch();
 }
 
