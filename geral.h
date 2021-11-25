@@ -146,12 +146,13 @@ void registerVoluntary();
 void registerAccommodation();
 void registerMatch(); // Jogos
 
-void listAthlete();
+void listCountry();
+void listTeam();
 void listTechnician();
+void listAthlete();
 void listDoctors();
 void listEmployee();
 void listVoluntaries();
-void listTeam();
 
 void login() {
 	setlocale(LC_ALL, "Portuguese");
@@ -301,7 +302,7 @@ void initial(){
 
 		//@nicolas_lobos => exibi��o do menu
 		printf("\n\a");
-		header("Bem vindo(a), Tela inicial"); 
+		header("Bem vindo(a), Tela inicial");
 
 		printf("\t(1) Cadastrar Usuário\n");
 		printf("\t(2) Cadastrar País\n");
@@ -330,7 +331,6 @@ void initial(){
 		cada uma das op��es abaixo referencia uma fun��o acima */
 
 		switch (option_menu) {
-
 			case 1:
 				int chooseOption;
 				do {
@@ -441,6 +441,10 @@ void initial(){
 						break;
 					}
 				} while (chooseOption != 8);
+			break;
+
+			case 6:
+				listCountry();
 			break;
 
 			default:
@@ -1086,6 +1090,7 @@ void listAthlete() {
 
 	fclose(file_athlete);
 	getch();
+	initial();
 }
 
 void listVoluntaries() {
@@ -1115,6 +1120,7 @@ void listVoluntaries() {
 
   fclose(file_voluntary);
   getch();
+	initial();
 }
 
 void listTechnician() {
@@ -1143,6 +1149,7 @@ void listTechnician() {
 
   fclose(file_technician);
   getch();
+	initial();
 }
 
 void listDoctors() {
@@ -1173,6 +1180,7 @@ void listDoctors() {
 
   fclose(file_doctor);
   getch();
+	initial();
 }
 
 void listEmployee() {
@@ -1201,6 +1209,7 @@ void listEmployee() {
 
   fclose(file_employee);
   getch();
+	initial();
 }
 
 void listTeam() {
@@ -1228,6 +1237,34 @@ void listTeam() {
 
   fclose(file_team);
   getch();
+	initial();
+}
+
+void listCountry() {
+	FILE *file_country;
+  Country country;
+
+  file_country = fopen("outros/paises.txt", "rb"); // read
+
+  header("Listar de Medicos");
+
+  if (file_country == NULL) {
+    printf("Problemas na abertura do arquivo!\n");
+  } else {
+    while(fread(&country, sizeof(Employee), 1, file_country) == 1) {
+			printf("Nome do País: ");
+			gets(country.name);
+
+			fflush(stdin);
+			printf("\nComite Olimpico do(a) %s: ", country.name);
+			gets(country.olympicCommitte);
+			printf("\n\t================================================\n");
+    }
+  }
+
+  fclose(file_country);
+  getch();
+	initial();
 }
 
 char header(char title[25]) {
