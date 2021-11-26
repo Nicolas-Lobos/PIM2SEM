@@ -158,6 +158,8 @@ void listMatch(); // Jogos
 
 void monitorEvents();
 
+void searchAthlete();
+void searchTechnician();
 void searchCountry();
 
 void login() {
@@ -310,26 +312,26 @@ void initial(){
 		printf("\n\a");
 		header("Bem vindo(a), Tela inicial");
 
-		printf("\t(1) Cadastrar Usuário\n");
-		printf("\t(2) Cadastrar País\n");
-		printf("\t(3) Cadastrar Jogos\n");
-		printf("\t(4) Cadastrar de equipe\n");
-		printf("\t(5) Listar Usuários\n");
-		printf("\t(6) Listar Países\n");
-		printf("\t(7) Listar Modalidades\n");
-		printf("\t(8) Listar Locais dos Jogos\n");
-		printf("\t(9) Listar Eventos(jogos)\n");
-		printf("\t(10) Listar Alojamentos\n");
+		printf("\t(1) *Cadastrar Usuário\n");
+		printf("\t(2) *Cadastrar País\n");
+		printf("\t(3) *Cadastrar Jogos\n");
+		printf("\t(4) *Cadastrar de equipe\n");
+		printf("\t(5) *Listar Usuários\n");
+		printf("\t(6) *Listar Países\n");
+		printf("\t(7) *Listar Modalidades\n");
+		printf("\t(8) *Listar Locais dos Jogos\n");
+		printf("\t(9) *Listar Eventos(jogos)\n");
+		printf("\t(10) *Listar Alojamentos\n");
 		printf("\t(11) Pesquisar Usuário\n");
-		printf("\t(12) Pesquisar País\n");
+		printf("\t(12) *Pesquisar País\n");
 		printf("\t(13) Pesquisar Modalidade\n");
 		printf("\t(14) Pesquisar Local do Jogo\n");
 		printf("\t(15) Pesquisar Evento\n");
 		printf("\t(16) Pesquisar Jogos\n");
 		printf("\t(17) Calendário de Eventos\n");
 		printf("\t(18) Calendário de Jogos\n");
-		printf("\t(19) Cadastrar Evento\n");
-		printf("\t(20) Monitoramento de eventos\n");
+		printf("\t(19) *Cadastrar Evento\n");
+		printf("\t(20) *Monitoramento de eventos\n");
 		printf("\t(21) Sair do Programa\n\n");
 
 		printf("\tPor gentileza, digite o número da opção desejada: ");
@@ -349,8 +351,7 @@ void initial(){
 					printf("\t(3) Cadastrar Médico(s)\n");
 					printf("\t(4) Cadastrar Funcionário(s)\n");
 					printf("\t(5) Cadastrar Voluntário(s)\n");
-					printf("\t(6) Cadastro de STAFF\n");
-					printf("\t(7) Voltar Tela Inicial\n\n");
+					printf("\t(6) Voltar Tela Inicial\n\n");
 
 					scanf("%d", &chooseOption);
 
@@ -385,7 +386,7 @@ void initial(){
 							printf("\n\tOpção inválida! Tente novamente");
 						break;
 					}
-				} while (chooseOption != 7);
+				} while (chooseOption != 6);
 			break;
 
 			case 2:
@@ -411,7 +412,7 @@ void initial(){
 					printf("\t(4) Listar Funcionário(s)\n");
 					printf("\t(5) Listar Voluntário(s)\n");
 					printf("\t(6) Listar de STAFF\n");
-					printf("\t(7) Voltar Tela Inicial\n\n");
+					printf("\t(10) Voltar Tela Inicial\n\n");
 
 					scanf("%d", &chooseOption);
 
@@ -437,7 +438,8 @@ void initial(){
 						break;
 
 						case 6:
-							listVoluntaries();
+							printf("Em desenvolvimento");
+							initial();
 						break;
 
 						case 7:
@@ -454,23 +456,71 @@ void initial(){
 							listMatch();
 						break;
 
-						case 10:
-							listAccommodation();
-						break;
+						case 11:
+							int chooseOption;
+							do {
+								header("Cadastros de Usuários");
 
-						case 12:
-							searchCountry();
+								printf("\t(1) Pesquisar Atleta(s)\n");
+								printf("\t(2) Pesquisar Tecnico(s)\n");
+								printf("\t(3) Pesquisar Médico(s)\n");
+								printf("\t(4) Pesquisar Funcionário(s)\n");
+								printf("\t(5) Pesquisar Voluntário(s)\n");
+								printf("\t(6) Voltar Tela Inicial\n\n");
+
+								scanf("%d", &chooseOption);
+
+								switch (chooseOption) {
+									case 1:
+										searchAthlete();
+									break;
+
+									case 2:
+										searchTechnician();
+									break;
+
+									case 3:
+										printf("Em desenvolvimento");
+										getch();
+										chooseOption = 6;
+									break;
+
+									case 4:
+										printf("Em desenvolvimento");
+										getch();
+										chooseOption = 6;
+									break;
+
+									case 5:
+										printf("Em desenvolvimento");
+										getch();
+										chooseOption = 6;
+									break;
+
+									default:
+										printf("\n\tOpção inválida! Tente novamente");
+									break;
+								}
+							} while (chooseOption != 6);
 						break;
 
 						default:
 							printf("\n\tOpção inválida! Tente novamente");
 						break;
 					}
-				} while (chooseOption != 8);
+				} while (chooseOption !=10);
 			break;
 
 			case 6:
 				listCountry();
+			break;
+
+			case 10:
+				listAccommodation();
+			break;
+
+			case 12:
+				searchCountry();
 			break;
 
 			case 20:
@@ -1101,18 +1151,17 @@ void listAthlete() {
 	} else {
 		while (fread(&athlete, sizeof(Athlete), 1, file_athlete) == 1) {
 			printf("\tNome: %s", athlete.personalData.name);
-			printf("\n\tNacionalidade de %s: ", athlete.personalData.countryOrigin.name);
-			printf("\n\tPassaporte de %s: ", athlete.personalData.passport);
-			printf("\n\tData de nascimento de %d/%d/%d: ", athlete.personalData.brithDay.day, athlete.personalData.brithDay.month, athlete.personalData.brithDay.year);
-			printf("\n\tRG de %s: ", athlete.personalData.rg);
-			printf("\n\tCPF de %s: ", athlete.personalData.cpf);
-			printf("\n\tSexo de %s: ", athlete.personalData.genre);
-			printf("\n\tInsira Nick(único) de %s: ", athlete.personalData.nickName);
-			printf("\n\tSenha de acesso do(a) atleta %s: ", athlete.personalData.password);
-			printf("\n\tModalidade do atleta %s (ex: Futebol, Basquete, Vôlei, etc...): \n\t", athlete.team.modality);
-			printf("\n\tGênero da modalidade do atleta %s: ", athlete.team.genre);
-			printf("\n\tNúmero do(a) atleta %d: ", athlete.number);
-			printf("\n\tPosição que o(a) atleta %s irá exercer: ", athlete.position);
+			printf("\n\tNacionalidade: %s", athlete.personalData.countryOrigin.name);
+			printf("\n\tPassaporte: %s", athlete.personalData.passport);
+			printf("\n\tData de nascimento: %d/%d/%d", athlete.personalData.brithDay.day, athlete.personalData.brithDay.month, athlete.personalData.brithDay.year);
+			printf("\n\tRG: %s", athlete.personalData.rg);
+			printf("\n\tCPF: %s", athlete.personalData.cpf);
+			printf("\n\tSexo: %s", athlete.personalData.genre);
+			printf("\n\tNick: %s", athlete.personalData.nickName);
+			printf("\n\tModalidade: %s:", athlete.team.modality);
+			printf("\n\tGênero da modalidade: %s", athlete.team.genre);
+			printf("\n\tNúmero %d", athlete.number);
+			printf("\n\tPosição %s: ", athlete.position);
 
       printf("\n======================================================================\n");
 		}
@@ -1407,6 +1456,82 @@ void searchCountry() {
   }
 
   fclose(file_country);
+  getch();
+	initial();
+}
+
+void searchAthlete() {
+	FILE *file_athlete;
+  Athlete athlete;
+  char name[30];
+
+  file_athlete = fopen("usuarios/atletas.txt", "rb"); // read, binary
+
+  header("Pesquisar pais");
+  
+  if (file_athlete == NULL) {
+    printf("Problemas na abertura do arquivo!\n");
+  } else {
+    fflush(stdin);
+    printf("Digite o nome a pesquisar: ");
+    gets(name);
+
+    while (fread(&athlete, sizeof(Athlete), 1, file_athlete) == 1) {
+      if(strcmp(name, athlete.personalData.name) == 0) {
+        printf("\tNome: %s", athlete.personalData.name);
+				printf("\n\tNacionalidade: %s", athlete.personalData.countryOrigin.name);
+				printf("\n\tPassaporte: %s", athlete.personalData.passport);
+				printf("\n\tData de nascimento de %d/%d/%d: ", athlete.personalData.brithDay.day, athlete.personalData.brithDay.month, athlete.personalData.brithDay.year);
+				printf("\n\tRG %s", athlete.personalData.rg);
+				printf("\n\tCPF %s", athlete.personalData.cpf);
+				printf("\n\tSexo %s", athlete.personalData.genre);
+				printf("\n\tNick: %s", athlete.personalData.nickName);
+				printf("\n\tModalidade:  %s", athlete.team.modality);
+				printf("\n\tGênero da modalidade: %s", athlete.team.genre);
+				printf("\n\tNúmero: %d", athlete.number);
+				printf("\n\tPosição: %s", athlete.position);
+        printf("==========================================================\n");
+      }
+    }
+  }
+
+  fclose(file_athlete);
+  getch();
+	initial();
+}
+
+void searchTechnician() {
+	FILE *file_technician;
+  Technician technician;
+  char name[30];
+
+  file_technician = fopen("usuarios/tecnicos.txt", "rb"); // read, binary
+
+  header("Exibir dados do tecnico");
+  
+  if (file_technician == NULL) {
+    printf("Problemas na abertura do arquivo!\n");
+  } else {
+    fflush(stdin);
+    printf("Digite o nome a pesquisar: ");
+    gets(name);
+
+    while (fread(&technician, sizeof(Technician), 1, file_technician) == 1) {
+      if(strcmp(name, technician.personalData.name) == 0) {
+        printf("\n\tNome: %s", technician.personalData.name);
+				printf("\n\tNacionalidade: %s", technician.personalData.countryOrigin.name);
+				printf("\n\tPassaporte: %s", technician.personalData.passport);
+				printf("\n\tData de nascimento: %d/%d/%d", technician.personalData.brithDay.day, technician.personalData.brithDay.month, technician.personalData.brithDay.year);
+				printf("\n\tRG: %s", technician.personalData.rg);
+				printf("\n\tCPF: %s", technician.personalData.cpf);
+				printf("\n\tSexo: %s", technician.personalData.genre);
+				printf("\n\tInsira seu Nick(único): %s", technician.personalData.nickName);
+        printf("==========================================================\n");
+      }
+    }
+  }
+
+  fclose(file_technician);
   getch();
 	initial();
 }
