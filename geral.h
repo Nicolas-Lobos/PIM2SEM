@@ -158,6 +158,8 @@ void listMatch(); // Jogos
 
 void monitorEvents();
 
+void searchCountry();
+
 void login() {
 	setlocale(LC_ALL, "Portuguese");
 	User user;
@@ -454,6 +456,10 @@ void initial(){
 
 						case 10:
 							listAccommodation();
+						break;
+
+						case 12:
+							searchCountry();
 						break;
 
 						default:
@@ -1371,6 +1377,36 @@ void monitorEvents() {
   }
 
   fclose(file_match);
+  getch();
+	initial();
+}
+
+void searchCountry() {
+	FILE *file_country;
+  Country country;
+  char name[30];
+
+  file_country = fopen("outros/paises.txt", "rb"); // read, binary
+
+  header("Pesquisar pais");
+  
+  if (file_country == NULL) {
+    printf("Problemas na abertura do arquivo!\n");
+  } else {
+    fflush(stdin);
+    printf("Digite o nome a pesquisar: ");
+    gets(name);
+
+    while (fread(&country, sizeof(Country), 1, file_country) == 1) {
+      if(strcmp(name, country.name) == 0) {
+        printf("\tNome do País: %s\n", country.name);
+				printf("\tComite olimpico: %s\n", country.olympicCommitte);
+        printf("===========================================\n");
+      }
+    }
+  }
+
+  fclose(file_country);
   getch();
 	initial();
 }
