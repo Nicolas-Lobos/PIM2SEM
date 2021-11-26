@@ -6,8 +6,6 @@
 
 //@nicolas_lobos => Arquivo biblioteca para todas as fun��es utilizadas no main
 
-
-
 ///processo para a consulta da agenda de eventos (concluido)
 void cslta_agenda(){
 	//@nicolas_lobos => declara��o de vari�veis

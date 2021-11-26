@@ -161,6 +161,7 @@ void monitorEvents();
 void searchAthlete();
 void searchTechnician();
 void searchCountry();
+void searchEventDate();
 
 void login() {
 	setlocale(LC_ALL, "Portuguese");
@@ -326,7 +327,7 @@ void initial(){
 		printf("\t(12) *Pesquisar País\n");
 		printf("\t(13) Pesquisar Modalidade\n");
 		printf("\t(14) Pesquisar Local do Jogo\n");
-		printf("\t(15) Pesquisar Evento\n");
+		printf("\t(15) *Pesquisar Evento\n");
 		printf("\t(16) Pesquisar Jogos\n");
 		printf("\t(17) Calendário de Eventos\n");
 		printf("\t(18) Calendário de Jogos\n");
@@ -461,8 +462,8 @@ void initial(){
 							do {
 								header("Cadastros de Usuários");
 
-								printf("\t(1) Pesquisar Atleta(s)\n");
-								printf("\t(2) Pesquisar Tecnico(s)\n");
+								printf("\t(1) *Pesquisar Atleta(s)\n");
+								printf("\t(2) *Pesquisar Tecnico(s)\n");
 								printf("\t(3) Pesquisar Médico(s)\n");
 								printf("\t(4) Pesquisar Funcionário(s)\n");
 								printf("\t(5) Pesquisar Voluntário(s)\n");
@@ -521,6 +522,46 @@ void initial(){
 
 			case 12:
 				searchCountry();
+			break;
+
+			case 13:
+				printf("\nEm desenvolvimento");
+				getch();
+				initial();
+			break;
+
+			case 14:
+				printf("\nEm desenvolvimento");
+				getch();
+				initial();
+			break;
+
+			case 15:
+				searchEventDate();
+			break;
+
+			case 16:
+				printf("\nEm desenvolvimento");
+				getch();
+				initial();
+			break;
+
+			case 17:
+				printf("\nEm desenvolvimento");
+				getch();
+				initial();
+			break;
+
+			case 18:
+				printf("\nEm desenvolvimento");
+				getch();
+				initial();
+			break;
+
+			case 19:
+				printf("\nEm desenvolvimento");
+				getch();
+				initial();
 			break;
 
 			case 20:
@@ -1532,6 +1573,43 @@ void searchTechnician() {
   }
 
   fclose(file_technician);
+  getch();
+	initial();
+}
+
+void searchEventDate() {
+	FILE *file_event;
+  Match event;
+
+  file_event = fopen("jogos.txt", "rb"); // read, binary
+
+  header("Detalhes do Evento");
+  
+  if (file_event == NULL) {
+    printf("Problemas na abertura do arquivo!\n");
+  } else {
+    int month;
+    printf("Digite o mês: ");
+    scanf("%d", &month);
+
+    while (fread(&event, sizeof(Match), 1, file_event) == 1) {
+      if(month == event.schedule.month) {
+				printf("\tTítulo: %s", event.title);
+				printf("\tDescrição do jogo: %s", event.descrition);
+				printf("\n\n\tLocal do jogo\n\n");
+				printf("\tEstado: %s\n", event.local.state);
+				printf("\tCidade: %s\n", event.local.city);
+				printf("\tData do jogo: %d/%d/%d %d:%d:%d\n", event.schedule.day, event.schedule.month, event.schedule.year, event.schedule.hour, event.schedule.minute, event.schedule.second);
+				printf("\tModalidade: %s\n", event.teams.team.modality);
+				printf("\tCategoria: %s\n", event.teams.team.genre);
+
+				printf("\n\tVolutário(s) para esse jogo: %s", event.voluntary.personalData.name);				
+        printf("\n==========================================================\n");
+      }
+    }
+  }
+
+  fclose(file_event);
   getch();
 	initial();
 }
