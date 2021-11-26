@@ -154,6 +154,9 @@ void listDoctors();
 void listEmployee();
 void listVoluntaries();
 void listAccommodation();
+void listMatch(); // Jogos
+
+void monitorEvents();
 
 void login() {
 	setlocale(LC_ALL, "Portuguese");
@@ -313,7 +316,7 @@ void initial(){
 		printf("\t(6) Listar Países\n");
 		printf("\t(7) Listar Modalidades\n");
 		printf("\t(8) Listar Locais dos Jogos\n");
-		printf("\t(9) Listar Eventos\n");
+		printf("\t(9) Listar Eventos(jogos)\n");
 		printf("\t(10) Listar Alojamentos\n");
 		printf("\t(11) Pesquisar Usuário\n");
 		printf("\t(12) Pesquisar País\n");
@@ -324,7 +327,8 @@ void initial(){
 		printf("\t(17) Calendário de Eventos\n");
 		printf("\t(18) Calendário de Jogos\n");
 		printf("\t(19) Cadastrar Evento\n");
-		printf("\t(20) Sair do Programa\n\n");
+		printf("\t(20) Monitoramento de eventos\n");
+		printf("\t(21) Sair do Programa\n\n");
 
 		printf("\tPor gentileza, digite o número da opção desejada: ");
 		//@nicolas_lobos => leitura do input do usuario
@@ -445,9 +449,7 @@ void initial(){
 						break;
 
 						case 9:
-							printf("Em desenvolvimento");
-							getch();
-							initial();
+							listMatch();
 						break;
 
 						case 10:
@@ -465,11 +467,15 @@ void initial(){
 				listCountry();
 			break;
 
+			case 20:
+				monitorEvents();
+			break;
+
 			default:
 				printf("\n\tOpção inválida! Tente novamente");
 			break;
 		}
-	} while(option_menu != 19);
+	} while(option_menu != 21);
 	system("cls");
 
 	int exit;
@@ -525,12 +531,12 @@ void registerMatch() {
 			printf("\nEx: dia - mês - ano - hora - minuto - segundo:\n\t");
 			scanf (
 				"%d %d %d %d %d %d",
-				match.schedule.day,
-				match.schedule.month,
-				match.schedule.year,
-				match.schedule.hour,
-				match.schedule.minute,
-				match.schedule.second
+				&match.schedule.day,
+				&match.schedule.month,
+				&match.schedule.year,
+				&match.schedule.hour,
+				&match.schedule.minute,
+				&match.schedule.second
 			);
 
 			fflush(stdin);
@@ -547,7 +553,7 @@ void registerMatch() {
 			scanf("%d", &totalVoluntary);
 			for (int i=0; i < totalVoluntary; i++) {
 				printf("Insira o nome do %d° volutário: ", i);
-				gets(match.teams.team.genre);
+				gets(match.voluntary.personalData.name);
 			}
 
 			fwrite(&match, sizeof(Match), 1, file_match);
@@ -1264,7 +1270,7 @@ void listCountry() {
 
   file_country = fopen("outros/paises.txt", "rb"); // read
 
-  header("Listar de Medicos");
+  header("Listar Paises");
 
   if (file_country == NULL) {
     printf("Problemas na abertura do arquivo!\n");
@@ -1289,14 +1295,14 @@ void listAccommodation() {
 	FILE *file_accommodation;
   Accommodation accommodation;
 
-  file_accommodation = fopen("outros/paises.txt", "rb"); // read
+  file_accommodation = fopen("outros/alojamentos.txt", "rb"); // read
 
   header("Listar de Medicos");
 
   if (file_accommodation == NULL) {
     printf("Problemas na abertura do arquivo!\n");
   } else {
-    while(fread(&accommodation, sizeof(Employee), 1, file_accommodation) == 1) {
+    while(fread(&accommodation, sizeof(Accommodation), 1, file_accommodation) == 1) {
 			printf("Nome: %s", accommodation.name);
 			printf("\nEndereço: %s", accommodation.endereco);
 			printf("\nDescrição %s: ", accommodation.description);
@@ -1305,6 +1311,66 @@ void listAccommodation() {
   }
 
   fclose(file_accommodation);
+  getch();
+	initial();
+}
+
+void listMatch() {
+	FILE *file_match;
+  Match match;
+
+  file_match = fopen("outros/jogos.txt", "rb"); // read
+
+  header("Listar de Jogos");
+
+  if (file_match == NULL) {
+    printf("Problemas na abertura do arquivo!\n");
+  } else {
+    while(fread(&match, sizeof(Match), 1, file_match) == 1) {
+			printf("Título: %s", match.title);
+			printf("\nDescrição: %s", match.descrition);
+			printf("\nLocal do jogo\n");
+			printf("\nEstado: %s", match.local.state);
+			printf("\nCidade: %s\n", match.local.city);
+			printf("\nData do jogo: %d/%d/%d - %d:%d:%d", 	match.schedule.day, match.schedule.month, match.schedule.year, 	match.schedule.hour,	match.schedule.minute, match.schedule.second);
+			printf("\nModalidade: %s", match.teams.team.modality);
+			printf("\nCategoria(ex: Feminino Masculino): %s", match.teams.team.genre);
+			printf("\nTotal de volutário(s) para esse jogo: %s", match.voluntary.personalData.name);
+			printf("\n\t================================================\n");
+    }
+  }
+
+  fclose(file_match);
+  getch();
+	initial();
+}
+
+void monitorEvents() {
+	FILE *file_match;
+  Match match;
+	char event[30];
+
+  header("Monitorando evento");
+
+  file_match = fopen("outros/jogos.txt", "rb"); // read
+	  if (file_match == NULL) {
+    printf("Problemas na abertura do arquivo!\n");
+  } else {
+		fflush(stdin);
+    printf("Digite o nome(titulo) do evento ou do jogo que está cadastrado: ");
+    gets(event);
+
+    while(fread(&match, sizeof(Match), 1, file_match) == 1) {
+			// Exemplo Futebol
+			if(strcmp(event, match.title) == 0) {
+				printf("\tEquipe do grupo A, venceu a primeira rodada por 5 pontos a mais\n");
+				printf("\tEquipe X passo para a próxima fase de grupos, com os outros 7 finalistas\n");
+				printf("\t================================================\n");
+			}
+    }
+  }
+
+  fclose(file_match);
   getch();
 	initial();
 }
