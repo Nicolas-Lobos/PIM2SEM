@@ -153,6 +153,7 @@ void listAthlete();
 void listDoctors();
 void listEmployee();
 void listVoluntaries();
+void listAccommodation();
 
 void login() {
 	setlocale(LC_ALL, "Portuguese");
@@ -313,16 +314,17 @@ void initial(){
 		printf("\t(7) Listar Modalidades\n");
 		printf("\t(8) Listar Locais dos Jogos\n");
 		printf("\t(9) Listar Eventos\n");
-		printf("\t(10) Pesquisar Usuário\n");
-		printf("\t(11) Pesquisar País\n");
-		printf("\t(12) Pesquisar Modalidade\n");
-		printf("\t(13) Pesquisar Local do Jogo\n");
-		printf("\t(14) Pesquisar Evento\n");
-		printf("\t(15) Pesquisar Jogos\n");
-		printf("\t(16) Calendário de Eventos\n");
-		printf("\t(17) Calendário de Jogos\n");
-		printf("\t(4) Cadastrar Evento\n");
-		printf("\t(19) Sair do Programa\n\n");
+		printf("\t(10) Listar Alojamentos\n");
+		printf("\t(11) Pesquisar Usuário\n");
+		printf("\t(12) Pesquisar País\n");
+		printf("\t(13) Pesquisar Modalidade\n");
+		printf("\t(14) Pesquisar Local do Jogo\n");
+		printf("\t(15) Pesquisar Evento\n");
+		printf("\t(16) Pesquisar Jogos\n");
+		printf("\t(17) Calendário de Eventos\n");
+		printf("\t(18) Calendário de Jogos\n");
+		printf("\t(19) Cadastrar Evento\n");
+		printf("\t(20) Sair do Programa\n\n");
 
 		printf("\tPor gentileza, digite o número da opção desejada: ");
 		//@nicolas_lobos => leitura do input do usuario
@@ -434,6 +436,22 @@ void initial(){
 
 						case 7:
 							listTeam();
+						break;
+
+						case 8:
+							printf("Em desenvolvimento");
+							getch();
+							initial();
+						break;
+
+						case 9:
+							printf("Em desenvolvimento");
+							getch();
+							initial();
+						break;
+
+						case 10:
+							listAccommodation();
 						break;
 
 						default:
@@ -1263,6 +1281,30 @@ void listCountry() {
   }
 
   fclose(file_country);
+  getch();
+	initial();
+}
+
+void listAccommodation() {
+	FILE *file_accommodation;
+  Accommodation accommodation;
+
+  file_accommodation = fopen("outros/paises.txt", "rb"); // read
+
+  header("Listar de Medicos");
+
+  if (file_accommodation == NULL) {
+    printf("Problemas na abertura do arquivo!\n");
+  } else {
+    while(fread(&accommodation, sizeof(Employee), 1, file_accommodation) == 1) {
+			printf("Nome: %s", accommodation.name);
+			printf("\nEndereço: %s", accommodation.endereco);
+			printf("\nDescrição %s: ", accommodation.description);
+			printf("\n\t================================================\n");
+    }
+  }
+
+  fclose(file_accommodation);
   getch();
 	initial();
 }
