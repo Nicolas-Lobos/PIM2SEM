@@ -1581,7 +1581,7 @@ void searchEventDate() {
 	FILE *file_event;
   Match event;
 
-  file_event = fopen("jogos.txt", "rb"); // read, binary
+  file_event = fopen("outros/jogos.txt", "rb"); // read, binary
 
   header("Detalhes do Evento");
   
